@@ -1,21 +1,18 @@
 import 'package:flame/components.dart';
-import 'package:water_to_trees/game/puzzle_game.dart';
+import 'package:water_to_trees/base_widget.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
 
-class Background extends SpriteComponent {
-  final PuzzleGame _puzzleGame;
-
-  Background(this._puzzleGame);
+class Background extends BaseWidget {
+  @override
+  Future<void> load() async {
+    sprite = await AssetProvider.background(gameRef);
+    anchor = Anchor.center;
+  }
 
   @override
-  Future<void> onLoad() async {
-    await super.onLoad();
-
-    sprite = await AssetProvider.background(_puzzleGame);
-
-    position = _puzzleGame.size / 2;
-    width = _puzzleGame.size.x;
-    height = _puzzleGame.size.y;
-    anchor = Anchor.center;
+  void setDimensions(Vector2 gameSize) {
+    position = gameSize / 2;
+    width = gameSize.x;
+    height = gameSize.y;
   }
 }

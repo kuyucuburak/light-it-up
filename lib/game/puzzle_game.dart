@@ -11,9 +11,10 @@ class PuzzleGame extends FlameGame with PanDetector {
   Future<void> onLoad() async {
     await super.onLoad();
     await images.loadAll(AssetProvider.imageAssets);
+
     player = Player();
 
-    add(Background(this));
+    add(Background());
     add(player);
   }
 
