@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
-import 'package:water_to_trees/space_shooter_game.dart';
+import 'package:water_to_trees/game/puzzle_game.dart';
 
-class Player extends SpriteComponent with HasGameRef<SpaceShooterGame> {
+class Player extends SpriteComponent with HasGameRef<PuzzleGame> {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
@@ -18,4 +18,3 @@ class Player extends SpriteComponent with HasGameRef<SpaceShooterGame> {
     position.add(delta);
   }
 }
-
