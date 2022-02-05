@@ -10,5 +10,7 @@ void main() {
   Flame.device.setLandscape();
 
   // runApp(GameWidget(game: PuzzleGameOld()));
-  runApp(GameWidget(game: IsometricTileMapExample()));
+  // runApp(GameWidget(game: DraggablesExample(zoom: 0)));
+  // runApp(GameWidget(game: IsometricTileMapExample()));
+  runApp(GameWidget(game: PuzzleGame()));
 }

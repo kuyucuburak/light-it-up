@@ -20,4 +20,6 @@ class AssetProvider {
   static Future<Image> _tiles(FlameGame game) async => await game.images.load('tile_map/tiles.png');
 
   static Future<Image> _tilesShort(FlameGame game) async => await game.images.load('tile_map/tiles_short.png');
+
+  static Future<Image> player(FlameGame game) async => await game.images.load('animations/robot-idle.png');
 }
