@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
-import 'package:water_to_trees/game/puzzle_game.dart';
+import 'package:water_to_trees/archive/game/puzzle_game_old.dart';
 
-abstract class BaseWidget extends SpriteComponent with HasGameRef<PuzzleGame> {
+abstract class BaseWidget extends SpriteComponent with HasGameRef<PuzzleGameOld> {
   Future<void> load();
 
   void setDimensions(Vector2 gameSize);

@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
-import 'package:water_to_trees/base_widget.dart';
-import 'package:water_to_trees/util/asset_provider.dart';
+import 'package:water_to_trees/archive/base_widget.dart';
+import 'package:water_to_trees/archive/util/asset_provider.dart';
 
 class Background extends BaseWidget {
   @override

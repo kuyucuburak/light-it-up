@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flame: 1.0.0
   flame_tiled: ^1.1.0
+  tiled: 0.8.0
 
 dev_dependencies:
   flutter_test:
@@ -24,3 +25,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/images/tile_map/

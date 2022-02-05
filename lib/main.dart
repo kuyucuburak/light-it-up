@@ -9,5 +9,6 @@ void main() {
   Flame.device.fullScreen();
   Flame.device.setLandscape();
 
-  runApp(GameWidget(game: PuzzleGame()));
+  // runApp(GameWidget(game: PuzzleGameOld()));
+  runApp(GameWidget(game: IsometricTileMapExample()));
 }
