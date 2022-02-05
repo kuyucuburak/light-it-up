@@ -5,8 +5,6 @@ import 'package:water_to_trees/component/game/wall_game.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
 
 class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
-  late final List<ChopperGame> squareList = [];
-
   final int _rowCount = 4;
   final int _columnCount = 8;
 
@@ -14,19 +12,17 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
   final double _mostTopLeftBrickX = 250;
   final double _mostTopLeftBrickY = 250;
 
+  final double _chopperSize = 100;
+  final double _mostTopLeftChopperX = 350;
+  final double _mostTopLeftChopperY = 350;
+
   @override
   Future<void> onLoad() async {
     super.onLoad();
     await images.loadAll(AssetProvider.imageAssets);
 
     _buildWalls();
-
-    squareList.add(ChopperGame(position: Vector2(500, 400), size: Vector2.all(_brickSize)));
-    squareList.add(ChopperGame(position: Vector2(500, 601), size: Vector2.all(_brickSize)));
-
-    for (ChopperGame e in squareList) {
-      add(e);
-    }
+    _buildChoppers();
   }
 
   Future<void> _buildWalls() async {
@@ -73,5 +69,23 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
         size: Vector2.all(100),
       ));
     }
+  }
+
+  Future<void> _buildChoppers() async {
+    add(ChopperGame(
+      position: Vector2(
+        _mostTopLeftChopperX + 1,
+        _mostTopLeftChopperY + 2,
+      ),
+      size: Vector2.all(_chopperSize),
+    ));
+
+    add(ChopperGame(
+      position: Vector2(
+        _mostTopLeftChopperX + 1,
+        _mostTopLeftChopperY + _chopperSize * 2,
+      ),
+      size: Vector2.all(_chopperSize),
+    ));
   }
 }
