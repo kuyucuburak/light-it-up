@@ -7,7 +7,7 @@ import 'package:water_to_trees/game/puzzle_game.dart';
 import 'package:water_to_trees/util/constants.dart';
 
 class ChopperGame extends Chopper<PuzzleGame> with HasHitboxes, Collidable, Draggable {
-  static const int dragStartThreshold = 50; // When it is lower, drag will start sooner.
+  static const int dragStartThreshold = 50; // When it is lower, dragging will be started sooner, it will be more sensitive.
 
   @override
   bool debugMode = Constants.debugMode;
