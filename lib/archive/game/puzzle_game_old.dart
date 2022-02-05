@@ -2,7 +2,7 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:water_to_trees/archive/components/background.dart';
 import 'package:water_to_trees/archive/components/player.dart';
-import 'package:water_to_trees/archive/util/asset_provider.dart';
+import 'package:water_to_trees/archive/util/asset_provider_old.dart';
 
 class PuzzleGameOld extends FlameGame with PanDetector {
   late Player player;
@@ -10,7 +10,7 @@ class PuzzleGameOld extends FlameGame with PanDetector {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    await images.loadAll(AssetProvider.imageAssets);
+    await images.loadAll(AssetProviderOld.imageAssets);
 
     player = Player();
 

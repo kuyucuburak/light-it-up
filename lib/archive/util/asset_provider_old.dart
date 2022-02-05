@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
-class AssetProvider {
+class AssetProviderOld {
   static const imageAssets = [
     'background.jpg',
     'player.png',

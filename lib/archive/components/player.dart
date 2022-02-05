@@ -1,11 +1,11 @@
 import 'package:flame/components.dart';
 import 'package:water_to_trees/archive/base_widget.dart';
-import 'package:water_to_trees/archive/util/asset_provider.dart';
+import 'package:water_to_trees/archive/util/asset_provider_old.dart';
 
 class Player extends BaseWidget {
   @override
   Future<void> load() async {
-    sprite = await AssetProvider.player(gameRef);
+    sprite = await AssetProviderOld.player(gameRef);
     anchor = Anchor.center;
     position = gameRef.size / 2;
   }
