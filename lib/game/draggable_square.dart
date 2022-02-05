@@ -2,7 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart' as material;
-import 'package:water_to_trees/archive/game/ember.dart';
+import 'package:water_to_trees/game/ember.dart';
 import 'package:water_to_trees/game/puzzle_game.dart';
 
 class DraggableSquare extends Ember<PuzzleGame> with Draggable, HasHitboxes, Collidable {
