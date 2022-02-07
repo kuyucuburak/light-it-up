@@ -4,24 +4,21 @@ import 'package:flutter/material.dart' as material;
 import 'package:water_to_trees/component/base_draggable.dart';
 import 'package:water_to_trees/game/puzzle_game.dart';
 import 'package:water_to_trees/util/alias.dart';
+import 'package:water_to_trees/util/app_constants.dart';
 
-class BaseDraggableSprite extends SpriteComponent with HasGameRef<PuzzleGame>, HasHitboxes, Collidable, Draggable, BaseDraggable {
-  @override
-  material.Color debugColor = material.Colors.lightBlueAccent;
+class BaseDraggableSpriteAnimationComponent extends SpriteAnimationComponent with HasGameRef<PuzzleGame>, HasHitboxes, Collidable, Draggable, BaseDraggable {
+  final SpriteAnimationLoader spriteAnimationLoader;
 
-  final SpriteLoader spriteLoader;
-
-  BaseDraggableSprite({
+  BaseDraggableSpriteAnimationComponent({
     required Vector2 position,
     required Vector2 size,
     required int priority,
-    required Anchor anchor,
-    required this.spriteLoader,
+    required this.spriteAnimationLoader,
   }) : super(
           position: position,
           size: size,
           priority: priority,
-          anchor: anchor,
+          anchor: AppConstants.anchor,
         ) {
     addHitbox(HitboxRectangle());
   }
@@ -29,7 +26,7 @@ class BaseDraggableSprite extends SpriteComponent with HasGameRef<PuzzleGame>, H
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    sprite = await spriteLoader(gameRef);
+    animation = await spriteAnimationLoader(gameRef);
   }
 
   @override

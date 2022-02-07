@@ -1,26 +1,23 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
-import 'package:flame/geometry.dart';
-import 'package:meta/meta.dart';
+import 'package:water_to_trees/component/base_collapsible_sprite_component.dart';
+import 'package:water_to_trees/util/alias.dart';
+import 'package:water_to_trees/util/app_constants.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
 
-class Wall<T extends FlameGame> extends SpriteComponent with HasGameRef<T>, HasHitboxes, Collidable {
-  Wall({
+class Wall extends BaseCollapsibleSpriteComponent {
+  Wall._({
     required Vector2 position,
-    required Vector2 size,
+    required SpriteLoader spriteLoader,
   }) : super(
           position: position,
-          size: size,
-          priority: 0,
-          anchor: Anchor.center,
-        ) {
-    addHitbox(HitboxRectangle());
-  }
+          size: Vector2.all(AppConstants.wallSize),
+          priority: AppConstants.wallPriority,
+          spriteLoader: spriteLoader,
+        );
 
-  @mustCallSuper
-  @override
-  Future<void> onLoad() async {
-    super.onLoad();
-    sprite = await AssetProvider.imageBrick(gameRef);
-  }
+  static Wall brick(Vector2 position) => Wall._(
+        position: position,
+        spriteLoader: AssetProvider.imageBrick,
+      );
 }

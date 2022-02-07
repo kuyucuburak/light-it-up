@@ -2,7 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
 class AssetProvider {
-  static const String _animationPlant = 'animations/plant.png';
+  static const String _animationCarnivorousPlant = 'animations/carnivorous_plant.png';
 
   static const String _imagePipeCornerBottomLeft = 'pipe/pipe_corner_bottom_left.png';
   static const String _imagePipeCornerBottomRight = 'pipe/pipe_corner_bottom_right.png';
@@ -13,7 +13,7 @@ class AssetProvider {
   static const String _imageBrick = 'wall/brick.png';
 
   static const imageAssets = [
-    _animationPlant,
+    _animationCarnivorousPlant,
     _imagePipeCornerBottomLeft,
     _imagePipeCornerBottomRight,
     _imagePipeCornerTopLeft,
@@ -23,9 +23,9 @@ class AssetProvider {
     _imageBrick,
   ];
 
-  static Future<SpriteAnimation> animationPlant(FlameGame gameRef) async {
+  static Future<SpriteAnimation> animationCarnivorousPlant(FlameGame gameRef) async {
     return await gameRef.loadSpriteAnimation(
-      _animationPlant,
+      _animationCarnivorousPlant,
       SpriteAnimationData.sequenced(amount: 37, stepTime: 0.1, textureSize: Vector2(136, 173)),
     );
   }

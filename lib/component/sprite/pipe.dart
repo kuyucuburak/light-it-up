@@ -1,17 +1,46 @@
 import 'package:flame/game.dart';
-import 'package:flame/widgets.dart';
-import 'package:water_to_trees/component/base_draggable_sprite.dart';
+import 'package:water_to_trees/component/base_draggable_sprite_component.dart';
+import 'package:water_to_trees/util/app_constants.dart';
+import 'package:water_to_trees/util/asset_provider.dart';
 
-class Pipe extends BaseDraggableSprite {
-  Pipe({
+class Pipe extends BaseDraggableSpriteComponent {
+  Pipe._({
     required Vector2 position,
-    required Vector2 size,
     required spriteLoader,
   }) : super(
           position: position,
-          size: size,
-          priority: 1,
-          anchor: Anchor.center,
+          size: Vector2.all(AppConstants.pipeSize),
+          priority: AppConstants.pipePriority,
           spriteLoader: spriteLoader,
         );
+
+  static Pipe cornerBottomLeft(Vector2 position) => Pipe._(
+        position: position,
+        spriteLoader: AssetProvider.imagePipeCornerBottomLeft,
+      );
+
+  static Pipe cornerBottomRight(Vector2 position) => Pipe._(
+        position: position,
+        spriteLoader: AssetProvider.imagePipeCornerBottomRight,
+      );
+
+  static Pipe cornerTopLeft(Vector2 position) => Pipe._(
+        position: position,
+        spriteLoader: AssetProvider.imagePipeCornerTopLeft,
+      );
+
+  static Pipe cornerTopRight(Vector2 position) => Pipe._(
+        position: position,
+        spriteLoader: AssetProvider.imagePipeCornerTopRight,
+      );
+
+  static Pipe horizontal(Vector2 position) => Pipe._(
+        position: position,
+        spriteLoader: AssetProvider.imagePipeHorizontal,
+      );
+
+  static Pipe vertical(Vector2 position) => Pipe._(
+        position: position,
+        spriteLoader: AssetProvider.imagePipeVertical,
+      );
 }
