@@ -12,7 +12,7 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
   final double _mostTopLeftBrickX = 250;
   final double _mostTopLeftBrickY = 250;
 
-  final double _chopperSize = 100;
+  final double chopperSize = 100;
   final double _mostTopLeftChopperX = 350;
   final double _mostTopLeftChopperY = 350;
 
@@ -74,18 +74,18 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
   Future<void> _buildChoppers() async {
     add(ChopperGame(
       position: Vector2(
-        _mostTopLeftChopperX + 1,
-        _mostTopLeftChopperY + 2,
+        _mostTopLeftChopperX,
+        _mostTopLeftChopperY,
       ),
-      size: Vector2.all(_chopperSize),
+      size: Vector2.all(chopperSize),
     ));
 
     add(ChopperGame(
       position: Vector2(
-        _mostTopLeftChopperX + 1,
-        _mostTopLeftChopperY + _chopperSize * 2,
+        _mostTopLeftChopperX,
+        _mostTopLeftChopperY + chopperSize * 2,
       ),
-      size: Vector2.all(_chopperSize),
+      size: Vector2.all(chopperSize),
     ));
   }
 }

@@ -12,9 +12,6 @@ class ChopperGame extends Chopper<PuzzleGame> with HasHitboxes, Collidable, Drag
   @override
   bool debugMode = Constants.debugMode;
 
-  List<Vector2> _intersectionPoints = [];
-
-  int? _dragPointerId;
   Vector2? _dragDeltaPosition;
   bool? _isDragHorizontal;
 
@@ -35,23 +32,7 @@ class ChopperGame extends Chopper<PuzzleGame> with HasHitboxes, Collidable, Drag
   }
 
   @override
-  void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
-    final dragPointerId = _dragPointerId;
-    if (dragPointerId != null) {
-      handleDragCanceled(dragPointerId);
-    }
-
-    _intersectionPoints = intersectionPoints.toList();
-  }
-
-  @override
-  void onCollisionEnd(Collidable other) {
-    _intersectionPoints = [];
-  }
-
-  @override
   bool onDragStart(int pointerId, DragStartInfo info) {
-    _dragPointerId = pointerId;
     _dragDeltaPosition = info.eventPosition.game - position;
     _isDragHorizontal = null;
     return true;
@@ -59,10 +40,6 @@ class ChopperGame extends Chopper<PuzzleGame> with HasHitboxes, Collidable, Drag
 
   @override
   bool onDragUpdate(int pointerId, DragUpdateInfo info) {
-    if (_intersectionPoints.isNotEmpty) {
-      return false;
-    }
-
     final Vector2 dragDeltaPosition = _dragDeltaPosition ?? Vector2(0, 0);
     Vector2 eventPositionWithDelta = info.eventPosition.game;
     double evenPointX = eventPositionWithDelta.x - dragDeltaPosition.x;
@@ -73,12 +50,34 @@ class ChopperGame extends Chopper<PuzzleGame> with HasHitboxes, Collidable, Drag
       if (moveXCount >= dragStartThreshold || moveYCount >= dragStartThreshold) {
         _isDragHorizontal = moveXCount > moveYCount;
       }
-    }
+    } else {
+      if (_isDragHorizontal == true) {
+        if (evenPointX > position.x) {
+          double newX = position.x + gameRef.chopperSize;
+          if (!_hasChildrenAtPosition(newX, position.y)) {
+            position.x = newX;
+          }
+        } else {
+          double newX = position.x - gameRef.chopperSize;
+          if (!_hasChildrenAtPosition(newX, position.y)) {
+            position.x = newX;
+          }
+        }
+      } else if (_isDragHorizontal == false) {
+        if (evenPointY > position.y) {
+          double newY = position.y + gameRef.chopperSize;
+          if (!_hasChildrenAtPosition(position.x, newY)) {
+            position.y = newY;
+          }
+        } else {
+          double newY = position.y - gameRef.chopperSize;
+          if (!_hasChildrenAtPosition(position.x, newY)) {
+            position.y = newY;
+          }
+        }
+      }
 
-    if (_isDragHorizontal == true) {
-      position.x = evenPointX;
-    } else if (_isDragHorizontal == false) {
-      position.y = evenPointY;
+      handleDragCanceled(pointerId);
     }
 
     return true;
@@ -86,7 +85,6 @@ class ChopperGame extends Chopper<PuzzleGame> with HasHitboxes, Collidable, Drag
 
   @override
   bool onDragEnd(int pointerId, DragEndInfo info) {
-    _dragPointerId = null;
     _dragDeltaPosition = null;
     _isDragHorizontal = null;
     return false;
@@ -94,9 +92,12 @@ class ChopperGame extends Chopper<PuzzleGame> with HasHitboxes, Collidable, Drag
 
   @override
   bool onDragCancel(int pointerId) {
-    _dragPointerId = null;
     _dragDeltaPosition = null;
     _isDragHorizontal = null;
     return false;
+  }
+
+  bool _hasChildrenAtPosition(double x, double y) {
+    return gameRef.children.any((e) => e.containsPoint(Vector2(x, y)));
   }
 }
