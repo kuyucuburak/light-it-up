@@ -7,6 +7,9 @@ import 'package:water_to_trees/util/alias.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 
 class BaseDraggableSpriteComponent extends SpriteComponent with HasGameRef<PuzzleGame>, HasHitboxes, Collidable, Draggable, BaseDraggable {
+  @override
+  material.Color debugColor = material.Colors.lightBlueAccent;
+
   final SpriteLoader spriteLoader;
 
   BaseDraggableSpriteComponent({
@@ -27,11 +30,5 @@ class BaseDraggableSpriteComponent extends SpriteComponent with HasGameRef<Puzzl
   Future<void> onLoad() async {
     super.onLoad();
     sprite = await spriteLoader(gameRef);
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-    debugColor = isDragged ? material.Colors.green : material.Colors.lightBlue;
   }
 }

@@ -38,24 +38,24 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, Collidable, Position
     } else {
       if (_isDragHorizontal == true) {
         if (evenPointX > position.x) {
-          double newX = position.x + gameRef.chopperSize;
+          double newX = position.x + AppConstants.tileSize;
           if (!_hasChildrenAtPosition(newX, position.y)) {
             position.x = newX;
           }
         } else {
-          double newX = position.x - gameRef.chopperSize;
+          double newX = position.x - AppConstants.tileSize;
           if (!_hasChildrenAtPosition(newX, position.y)) {
             position.x = newX;
           }
         }
       } else if (_isDragHorizontal == false) {
         if (evenPointY > position.y) {
-          double newY = position.y + gameRef.chopperSize;
+          double newY = position.y + AppConstants.tileSize;
           if (!_hasChildrenAtPosition(position.x, newY)) {
             position.y = newY;
           }
         } else {
-          double newY = position.y - gameRef.chopperSize;
+          double newY = position.y - AppConstants.tileSize;
           if (!_hasChildrenAtPosition(position.x, newY)) {
             position.y = newY;
           }

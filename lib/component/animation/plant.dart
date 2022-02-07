@@ -10,7 +10,7 @@ class Plant extends BaseDraggableSpriteAnimationComponent {
     required SpriteAnimationLoader spriteAnimationLoader,
   }) : super(
           position: position,
-          size: Vector2.all(AppConstants.plantSize),
+          size: Vector2.all(AppConstants.tileSize),
           priority: AppConstants.plantPriority,
           spriteAnimationLoader: spriteAnimationLoader,
         );

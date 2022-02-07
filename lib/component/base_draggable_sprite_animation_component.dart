@@ -7,6 +7,9 @@ import 'package:water_to_trees/util/alias.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 
 class BaseDraggableSpriteAnimationComponent extends SpriteAnimationComponent with HasGameRef<PuzzleGame>, HasHitboxes, Collidable, Draggable, BaseDraggable {
+  @override
+  material.Color debugColor = material.Colors.greenAccent;
+
   final SpriteAnimationLoader spriteAnimationLoader;
 
   BaseDraggableSpriteAnimationComponent({
@@ -27,11 +30,5 @@ class BaseDraggableSpriteAnimationComponent extends SpriteAnimationComponent wit
   Future<void> onLoad() async {
     super.onLoad();
     animation = await spriteAnimationLoader(gameRef);
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-    debugColor = isDragged ? material.Colors.greenAccent : material.Colors.lightBlueAccent;
   }
 }

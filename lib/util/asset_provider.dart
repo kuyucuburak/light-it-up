@@ -26,7 +26,7 @@ class AssetProvider {
   static Future<SpriteAnimation> animationCarnivorousPlant(FlameGame gameRef) async {
     return await gameRef.loadSpriteAnimation(
       _animationCarnivorousPlant,
-      SpriteAnimationData.sequenced(amount: 37, stepTime: 0.1, textureSize: Vector2(136, 173)),
+      SpriteAnimationData.sequenced(amount: 37, stepTime: 0.025, textureSize: Vector2(136, 173)),
     );
   }
 
