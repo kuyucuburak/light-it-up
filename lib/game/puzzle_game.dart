@@ -33,7 +33,7 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
           _mostTopLeftBrickX + (i * _brickSize),
           _mostTopLeftBrickY,
         ),
-        size: Vector2.all(100),
+        size: Vector2.all(_brickSize),
       ));
     }
 
@@ -44,7 +44,7 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
           _mostTopLeftBrickX + (i * _brickSize),
           _mostTopLeftBrickY + (_brickSize * (_rowCount + 1)),
         ),
-        size: Vector2.all(100),
+        size: Vector2.all(_brickSize),
       ));
     }
 
@@ -55,7 +55,7 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
           _mostTopLeftBrickX,
           _mostTopLeftBrickY + ((i + 1) * _brickSize),
         ),
-        size: Vector2.all(100),
+        size: Vector2.all(_brickSize),
       ));
     }
 
@@ -66,7 +66,7 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
           _mostTopLeftBrickX + _brickSize * (_columnCount + 1),
           _mostTopLeftBrickY + ((i + 1) * _brickSize),
         ),
-        size: Vector2.all(100),
+        size: Vector2.all(_brickSize),
       ));
     }
   }
