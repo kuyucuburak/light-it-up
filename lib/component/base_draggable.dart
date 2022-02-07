@@ -1,35 +1,16 @@
 import 'package:flame/components.dart';
-import 'package:flame/geometry.dart';
 import 'package:flame/input.dart';
-import 'package:flutter/material.dart' as material;
-import 'package:water_to_trees/component/animation/chopper.dart';
 import 'package:water_to_trees/game/puzzle_game.dart';
-import 'package:water_to_trees/util/constants.dart';
+import 'package:water_to_trees/util/app_constants.dart';
 
-class ChopperGame extends Chopper<PuzzleGame> with HasHitboxes, Collidable, Draggable {
-  static const int dragStartThreshold = 50; // When it is lower, dragging will be started sooner, it will be more sensitive.
+mixin BaseDraggable on HasGameRef<PuzzleGame>, PositionComponent, Draggable {
+  static const int _dragStartThreshold = 50; // When it is lower, dragging will be started sooner, it will be more sensitive.
 
   @override
-  bool debugMode = Constants.debugMode;
+  bool debugMode = AppConstants.debugMode;
 
   Vector2? _dragDeltaPosition;
   bool? _isDragHorizontal;
-
-  ChopperGame({
-    required Vector2 position,
-    required Vector2 size,
-  }) : super(
-          position: position,
-          size: size,
-        ) {
-    addHitbox(HitboxRectangle());
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-    debugColor = isDragged ? material.Colors.greenAccent : material.Colors.lightBlueAccent;
-  }
 
   @override
   bool onDragStart(int pointerId, DragStartInfo info) {
@@ -44,12 +25,16 @@ class ChopperGame extends Chopper<PuzzleGame> with HasHitboxes, Collidable, Drag
     Vector2 eventPositionWithDelta = info.eventPosition.game;
     double evenPointX = eventPositionWithDelta.x - dragDeltaPosition.x;
     double evenPointY = eventPositionWithDelta.y - dragDeltaPosition.y;
+
     if (_isDragHorizontal == null) {
       double moveXCount = (evenPointX - position.x).abs();
       double moveYCount = (evenPointY - position.y).abs();
-      if (moveXCount >= dragStartThreshold || moveYCount >= dragStartThreshold) {
+
+      if (moveXCount >= _dragStartThreshold || moveYCount >= _dragStartThreshold) {
         _isDragHorizontal = moveXCount > moveYCount;
       }
+
+      return true;
     } else {
       if (_isDragHorizontal == true) {
         if (evenPointX > position.x) {
@@ -78,9 +63,8 @@ class ChopperGame extends Chopper<PuzzleGame> with HasHitboxes, Collidable, Drag
       }
 
       handleDragCanceled(pointerId);
+      return false;
     }
-
-    return true;
   }
 
   @override
@@ -97,7 +81,5 @@ class ChopperGame extends Chopper<PuzzleGame> with HasHitboxes, Collidable, Drag
     return false;
   }
 
-  bool _hasChildrenAtPosition(double x, double y) {
-    return gameRef.children.any((e) => e.containsPoint(Vector2(x, y)));
-  }
+  bool _hasChildrenAtPosition(double x, double y) => gameRef.children.any((e) => e.containsPoint(Vector2(x, y)));
 }

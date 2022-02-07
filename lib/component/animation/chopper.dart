@@ -18,6 +18,6 @@ class Chopper<T extends FlameGame> extends SpriteAnimationComponent with HasGame
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    animation = await AssetProvider.animationChopper(gameRef);
+    animation = await AssetProvider.animationPlant(gameRef);
   }
 }

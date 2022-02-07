@@ -26,3 +26,5 @@ flutter:
   assets:
     - assets/images/
     - assets/images/animations/
+    - assets/images/pipe/
+    - assets/images/wall/

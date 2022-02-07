@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
-import 'package:water_to_trees/component/game/chopper_game.dart';
-import 'package:water_to_trees/component/game/wall_game.dart';
+import 'package:water_to_trees/component/sprite/pipe.dart';
+import 'package:water_to_trees/component/sprite/wall.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
 
 class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
@@ -28,7 +28,7 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
   Future<void> _buildWalls() async {
     // top (_columnCount + 2) bricks
     for (int i = 0; i < (_columnCount + 2); i++) {
-      add(WallGame(
+      add(Wall<PuzzleGame>(
         position: Vector2(
           _mostTopLeftBrickX + (i * _brickSize),
           _mostTopLeftBrickY,
@@ -39,7 +39,7 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
 
     // bottom (_columnCount + 2) bricks
     for (int i = 0; i < (_columnCount + 2); i++) {
-      add(WallGame(
+      add(Wall<PuzzleGame>(
         position: Vector2(
           _mostTopLeftBrickX + (i * _brickSize),
           _mostTopLeftBrickY + (_brickSize * (_rowCount + 1)),
@@ -50,7 +50,7 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
 
     // left _rowCount bricks
     for (int i = 0; i < _rowCount; i++) {
-      add(WallGame(
+      add(Wall<PuzzleGame>(
         position: Vector2(
           _mostTopLeftBrickX,
           _mostTopLeftBrickY + ((i + 1) * _brickSize),
@@ -61,7 +61,7 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
 
     // right _rowCount bricks
     for (int i = 0; i < _rowCount; i++) {
-      add(WallGame(
+      add(Wall<PuzzleGame>(
         position: Vector2(
           _mostTopLeftBrickX + _brickSize * (_columnCount + 1),
           _mostTopLeftBrickY + ((i + 1) * _brickSize),
@@ -72,20 +72,58 @@ class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
   }
 
   Future<void> _buildChoppers() async {
-    add(ChopperGame(
+    add(Pipe(
       position: Vector2(
         _mostTopLeftChopperX,
         _mostTopLeftChopperY,
       ),
       size: Vector2.all(chopperSize),
+      spriteLoader: AssetProvider.imagePipeCornerBottomLeft,
     ));
 
-    add(ChopperGame(
+    add(Pipe(
+      position: Vector2(
+        _mostTopLeftChopperX + chopperSize,
+        _mostTopLeftChopperY,
+      ),
+      size: Vector2.all(chopperSize),
+      spriteLoader: AssetProvider.imagePipeCornerBottomRight,
+    ));
+
+    add(Pipe(
+      position: Vector2(
+        _mostTopLeftChopperX,
+        _mostTopLeftChopperY + chopperSize,
+      ),
+      size: Vector2.all(chopperSize),
+      spriteLoader: AssetProvider.imagePipeCornerTopLeft,
+    ));
+
+    add(Pipe(
+      position: Vector2(
+        _mostTopLeftChopperX + chopperSize,
+        _mostTopLeftChopperY + chopperSize,
+      ),
+      size: Vector2.all(chopperSize),
+      spriteLoader: AssetProvider.imagePipeCornerTopRight,
+    ));
+
+    add(Pipe(
+      position: Vector2(
+        _mostTopLeftChopperX + chopperSize * 2,
+        _mostTopLeftChopperY,
+      ),
+      size: Vector2.all(chopperSize),
+      spriteLoader: AssetProvider.imagePipeHorizontal,
+    ));
+
+    add(Pipe(
       position: Vector2(
         _mostTopLeftChopperX,
         _mostTopLeftChopperY + chopperSize * 2,
       ),
       size: Vector2.all(chopperSize),
+      spriteLoader: AssetProvider.imagePipeVertical,
     ));
   }
 }
