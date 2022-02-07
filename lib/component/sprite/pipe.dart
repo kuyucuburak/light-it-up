@@ -10,7 +10,7 @@ class Pipe extends BaseDraggableSpriteComponent {
   }) : super(
           position: position,
           size: Vector2.all(AppConstants.tileSize),
-          priority: AppConstants.pipePriority,
+          priority: AppConstants.tilePriority,
           spriteLoader: spriteLoader,
         );
 
