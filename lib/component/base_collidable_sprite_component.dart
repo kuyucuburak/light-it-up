@@ -5,7 +5,7 @@ import 'package:water_to_trees/game/puzzle_game.dart';
 import 'package:water_to_trees/util/alias.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 
-class BaseCollapsibleSpriteComponent extends SpriteComponent with HasGameRef<PuzzleGame>, HasHitboxes, Collidable {
+class BaseCollidableSpriteComponent extends SpriteComponent with HasGameRef<PuzzleGame>, HasHitboxes, Collidable {
   @override
   bool debugMode = AppConstants.debugMode;
   @override
@@ -13,7 +13,7 @@ class BaseCollapsibleSpriteComponent extends SpriteComponent with HasGameRef<Puz
 
   final SpriteLoader spriteLoader;
 
-  BaseCollapsibleSpriteComponent({
+  BaseCollidableSpriteComponent({
     required Vector2 position,
     required Vector2 size,
     required int priority,

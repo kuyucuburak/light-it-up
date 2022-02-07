@@ -1,18 +1,19 @@
 import 'package:flame/components.dart';
-import 'package:water_to_trees/component/animation/plant.dart';
+import 'package:water_to_trees/component/animation/tile.dart';
 import 'package:water_to_trees/component/sprite/pipe.dart';
 import 'package:water_to_trees/component/sprite/wall.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 
 class LevelBuilder {
   static const String ntg = "nothing";
-  static const String lnt = "plant";
-  static const String pbl = "pipe bottom left";
-  static const String pbr = "pipe bottom right";
-  static const String ptl = "pipe top left";
-  static const String ptr = "pipe top right";
-  static const String pho = "pipe horizontal";
-  static const String pve = "pipe vertical";
+  static const String cnv = "carnivorous";
+  static const String fnt = "fountain";
+  static const String pbl = "pipe_bottom_left";
+  static const String pbr = "pipe_bottom_right";
+  static const String ptl = "pipe_top_left";
+  static const String ptr = "pipe_top_right";
+  static const String pho = "pipe_horizontal";
+  static const String pve = "pipe_vertical";
 
   static const double _mostTopLeftTileX = 350;
   static const double _mostTopLeftTileY = 350;
@@ -91,8 +92,10 @@ class LevelBuilder {
 
   Component? keyToComponent(String key, Vector2 position) {
     switch (key) {
-      case lnt:
-        return Plant.carnivorous(position);
+      case cnv:
+        return Tile.carnivorous(position);
+      case fnt:
+        return Tile.fountain(position);
       case pbl:
         return Pipe.cornerBottomLeft(position);
       case pbr:
