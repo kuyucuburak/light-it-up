@@ -15,57 +15,56 @@ class LevelBuilder {
   static const String pho = "pipe_horizontal";
   static const String pve = "pipe_vertical";
 
-  static const double _mostTopLeftTileX = 350;
-  static const double _mostTopLeftTileY = 350;
-  static const double _mostTopLeftWallX = 250;
-  static const double _mostTopLeftWallY = 250;
+  static const double _mostTopLeftTileX = 250;
+  static const double _mostTopLeftTileY = 250;
+  static const double _mostTopLeftBrickX = _mostTopLeftTileX - AppConstants.tileSize / 2 - AppConstants.wallSize / 2;
+  static const double _mostTopLeftBrickY = _mostTopLeftTileY - AppConstants.tileSize / 2 - AppConstants.wallSize / 2;
+
+  late final int _tileRowCount = _tileMap.length;
+  late final int _tileColumnCount = _tileMap[0].length;
+  late final int _brickRowCount = _tileRowCount * AppConstants.tileSize ~/ AppConstants.wallSize + 2;
+  late final int _brickColumnCount = _tileColumnCount * AppConstants.tileSize ~/ AppConstants.wallSize + 2;
 
   final List<List<String>> _tileMap;
 
-  late final int _rowCount;
-  late final int _columnCount;
-
-  LevelBuilder(this._tileMap) {
-    _rowCount = _tileMap.length;
-    _columnCount = _tileMap[0].length;
-  }
+  LevelBuilder(this._tileMap);
 
   Future<List<Component>> wallList() async {
     List<Component> componentList = [];
 
-    double brickSize = AppConstants.wallSize;
-    double mostTopLeftBrickX = _mostTopLeftWallX;
-    double mostTopLeftBrickY = _mostTopLeftWallY;
+    double wallSize = AppConstants.wallSize;
+    int rowCount = _brickRowCount;
+    int columnCount = _brickColumnCount;
 
-    // top (_columnCount + 2) bricks
-    for (int i = 0; i < (_columnCount + 2); i++) {
+    // top bricks
+    for (int i = 0; i < columnCount; i++) {
       componentList.add(Wall.brick(Vector2(
-        mostTopLeftBrickX + (i * brickSize),
-        mostTopLeftBrickY,
+        _mostTopLeftBrickX + (i * wallSize),
+        _mostTopLeftBrickY,
       )));
     }
 
-    // bottom (_columnCount + 2) bricks
-    for (int i = 0; i < (_columnCount + 2); i++) {
+    // bottom bricks
+    for (int i = 0; i < columnCount; i++) {
       componentList.add(Wall.brick(Vector2(
-        mostTopLeftBrickX + (i * brickSize),
-        mostTopLeftBrickY + (brickSize * (_rowCount + 1)),
+        _mostTopLeftBrickX + (i * wallSize),
+        _mostTopLeftBrickY + (wallSize * (rowCount - 1)),
       )));
     }
 
-    // left _rowCount bricks
-    for (int i = 0; i < _rowCount; i++) {
+    // left bricks
+    for (int i = 1; i < rowCount - 1; i++) {
       componentList.add(Wall.brick(Vector2(
-        mostTopLeftBrickX,
-        mostTopLeftBrickY + ((i + 1) * brickSize),
+        _mostTopLeftBrickX,
+        _mostTopLeftBrickY + (i * wallSize),
       )));
     }
 
-    // right _rowCount bricks
-    for (int i = 0; i < _rowCount; i++) {
+    // right bricks
+    for (int i = 1; i < rowCount - 1; i++) {
       componentList.add(Wall.brick(Vector2(
-        mostTopLeftBrickX + brickSize * (_columnCount + 1),
-        mostTopLeftBrickY + ((i + 1) * brickSize),
+        _mostTopLeftBrickX + wallSize * (columnCount - 1),
+        _mostTopLeftBrickY + (i * wallSize),
       )));
     }
 
@@ -75,8 +74,8 @@ class LevelBuilder {
   Future<List<Component>> tileList() async {
     List<Component> componentList = [];
 
-    for (int i = 0; i < _rowCount; i++) {
-      for (int j = 0; j < _columnCount; j++) {
+    for (int i = 0; i < _tileRowCount; i++) {
+      for (int j = 0; j < _tileColumnCount; j++) {
         String key = _tileMap[i][j];
         double positionX = _mostTopLeftTileX + AppConstants.tileSize * j;
         double positionY = _mostTopLeftTileY + AppConstants.tileSize * i;

@@ -1,10 +1,10 @@
 import 'package:flame/components.dart';
-import 'package:water_to_trees/component/base_collidable_sprite_animation_component.dart';
+import 'package:water_to_trees/component/base_sprite_animation_component.dart';
 import 'package:water_to_trees/util/alias.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
 
-class Tile extends BaseCollidableSpriteAnimationComponent {
+class Tile extends BaseSpriteAnimationComponent {
   Tile._({
     required Vector2 position,
     required SpriteAnimationLoader spriteAnimationLoader,

@@ -3,7 +3,7 @@ import 'package:flame/game.dart';
 import 'package:water_to_trees/game/level_builder.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
 
-class PuzzleGame extends FlameGame with HasDraggables, HasCollidables {
+class PuzzleGame extends FlameGame with HasDraggables {
   late final LevelBuilder _levelBuilder = LevelBuilder(_tileMap);
   late final List<List<String>> _tileMap = [
     [LevelBuilder.fnt, LevelBuilder.pho, LevelBuilder.ntg, LevelBuilder.pbl, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg],

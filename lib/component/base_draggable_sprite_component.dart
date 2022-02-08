@@ -6,7 +6,7 @@ import 'package:water_to_trees/game/puzzle_game.dart';
 import 'package:water_to_trees/util/alias.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 
-class BaseDraggableSpriteComponent extends SpriteComponent with HasGameRef<PuzzleGame>, HasHitboxes, Collidable, Draggable, BaseDraggable {
+class BaseDraggableSpriteComponent extends SpriteComponent with HasGameRef<PuzzleGame>, HasHitboxes, Draggable, BaseDraggable {
   @override
   material.Color debugColor = material.Colors.lightBlueAccent;
 

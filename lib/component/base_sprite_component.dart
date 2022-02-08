@@ -5,19 +5,19 @@ import 'package:water_to_trees/game/puzzle_game.dart';
 import 'package:water_to_trees/util/alias.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 
-class BaseCollidableSpriteAnimationComponent extends SpriteAnimationComponent with HasGameRef<PuzzleGame>, HasHitboxes, Collidable {
+class BaseSpriteComponent extends SpriteComponent with HasGameRef<PuzzleGame>, HasHitboxes {
   @override
-  bool debugMode = AppConstants.debugMode;
+  bool debugMode = AppConstants.debugModeStaticSprites;
   @override
-  Color debugColor = Colors.yellowAccent;
+  Color debugColor = Colors.redAccent;
 
-  final SpriteAnimationLoader spriteAnimationLoader;
+  final SpriteLoader spriteLoader;
 
-  BaseCollidableSpriteAnimationComponent({
+  BaseSpriteComponent({
     required Vector2 position,
     required Vector2 size,
     required int priority,
-    required this.spriteAnimationLoader,
+    required this.spriteLoader,
   }) : super(
           position: position,
           size: size,
@@ -31,6 +31,6 @@ class BaseCollidableSpriteAnimationComponent extends SpriteAnimationComponent wi
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    animation = await spriteAnimationLoader(gameRef);
+    sprite = await spriteLoader(gameRef);
   }
 }
