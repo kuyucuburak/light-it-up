@@ -3,7 +3,6 @@ import 'package:flame/components.dart';
 class AppConstants {
   static const bool debugMode = true;
   static const bool debugModeStaticSprites = false;
-  static const Anchor anchor = Anchor.center;
 
   static const double mostTopLeftTileX = 200;
   static const double mostTopLeftTileY = 200;
@@ -12,4 +11,5 @@ class AppConstants {
 
   static const int tilePriority = 0;
   static const int wallPriority = 0;
+  static const Anchor anchor = Anchor.center;
 }
