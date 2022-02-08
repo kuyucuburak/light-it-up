@@ -39,24 +39,24 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
       if (_isDragHorizontal == true) {
         if (evenPointX > position.x) {
           double newX = position.x + AppConstants.tileSize;
-          if (!_hasChildrenAtPosition(newX, position.y)) {
+          if (_canMoveToPosition(newX, position.y)) {
             position.x = newX;
           }
         } else {
           double newX = position.x - AppConstants.tileSize;
-          if (!_hasChildrenAtPosition(newX, position.y)) {
+          if (_canMoveToPosition(newX, position.y)) {
             position.x = newX;
           }
         }
       } else if (_isDragHorizontal == false) {
         if (evenPointY > position.y) {
           double newY = position.y + AppConstants.tileSize;
-          if (!_hasChildrenAtPosition(position.x, newY)) {
+          if (_canMoveToPosition(position.x, newY)) {
             position.y = newY;
           }
         } else {
           double newY = position.y - AppConstants.tileSize;
-          if (!_hasChildrenAtPosition(position.x, newY)) {
+          if (_canMoveToPosition(position.x, newY)) {
             position.y = newY;
           }
         }
@@ -81,5 +81,9 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
     return false;
   }
 
-  bool _hasChildrenAtPosition(double x, double y) => gameRef.children.any((e) => e.containsPoint(Vector2(x, y)));
+  bool _canMoveToPosition(double x, double y) {
+    bool hasChildren = gameRef.children.any((e) => e.containsPoint(Vector2(x, y)));
+    bool isInSafeArea = x >= gameRef.minTileX && x <= gameRef.maxTileX && y >= gameRef.minTileY && y <= gameRef.maxTileY;
+    return !hasChildren && isInSafeArea;
+  }
 }

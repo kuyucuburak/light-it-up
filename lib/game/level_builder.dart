@@ -15,11 +15,8 @@ class LevelBuilder {
   static const String pho = "pipe_horizontal";
   static const String pve = "pipe_vertical";
 
-  static const double _mostTopLeftTileX = 250;
-  static const double _mostTopLeftTileY = 250;
-  static const double _mostTopLeftBrickX = _mostTopLeftTileX - AppConstants.tileSize / 2 - AppConstants.wallSize / 2;
-  static const double _mostTopLeftBrickY = _mostTopLeftTileY - AppConstants.tileSize / 2 - AppConstants.wallSize / 2;
-
+  late final double _mostTopLeftBrickX = AppConstants.mostTopLeftTileX - AppConstants.tileSize / 2 - AppConstants.wallSize / 2;
+  late final double _mostTopLeftBrickY = AppConstants.mostTopLeftTileY - AppConstants.tileSize / 2 - AppConstants.wallSize / 2;
   late final int _tileRowCount = _tileMap.length;
   late final int _tileColumnCount = _tileMap[0].length;
   late final int _brickRowCount = _tileRowCount * AppConstants.tileSize ~/ AppConstants.wallSize + 2;
@@ -77,8 +74,8 @@ class LevelBuilder {
     for (int i = 0; i < _tileRowCount; i++) {
       for (int j = 0; j < _tileColumnCount; j++) {
         String key = _tileMap[i][j];
-        double positionX = _mostTopLeftTileX + AppConstants.tileSize * j;
-        double positionY = _mostTopLeftTileY + AppConstants.tileSize * i;
+        double positionX = AppConstants.mostTopLeftTileX + AppConstants.tileSize * j;
+        double positionY = AppConstants.mostTopLeftTileY + AppConstants.tileSize * i;
         Component? component = keyToComponent(key, Vector2(positionX, positionY));
         if (component != null) {
           componentList.add(component);
