@@ -2,12 +2,11 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
 // brick: https://opengameart.org/content/brick-wall
-// fountain: https://opengameart.org/content/solarus-fountain
+// generator: https://icon-library.com/png/249125.html
 // wire: https://www.vecteezy.com/vector-art/1268055-set-of-colorful-copper-wire
 
 class AssetProvider {
   static const String _animationCarnivorousPlant = 'animations/carnivorous_plant.png';
-  static const String _animationFountain = 'animations/fountain.png';
   static const String _animationGenerator = 'animations/power_generator.png';
 
   static const String _imageBrick = 'wall/brick.png';
@@ -25,7 +24,6 @@ class AssetProvider {
 
   static const imageAssets = [
     _animationCarnivorousPlant,
-    _animationFountain,
     _imageWireCornerBottomLeft,
     _imageWireCornerBottomRight,
     _imageWireCornerTopLeft,
@@ -43,13 +41,6 @@ class AssetProvider {
     return await gameRef.loadSpriteAnimation(
       _animationCarnivorousPlant,
       SpriteAnimationData.sequenced(amount: 37, stepTime: 0.025, textureSize: Vector2(136, 173)),
-    );
-  }
-
-  static Future<SpriteAnimation> animationFountain(FlameGame gameRef) async {
-    return await gameRef.loadSpriteAnimation(
-      _animationFountain,
-      SpriteAnimationData.sequenced(amount: 6, stepTime: 0.2, textureSize: Vector2(56, 55)),
     );
   }
 
