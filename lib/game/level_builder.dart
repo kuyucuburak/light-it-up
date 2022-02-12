@@ -1,19 +1,25 @@
 import 'package:flame/components.dart';
 import 'package:water_to_trees/component/animation/tile.dart';
-import 'package:water_to_trees/component/sprite/pipe.dart';
 import 'package:water_to_trees/component/sprite/wall.dart';
 import 'package:water_to_trees/util/app_constants.dart';
+
+import '../component/sprite/wire.dart';
 
 class LevelBuilder {
   static const String ntg = "nothing";
   static const String cnv = "carnivorous";
   static const String fnt = "fountain";
-  static const String pbl = "pipe_bottom_left";
-  static const String pbr = "pipe_bottom_right";
-  static const String ptl = "pipe_top_left";
-  static const String ptr = "pipe_top_right";
-  static const String pho = "pipe_horizontal";
-  static const String pve = "pipe_vertical";
+  static const String wbl = "wire_bottom_left";
+  static const String wbr = "wire_bottom_right";
+  static const String wtl = "wire_top_left";
+  static const String wtr = "wire_top_right";
+  static const String wct = "wire_connected3_top";
+  static const String wcb = "wire_connected3_bottom";
+  static const String wcl = "wire_connected3_left";
+  static const String wcr = "wire_connected3_right";
+  static const String who = "wire_horizontal";
+  static const String wve = "wire_vertical";
+  static const String wc4 = "wire_connected4";
 
   late final double _mostTopLeftBrickX = AppConstants.mostTopLeftTileX - AppConstants.tileSize / 2 - AppConstants.wallSize / 2;
   late final double _mostTopLeftBrickY = AppConstants.mostTopLeftTileY - AppConstants.tileSize / 2 - AppConstants.wallSize / 2;
@@ -92,18 +98,28 @@ class LevelBuilder {
         return Tile.carnivorous(position);
       case fnt:
         return Tile.fountain(position);
-      case pbl:
-        return Pipe.cornerBottomLeft(position);
-      case pbr:
-        return Pipe.cornerBottomRight(position);
-      case ptl:
-        return Pipe.cornerTopLeft(position);
-      case ptr:
-        return Pipe.cornerTopRight(position);
-      case pho:
-        return Pipe.horizontal(position);
-      case pve:
-        return Pipe.vertical(position);
+      case wbl:
+        return Wire.cornerBottomLeft(position);
+      case wbr:
+        return Wire.cornerBottomRight(position);
+      case wtl:
+        return Wire.cornerTopLeft(position);
+      case wtr:
+        return Wire.cornerTopRight(position);
+      case wct:
+        return Wire.connected3Top(position);
+      case wcb:
+        return Wire.connected3Bottom(position);
+      case wcl:
+        return Wire.connected3Left(position);
+      case wcr:
+        return Wire.connected3Right(position);
+      case who:
+        return Wire.horizontal(position);
+      case wve:
+        return Wire.vertical(position);
+      case wc4:
+        return Wire.connected4(position);
       default:
         return null;
     }

@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 
 class AppConstants {
-  static const bool debugMode = true;
+  static const bool debugMode = false;
   static const bool debugModeStaticSprites = false;
 
   static const double mostTopLeftTileX = 200;
