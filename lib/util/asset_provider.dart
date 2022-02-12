@@ -24,6 +24,7 @@ class AssetProvider {
 
   static const imageAssets = [
     _animationCarnivorousPlant,
+    _animationGenerator,
     _imageWireCornerBottomLeft,
     _imageWireCornerBottomRight,
     _imageWireCornerTopLeft,
