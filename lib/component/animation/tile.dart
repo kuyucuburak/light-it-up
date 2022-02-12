@@ -24,4 +24,9 @@ class Tile extends BaseSpriteAnimationComponent {
         position: position,
         spriteAnimationLoader: AssetProvider.animationFountain,
       );
+
+  static Tile generator(Vector2 position) => Tile._(
+        position: position,
+        spriteAnimationLoader: AssetProvider.animationGenerator,
+      );
 }

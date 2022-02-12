@@ -8,6 +8,7 @@ import 'package:flame/game.dart';
 class AssetProvider {
   static const String _animationCarnivorousPlant = 'animations/carnivorous_plant.png';
   static const String _animationFountain = 'animations/fountain.png';
+  static const String _animationGenerator = 'animations/power_generator.png';
 
   static const String _imageBrick = 'wall/brick.png';
   static const String _imageWireCornerBottomLeft = 'wire/wire_corner_bottom_left.png';
@@ -49,6 +50,13 @@ class AssetProvider {
     return await gameRef.loadSpriteAnimation(
       _animationFountain,
       SpriteAnimationData.sequenced(amount: 6, stepTime: 0.2, textureSize: Vector2(56, 55)),
+    );
+  }
+
+  static Future<SpriteAnimation> animationGenerator(FlameGame gameRef) async {
+    return await gameRef.loadSpriteAnimation(
+      _animationGenerator,
+      SpriteAnimationData.sequenced(amount: 20, stepTime: 0.1, textureSize: Vector2(200, 200)),
     );
   }
 

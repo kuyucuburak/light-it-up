@@ -9,6 +9,7 @@ class LevelBuilder {
   static const String ntg = "nothing";
   static const String cnv = "carnivorous";
   static const String fnt = "fountain";
+  static const String gnr = "generator";
   static const String wbl = "wire_bottom_left";
   static const String wbr = "wire_bottom_right";
   static const String wtl = "wire_top_left";
@@ -98,6 +99,8 @@ class LevelBuilder {
         return Tile.carnivorous(position);
       case fnt:
         return Tile.fountain(position);
+      case gnr:
+        return Tile.generator(position);
       case wbl:
         return Wire.cornerBottomLeft(position);
       case wbr:
