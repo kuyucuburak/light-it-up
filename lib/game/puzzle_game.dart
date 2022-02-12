@@ -7,11 +7,11 @@ import 'package:water_to_trees/util/asset_provider.dart';
 class PuzzleGame extends FlameGame with HasDraggables {
   late final LevelBuilder _levelBuilder = LevelBuilder(_tileMap);
   late final List<List<String>> _tileMap = [
-    [LevelBuilder.fnt, LevelBuilder.pho, LevelBuilder.ntg, LevelBuilder.pbl, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg],
-    [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.pve, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.pbl],
-    [LevelBuilder.ntg, LevelBuilder.ptr, LevelBuilder.ntg, LevelBuilder.pho, LevelBuilder.pho, LevelBuilder.pho, LevelBuilder.pho, LevelBuilder.ntg],
-    [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.pve],
-    [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.cnv],
+    [LevelBuilder.fnt, LevelBuilder.wbr, LevelBuilder.who, LevelBuilder.wcb, LevelBuilder.who, LevelBuilder.wbl, LevelBuilder.ntg, LevelBuilder.ntg],
+    [LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wbl],
+    [LevelBuilder.ntg, LevelBuilder.wcr, LevelBuilder.who, LevelBuilder.wc4, LevelBuilder.who, LevelBuilder.wcl, LevelBuilder.who, LevelBuilder.ntg],
+    [LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve],
+    [LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.who, LevelBuilder.wct, LevelBuilder.who, LevelBuilder.wtl, LevelBuilder.ntg, LevelBuilder.cnv],
   ];
   late final double minTileX = AppConstants.mostTopLeftTileX;
   late final double minTileY = AppConstants.mostTopLeftTileY;
