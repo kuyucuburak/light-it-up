@@ -82,7 +82,7 @@ class LevelBuilder {
         String key = _tileMap[i][j];
         double positionX = AppConstants.mostTopLeftTileX + AppConstants.tileSize * j;
         double positionY = AppConstants.mostTopLeftTileY + AppConstants.tileSize * i;
-        Component? component = keyToComponent(key, Vector2(positionX, positionY));
+        Component? component = _keyToComponent(key, Vector2(positionX, positionY));
         if (component != null) {
           componentList.add(component);
         }
@@ -92,7 +92,13 @@ class LevelBuilder {
     return componentList;
   }
 
-  Component? keyToComponent(String key, Vector2 position) {
+  Future<List<Component>> animationList() async {
+    List<Component> componentList = [];
+    componentList.add(_keyToComponent(gnr, Vector2(AppConstants.mostTopLeftTileX - AppConstants.tileSize * 0.75, AppConstants.mostTopLeftTileY))!);
+    return componentList;
+  }
+
+  Component? _keyToComponent(String key, Vector2 position) {
     switch (key) {
       case cnv:
         return Tile.carnivorous(position);

@@ -9,7 +9,8 @@ class AppConstants {
   static const double tileSize = 100; // This should be divisible by wallSize to build the map correctly.
   static const double wallSize = 25;
 
-  static const int tilePriority = 0;
+  static const int animationPriority = 2;
+  static const int tilePriority = 1;
   static const int wallPriority = 0;
   static const Anchor anchor = Anchor.center;
 }

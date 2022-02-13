@@ -11,7 +11,7 @@ class Tile extends BaseSpriteAnimationComponent {
   }) : super(
           position: position,
           size: Vector2.all(AppConstants.tileSize),
-          priority: AppConstants.tilePriority,
+          priority: AppConstants.animationPriority,
           spriteAnimationLoader: spriteAnimationLoader,
         );
 
