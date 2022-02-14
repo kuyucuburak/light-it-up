@@ -1,7 +1,10 @@
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
+import 'package:water_to_trees/component/animation/tile.dart';
+import 'package:water_to_trees/component/sprite/wire.dart';
 import 'package:water_to_trees/game/puzzle_game.dart';
 import 'package:water_to_trees/util/app_constants.dart';
+import 'package:dart_extensions/dart_extensions.dart';
 
 mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, Draggable {
   static const int _dragStartThreshold = 50; // When it is lower, dragging will be started sooner, it will be more sensitive.
@@ -82,7 +85,7 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
   }
 
   bool _canMoveToPosition(double x, double y) {
-    bool hasChildren = gameRef.children.any((e) => e.containsPoint(Vector2(x, y)));
+    bool hasChildren = gameRef.children.filter((e) => e is Tile || e is Wire).any((e) => e.containsPoint(Vector2(x, y)));
     bool isInSafeArea = x >= gameRef.minTileX && x <= gameRef.maxTileX && y >= gameRef.minTileY && y <= gameRef.maxTileY;
     return !hasChildren && isInSafeArea;
   }

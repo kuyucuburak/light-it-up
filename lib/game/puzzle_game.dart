@@ -23,10 +23,10 @@ class PuzzleGame extends FlameGame with HasDraggables {
     super.onLoad();
     await images.loadAll(AssetProvider.imageAssets);
 
-    // SpriteComponent background = SpriteComponent()
-    //   ..sprite = await loadSprite('wall/background.png')
-    //   ..size = size;
-    // add(background);
+    SpriteComponent background = SpriteComponent()
+      ..sprite = await loadSprite('wall/background.png')
+      ..size = size;
+    add(background);
 
     List<Component> componentList = await _levelBuilder.wallList() + await _levelBuilder.tileList() + await _levelBuilder.animationList() + await _levelBuilder.bulbList();
     componentList.forEach((e) => add(e));
