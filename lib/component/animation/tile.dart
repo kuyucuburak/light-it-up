@@ -19,4 +19,14 @@ class Tile extends BaseSpriteAnimationComponent {
         position: position,
         spriteAnimationLoader: AssetProvider.animationGenerator,
       );
+
+  static Tile bulbWithLight(Vector2 position) => Tile._(
+        position: position,
+        spriteAnimationLoader: AssetProvider.animationBulbWithLight,
+      );
+
+  static Tile bulbNoLight(Vector2 position) => Tile._(
+        position: position,
+        spriteAnimationLoader: AssetProvider.animationBulbNoLight,
+      );
 }

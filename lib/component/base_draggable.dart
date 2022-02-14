@@ -1,10 +1,10 @@
+import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
 import 'package:water_to_trees/component/animation/tile.dart';
 import 'package:water_to_trees/component/sprite/wire.dart';
 import 'package:water_to_trees/game/puzzle_game.dart';
 import 'package:water_to_trees/util/app_constants.dart';
-import 'package:dart_extensions/dart_extensions.dart';
 
 mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, Draggable {
   static const int _dragStartThreshold = 50; // When it is lower, dragging will be started sooner, it will be more sensitive.
