@@ -11,17 +11,12 @@ class Tile extends BaseSpriteAnimationComponent {
   }) : super(
           position: position,
           size: Vector2.all(AppConstants.tileSize),
-          priority: AppConstants.tilePriority,
+          priority: AppConstants.animationPriority,
           spriteAnimationLoader: spriteAnimationLoader,
         );
 
-  static Tile carnivorous(Vector2 position) => Tile._(
+  static Tile generator(Vector2 position) => Tile._(
         position: position,
-        spriteAnimationLoader: AssetProvider.animationCarnivorousPlant,
-      );
-
-  static Tile fountain(Vector2 position) => Tile._(
-        position: position,
-        spriteAnimationLoader: AssetProvider.animationFountain,
+        spriteAnimationLoader: AssetProvider.animationGenerator,
       );
 }

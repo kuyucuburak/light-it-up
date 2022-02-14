@@ -2,14 +2,16 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
 // brick: https://opengameart.org/content/brick-wall
-// fountain: https://opengameart.org/content/solarus-fountain
+// generator: https://icon-library.com/png/249125.html
 // wire: https://www.vecteezy.com/vector-art/1268055-set-of-colorful-copper-wire
 
 class AssetProvider {
-  static const String _animationCarnivorousPlant = 'animations/carnivorous_plant.png';
-  static const String _animationFountain = 'animations/fountain.png';
+  static const String _animationGenerator = 'animations/power_generator.png';
 
+  static const String _imageBackground = 'wall/background.png';
   static const String _imageBrick = 'wall/brick.png';
+  static const String _imageBulbNoLight = 'bulb/bulb_no_light.png';
+  static const String _imageBulbWithLight = 'bulb/bulb_with_light.png';
   static const String _imageWireCornerBottomLeft = 'wire/wire_corner_bottom_left.png';
   static const String _imageWireCornerBottomRight = 'wire/wire_corner_bottom_right.png';
   static const String _imageWireCornerTopLeft = 'wire/wire_corner_top_left.png';
@@ -23,8 +25,10 @@ class AssetProvider {
   static const String _imageWire4connected = 'wire/wire_4connected.png';
 
   static const imageAssets = [
-    _animationCarnivorousPlant,
-    _animationFountain,
+    _imageBackground,
+    _imageBulbNoLight,
+    _imageBulbWithLight,
+    _animationGenerator,
     _imageWireCornerBottomLeft,
     _imageWireCornerBottomRight,
     _imageWireCornerTopLeft,
@@ -38,21 +42,20 @@ class AssetProvider {
     _imageWire4connected,
   ];
 
-  static Future<SpriteAnimation> animationCarnivorousPlant(FlameGame gameRef) async {
+  static Future<SpriteAnimation> animationGenerator(FlameGame gameRef) async {
     return await gameRef.loadSpriteAnimation(
-      _animationCarnivorousPlant,
-      SpriteAnimationData.sequenced(amount: 37, stepTime: 0.025, textureSize: Vector2(136, 173)),
+      _animationGenerator,
+      SpriteAnimationData.sequenced(amount: 20, stepTime: 0.1, textureSize: Vector2(200, 200)),
     );
   }
 
-  static Future<SpriteAnimation> animationFountain(FlameGame gameRef) async {
-    return await gameRef.loadSpriteAnimation(
-      _animationFountain,
-      SpriteAnimationData.sequenced(amount: 6, stepTime: 0.2, textureSize: Vector2(56, 55)),
-    );
-  }
+  static Future<Sprite> imageBackground(FlameGame gameRef) async => gameRef.loadSprite(_imageBackground);
 
   static Future<Sprite> imageBrick(FlameGame gameRef) async => gameRef.loadSprite(_imageBrick);
+
+  static Future<Sprite> imageBulbNoLight(FlameGame gameRef) async => gameRef.loadSprite(_imageBulbNoLight);
+
+  static Future<Sprite> imageBulbWithLight(FlameGame gameRef) async => gameRef.loadSprite(_imageBulbWithLight);
 
   static Future<Sprite> imageWireCornerBottomLeft(FlameGame gameRef) async => gameRef.loadSprite(_imageWireCornerBottomLeft);
 

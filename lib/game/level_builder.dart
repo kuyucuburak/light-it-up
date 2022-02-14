@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:water_to_trees/component/animation/tile.dart';
+import 'package:water_to_trees/component/sprite/bulb.dart';
 import 'package:water_to_trees/component/sprite/wall.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 
@@ -7,8 +8,9 @@ import '../component/sprite/wire.dart';
 
 class LevelBuilder {
   static const String ntg = "nothing";
-  static const String cnv = "carnivorous";
-  static const String fnt = "fountain";
+  static const String gnr = "generator";
+  static const String bnl = "bulb_no_light";
+  static const String bwl = "bulb_with_light";
   static const String wbl = "wire_bottom_left";
   static const String wbr = "wire_bottom_right";
   static const String wtl = "wire_top_left";
@@ -82,7 +84,7 @@ class LevelBuilder {
         String key = _tileMap[i][j];
         double positionX = AppConstants.mostTopLeftTileX + AppConstants.tileSize * j;
         double positionY = AppConstants.mostTopLeftTileY + AppConstants.tileSize * i;
-        Component? component = keyToComponent(key, Vector2(positionX, positionY));
+        Component? component = _keyToComponent(key, Vector2(positionX, positionY));
         if (component != null) {
           componentList.add(component);
         }
@@ -92,12 +94,34 @@ class LevelBuilder {
     return componentList;
   }
 
-  Component? keyToComponent(String key, Vector2 position) {
+  Future<List<Component>> animationList() async {
+    List<Component> componentList = [];
+    componentList.add(_keyToComponent(gnr, Vector2(AppConstants.mostTopLeftTileX - AppConstants.tileSize * 0.75, AppConstants.mostTopLeftTileY))!);
+    return componentList;
+  }
+
+  Future<List<Component>> bulbList() async {
+    List<Component> componentList = [];
+    componentList.add(_keyToComponent(
+        bnl,
+        Vector2(AppConstants.mostTopLeftTileX + (_tileColumnCount - 1) * AppConstants.tileSize + AppConstants.tileSize * 0.75,
+            AppConstants.mostTopLeftTileY + (_tileRowCount - 1) * AppConstants.tileSize))!);
+
+    componentList.add(_keyToComponent(
+        bwl,
+        Vector2(AppConstants.mostTopLeftTileX + (_tileColumnCount - 1) * AppConstants.tileSize + AppConstants.tileSize * 0.75,
+            AppConstants.mostTopLeftTileY + (_tileRowCount - 4) * AppConstants.tileSize))!);
+    return componentList;
+  }
+
+  Component? _keyToComponent(String key, Vector2 position) {
     switch (key) {
-      case cnv:
-        return Tile.carnivorous(position);
-      case fnt:
-        return Tile.fountain(position);
+      case gnr:
+        return Tile.generator(position);
+      case bnl:
+        return Bulb.noLight(position);
+      case bwl:
+        return Bulb.withLight(position);
       case wbl:
         return Wire.cornerBottomLeft(position);
       case wbr:
