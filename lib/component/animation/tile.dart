@@ -15,11 +15,6 @@ class Tile extends BaseSpriteAnimationComponent {
           spriteAnimationLoader: spriteAnimationLoader,
         );
 
-  static Tile carnivorous(Vector2 position) => Tile._(
-        position: position,
-        spriteAnimationLoader: AssetProvider.animationCarnivorousPlant,
-      );
-
   static Tile generator(Vector2 position) => Tile._(
         position: position,
         spriteAnimationLoader: AssetProvider.animationGenerator,

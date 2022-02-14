@@ -11,7 +11,7 @@ class PuzzleGame extends FlameGame with HasDraggables {
     [LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wbl],
     [LevelBuilder.ntg, LevelBuilder.wcr, LevelBuilder.who, LevelBuilder.wc4, LevelBuilder.who, LevelBuilder.wcl, LevelBuilder.who, LevelBuilder.ntg],
     [LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve],
-    [LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.who, LevelBuilder.wct, LevelBuilder.who, LevelBuilder.wtl, LevelBuilder.ntg, LevelBuilder.cnv],
+    [LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.who, LevelBuilder.wct, LevelBuilder.who, LevelBuilder.wtl, LevelBuilder.ntg, LevelBuilder.ntg],
   ];
   late final double minTileX = AppConstants.mostTopLeftTileX;
   late final double minTileY = AppConstants.mostTopLeftTileY;
@@ -23,7 +23,12 @@ class PuzzleGame extends FlameGame with HasDraggables {
     super.onLoad();
     await images.loadAll(AssetProvider.imageAssets);
 
-    List<Component> componentList = await _levelBuilder.wallList() + await _levelBuilder.tileList() + await _levelBuilder.animationList();
+    // SpriteComponent background = SpriteComponent()
+    //   ..sprite = await loadSprite('wall/background.png')
+    //   ..size = size;
+    // add(background);
+
+    List<Component> componentList = await _levelBuilder.wallList() + await _levelBuilder.tileList() + await _levelBuilder.animationList() + await _levelBuilder.bulbList();
     componentList.forEach((e) => add(e));
   }
 }

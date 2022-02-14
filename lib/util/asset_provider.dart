@@ -6,10 +6,11 @@ import 'package:flame/game.dart';
 // wire: https://www.vecteezy.com/vector-art/1268055-set-of-colorful-copper-wire
 
 class AssetProvider {
-  static const String _animationCarnivorousPlant = 'animations/carnivorous_plant.png';
   static const String _animationGenerator = 'animations/power_generator.png';
 
   static const String _imageBrick = 'wall/brick.png';
+  static const String _imageBulbNoLight = 'bulb/bulb_no_light.png';
+  static const String _imageBulbWithLight = 'bulb/bulb_with_light.png';
   static const String _imageWireCornerBottomLeft = 'wire/wire_corner_bottom_left.png';
   static const String _imageWireCornerBottomRight = 'wire/wire_corner_bottom_right.png';
   static const String _imageWireCornerTopLeft = 'wire/wire_corner_top_left.png';
@@ -23,7 +24,8 @@ class AssetProvider {
   static const String _imageWire4connected = 'wire/wire_4connected.png';
 
   static const imageAssets = [
-    _animationCarnivorousPlant,
+    _imageBulbNoLight,
+    _imageBulbWithLight,
     _animationGenerator,
     _imageWireCornerBottomLeft,
     _imageWireCornerBottomRight,
@@ -38,13 +40,6 @@ class AssetProvider {
     _imageWire4connected,
   ];
 
-  static Future<SpriteAnimation> animationCarnivorousPlant(FlameGame gameRef) async {
-    return await gameRef.loadSpriteAnimation(
-      _animationCarnivorousPlant,
-      SpriteAnimationData.sequenced(amount: 37, stepTime: 0.025, textureSize: Vector2(136, 173)),
-    );
-  }
-
   static Future<SpriteAnimation> animationGenerator(FlameGame gameRef) async {
     return await gameRef.loadSpriteAnimation(
       _animationGenerator,
@@ -53,6 +48,10 @@ class AssetProvider {
   }
 
   static Future<Sprite> imageBrick(FlameGame gameRef) async => gameRef.loadSprite(_imageBrick);
+
+  static Future<Sprite> imageBulbNoLight(FlameGame gameRef) async => gameRef.loadSprite(_imageBulbNoLight);
+
+  static Future<Sprite> imageBulbWithLight(FlameGame gameRef) async => gameRef.loadSprite(_imageBulbWithLight);
 
   static Future<Sprite> imageWireCornerBottomLeft(FlameGame gameRef) async => gameRef.loadSprite(_imageWireCornerBottomLeft);
 
