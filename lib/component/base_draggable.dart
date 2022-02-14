@@ -1,14 +1,13 @@
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
-import 'package:water_to_trees/component/animation/tile.dart';
 import 'package:water_to_trees/component/sprite/wire.dart';
 import 'package:water_to_trees/game/puzzle_game.dart';
 import 'package:water_to_trees/util/app_constants.dart';
-import 'package:dart_extensions/dart_extensions.dart';
 
 mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, Draggable {
-  static const int _dragStartThreshold = 50; // When it is lower, dragging will be started sooner, it will be more sensitive.
+  // When it is lower, dragging will be started sooner, it will be more sensitive.
+  static const int _dragStartThreshold = 50;
 
   @override
   bool debugMode = AppConstants.debugMode;
@@ -42,24 +41,24 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
     } else {
       if (_isDragHorizontal == true) {
         if (evenPointX > position.x) {
-          double newX = position.x + AppConstants.tileSize;
+          double newX = position.x + AppConstants.wireSize;
           if (_canMoveToPosition(newX, position.y)) {
             position.x = newX;
           }
         } else {
-          double newX = position.x - AppConstants.tileSize;
+          double newX = position.x - AppConstants.wireSize;
           if (_canMoveToPosition(newX, position.y)) {
             position.x = newX;
           }
         }
       } else if (_isDragHorizontal == false) {
         if (evenPointY > position.y) {
-          double newY = position.y + AppConstants.tileSize;
+          double newY = position.y + AppConstants.wireSize;
           if (_canMoveToPosition(position.x, newY)) {
             position.y = newY;
           }
         } else {
-          double newY = position.y - AppConstants.tileSize;
+          double newY = position.y - AppConstants.wireSize;
           if (_canMoveToPosition(position.x, newY)) {
             position.y = newY;
           }
@@ -86,8 +85,9 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
   }
 
   bool _canMoveToPosition(double x, double y) {
-    bool hasChildren = gameRef.children.filter((e) => e is Tile || e is Wire).any((e) => e.containsPoint(Vector2(x, y)));
-    bool isInSafeArea = x >= gameRef.minTileX && x <= gameRef.maxTileX && y >= gameRef.minTileY && y <= gameRef.maxTileY;
+    // Only wires can be in the safe area, so we filter only Wire objects from the children
+    bool hasChildren = gameRef.children.filter((e) => e is Wire).any((e) => e.containsPoint(Vector2(x, y)));
+    bool isInSafeArea = x >= gameRef.minWireX && x <= gameRef.maxWireX && y >= gameRef.minWireY && y <= gameRef.maxWireY;
     return !hasChildren && isInSafeArea;
   }
 }

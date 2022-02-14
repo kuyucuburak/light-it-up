@@ -16,8 +16,8 @@ class Wall extends BaseSpriteComponent {
           spriteLoader: spriteLoader,
         );
 
-  static Wall brick(Vector2 position) => Wall._(
+  static Wall unit(Vector2 position) => Wall._(
         position: position,
-        spriteLoader: AssetProvider.imageBrick,
+        spriteLoader: AssetProvider.imageWallUnit,
       );
 }

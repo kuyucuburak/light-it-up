@@ -5,24 +5,21 @@ import 'package:water_to_trees/util/alias.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
 
-class Bulb extends BaseSpriteComponent {
-  Bulb._({
+class Background extends BaseSpriteComponent {
+  Background._({
     required Vector2 position,
+    required Vector2 size,
     required SpriteLoader spriteLoader,
   }) : super(
           position: position,
-          size: Vector2.all(AppConstants.tileSize),
-          priority: AppConstants.animationPriority,
+          size: size,
+          priority: AppConstants.backgroundPriority,
           spriteLoader: spriteLoader,
         );
 
-  static Bulb noLight(Vector2 position) => Bulb._(
+  static Background black({required Vector2 position, required Vector2 size}) => Background._(
         position: position,
-        spriteLoader: AssetProvider.imageBulbNoLight,
-      );
-
-  static Bulb withLight(Vector2 position) => Bulb._(
-        position: position,
-        spriteLoader: AssetProvider.imageBulbWithLight,
+        size: size,
+        spriteLoader: AssetProvider.imageBackground,
       );
 }

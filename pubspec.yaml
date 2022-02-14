@@ -26,7 +26,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    - assets/images/animations/
-    - assets/images/wire/
+    - assets/images/animation/
+    - assets/images/animation/bulb/
+    - assets/images/animation/electricity/
     - assets/images/wall/
-    - assets/images/bulb/
+    - assets/images/wire/

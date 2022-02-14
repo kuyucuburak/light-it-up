@@ -4,29 +4,29 @@ import 'package:water_to_trees/util/alias.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
 
-class Tile extends BaseSpriteAnimationComponent {
-  Tile._({
+class Animation extends BaseSpriteAnimationComponent {
+  Animation._({
     required Vector2 position,
     required SpriteAnimationLoader spriteAnimationLoader,
   }) : super(
           position: position,
-          size: Vector2.all(AppConstants.tileSize),
+          size: Vector2.all(AppConstants.animationSize),
           priority: AppConstants.animationPriority,
           spriteAnimationLoader: spriteAnimationLoader,
         );
 
-  static Tile generator(Vector2 position) => Tile._(
+  static Animation bulbNoLight(Vector2 position) => Animation._(
         position: position,
-        spriteAnimationLoader: AssetProvider.animationGenerator,
+        spriteAnimationLoader: AssetProvider.animationBulbNoLight,
       );
 
-  static Tile bulbWithLight(Vector2 position) => Tile._(
+  static Animation bulbWithLight(Vector2 position) => Animation._(
         position: position,
         spriteAnimationLoader: AssetProvider.animationBulbWithLight,
       );
 
-  static Tile bulbNoLight(Vector2 position) => Tile._(
+  static Animation generator(Vector2 position) => Animation._(
         position: position,
-        spriteAnimationLoader: AssetProvider.animationBulbNoLight,
+        spriteAnimationLoader: AssetProvider.animationGenerator,
       );
 }
