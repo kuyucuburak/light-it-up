@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:water_to_trees/component/base_sprite_component.dart';
 import 'package:water_to_trees/game/level_builder.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
@@ -23,10 +24,13 @@ class PuzzleGame extends FlameGame with HasDraggables {
     super.onLoad();
     await images.loadAll(AssetProvider.imageAssets);
 
-    SpriteComponent background = SpriteComponent()
-      ..sprite = await loadSprite('wall/background.png')
-      ..size = size;
-    add(background);
+    BaseSpriteComponent baseSpriteComponent = BaseSpriteComponent(
+      position: Vector2(size.x / 2, size.y / 2),
+      size: size,
+      priority: priority,
+      spriteLoader: AssetProvider.imageBackground,
+    );
+    add(baseSpriteComponent);
 
     List<Component> componentList = await _levelBuilder.wallList() + await _levelBuilder.tileList() + await _levelBuilder.animationList() + await _levelBuilder.bulbList();
     componentList.forEach((e) => add(e));

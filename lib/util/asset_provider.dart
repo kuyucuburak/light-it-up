@@ -8,6 +8,7 @@ import 'package:flame/game.dart';
 class AssetProvider {
   static const String _animationGenerator = 'animations/power_generator.png';
 
+  static const String _imageBackground = 'wall/background.png';
   static const String _imageBrick = 'wall/brick.png';
   static const String _imageBulbNoLight = 'bulb/bulb_no_light.png';
   static const String _imageBulbWithLight = 'bulb/bulb_with_light.png';
@@ -24,6 +25,7 @@ class AssetProvider {
   static const String _imageWire4connected = 'wire/wire_4connected.png';
 
   static const imageAssets = [
+    _imageBackground,
     _imageBulbNoLight,
     _imageBulbWithLight,
     _animationGenerator,
@@ -46,6 +48,8 @@ class AssetProvider {
       SpriteAnimationData.sequenced(amount: 20, stepTime: 0.1, textureSize: Vector2(200, 200)),
     );
   }
+
+  static Future<Sprite> imageBackground(FlameGame gameRef) async => gameRef.loadSprite(_imageBackground);
 
   static Future<Sprite> imageBrick(FlameGame gameRef) async => gameRef.loadSprite(_imageBrick);
 
