@@ -1,6 +1,5 @@
 import 'package:flame/components.dart';
 import 'package:water_to_trees/component/animation/tile.dart';
-import 'package:water_to_trees/component/sprite/bulb.dart';
 import 'package:water_to_trees/component/sprite/wall.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 
@@ -119,9 +118,9 @@ class LevelBuilder {
       case gnr:
         return Tile.generator(position);
       case bnl:
-        return Bulb.noLight(position);
+        return Tile.bulbNoLight(position);
       case bwl:
-        return Bulb.withLight(position);
+        return Tile.bulbWithLight(position);
       case wbl:
         return Wire.cornerBottomLeft(position);
       case wbr:

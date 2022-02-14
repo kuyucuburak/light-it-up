@@ -1,3 +1,4 @@
+import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
 import 'package:water_to_trees/component/animation/tile.dart';
