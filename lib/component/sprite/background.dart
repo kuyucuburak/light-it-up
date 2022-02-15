@@ -5,19 +5,21 @@ import 'package:water_to_trees/util/alias.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
 
-class Wall extends BaseSpriteComponent {
-  Wall._({
+class Background extends BaseSpriteComponent {
+  Background._({
     required Vector2 position,
+    required Vector2 size,
     required SpriteLoader spriteLoader,
   }) : super(
           position: position,
-          size: Vector2.all(AppConstants.wallSize),
-          priority: AppConstants.wallPriority,
+          size: size,
+          priority: AppConstants.backgroundPriority,
           spriteLoader: spriteLoader,
         );
 
-  static Wall unit(Vector2 position) => Wall._(
+  static Background black({required Vector2 position, required Vector2 size}) => Background._(
         position: position,
-        spriteLoader: AssetProvider.imageWallUnit,
+        size: size,
+        spriteLoader: AssetProvider.imageBackground,
       );
 }
