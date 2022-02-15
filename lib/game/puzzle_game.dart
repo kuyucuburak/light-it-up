@@ -1,11 +1,13 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:water_to_trees/component/sprite/wire.dart';
 import 'package:water_to_trees/game/level_builder.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
 
 class PuzzleGame extends FlameGame with HasDraggables {
   late final LevelBuilder _levelBuilder = LevelBuilder(_tileMap);
+  late final List<Component> tiles;
   late final List<List<String>> _tileMap = [
     [LevelBuilder.fnt, LevelBuilder.wbr, LevelBuilder.who, LevelBuilder.wcb, LevelBuilder.who, LevelBuilder.wbl, LevelBuilder.ntg, LevelBuilder.ntg],
     [LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wbl],
@@ -23,7 +25,21 @@ class PuzzleGame extends FlameGame with HasDraggables {
     super.onLoad();
     await images.loadAll(AssetProvider.imageAssets);
 
-    List<Component> componentList = await _levelBuilder.wallList() + await _levelBuilder.tileList();
+    tiles = await _levelBuilder.tileList();
+    List<Component> componentList = await _levelBuilder.wallList() + tiles;
     componentList.forEach((e) => add(e));
+  }
+
+  void updateAndLookForAWay() {
+    List<List<Wire?>> wireMap = List.generate(_tileMap.length,
+        (i) => List.filled(_tileMap[0].length, null, growable: false),
+        growable: false);
+    tiles.forEach((element) {
+      if (element is Wire) {
+        int j = ((element.position.x - AppConstants.mostTopLeftTileX) / AppConstants.tileSize) as int;
+        int i = ((element.position.y - AppConstants.mostTopLeftTileY) / AppConstants.tileSize) as int;
+        wireMap[i][j] = element;
+      }
+    });
   }
 }

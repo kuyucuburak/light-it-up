@@ -4,10 +4,17 @@ import 'package:water_to_trees/util/app_constants.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
 
 class Wire extends BaseDraggableSpriteComponent {
-  Wire._({
-    required Vector2 position,
-    required spriteLoader,
-  }) : super(
+  bool hasElectricity;
+
+  Wire._(
+      {required Vector2 position,
+      required spriteLoader,
+      required bool hasLeft,
+      required bool hasRight,
+      required bool hasBottom,
+      required bool hasTop,
+      required this.hasElectricity})
+      : super(
           position: position,
           size: Vector2.all(AppConstants.tileSize),
           priority: AppConstants.tilePriority,
@@ -15,57 +22,101 @@ class Wire extends BaseDraggableSpriteComponent {
         );
 
   static Wire cornerBottomLeft(Vector2 position) => Wire._(
-        position: position,
-        spriteLoader: AssetProvider.imageWireCornerBottomLeft,
-      );
+      position: position,
+      spriteLoader: AssetProvider.imageWireCornerBottomLeft,
+      hasLeft: true,
+      hasRight: false,
+      hasBottom: true,
+      hasTop: false,
+      hasElectricity: false);
 
   static Wire cornerBottomRight(Vector2 position) => Wire._(
-        position: position,
-        spriteLoader: AssetProvider.imageWireCornerBottomRight,
-      );
+      position: position,
+      spriteLoader: AssetProvider.imageWireCornerBottomRight,
+      hasLeft: false,
+      hasRight: true,
+      hasBottom: true,
+      hasTop: false,
+      hasElectricity: false);
 
   static Wire cornerTopLeft(Vector2 position) => Wire._(
-        position: position,
-        spriteLoader: AssetProvider.imageWireCornerTopLeft,
-      );
+      position: position,
+      spriteLoader: AssetProvider.imageWireCornerTopLeft,
+      hasLeft: true,
+      hasRight: false,
+      hasBottom: false,
+      hasTop: true,
+      hasElectricity: false);
 
   static Wire cornerTopRight(Vector2 position) => Wire._(
-        position: position,
-        spriteLoader: AssetProvider.imageWireCornerTopRight,
-      );
+      position: position,
+      spriteLoader: AssetProvider.imageWireCornerTopRight,
+      hasLeft: false,
+      hasRight: true,
+      hasBottom: false,
+      hasTop: true,
+      hasElectricity: false);
 
   static Wire connected3Left(Vector2 position) => Wire._(
-        position: position,
-        spriteLoader: AssetProvider.imageWire3connectedLeft,
-      );
+      position: position,
+      spriteLoader: AssetProvider.imageWire3connectedLeft,
+      hasLeft: true,
+      hasRight: false,
+      hasBottom: true,
+      hasTop: true,
+      hasElectricity: false);
 
   static Wire connected3Bottom(Vector2 position) => Wire._(
-        position: position,
-        spriteLoader: AssetProvider.imageWire3connectedBottom,
-      );
+      position: position,
+      spriteLoader: AssetProvider.imageWire3connectedBottom,
+      hasLeft: true,
+      hasRight: true,
+      hasBottom: true,
+      hasTop: false,
+      hasElectricity: false);
 
   static Wire connected3Top(Vector2 position) => Wire._(
-        position: position,
-        spriteLoader: AssetProvider.imageWire3connectedTop,
-      );
+      position: position,
+      spriteLoader: AssetProvider.imageWire3connectedTop,
+      hasLeft: true,
+      hasRight: true,
+      hasBottom: false,
+      hasTop: true,
+      hasElectricity: false);
 
   static Wire connected3Right(Vector2 position) => Wire._(
-        position: position,
-        spriteLoader: AssetProvider.imageWire3connectedRight,
-      );
+      position: position,
+      spriteLoader: AssetProvider.imageWire3connectedRight,
+      hasLeft: false,
+      hasRight: true,
+      hasBottom: true,
+      hasTop: true,
+      hasElectricity: false);
 
   static Wire horizontal(Vector2 position) => Wire._(
-        position: position,
-        spriteLoader: AssetProvider.imageWireHorizontal,
-      );
+      position: position,
+      spriteLoader: AssetProvider.imageWireHorizontal,
+      hasLeft: true,
+      hasRight: true,
+      hasBottom: false,
+      hasTop: false,
+      hasElectricity: false);
 
   static Wire vertical(Vector2 position) => Wire._(
-        position: position,
-        spriteLoader: AssetProvider.imageWireVertical,
-      );
+      position: position,
+      spriteLoader: AssetProvider.imageWireVertical,
+      hasLeft: false,
+      hasRight: false,
+      hasBottom: true,
+      hasTop: true,
+      hasElectricity: false);
 
   static Wire connected4(Vector2 position) => Wire._(
-        position: position,
-        spriteLoader: AssetProvider.imageWire4connected,
-      );
+      position: position,
+      spriteLoader: AssetProvider.imageWire4connected,
+      hasLeft: true,
+      hasRight: true,
+      hasBottom: true,
+      hasTop: true,
+      hasElectricity: false);
 }

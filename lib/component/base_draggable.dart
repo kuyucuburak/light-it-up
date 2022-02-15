@@ -62,6 +62,7 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
         }
       }
 
+      gameRef.updateAndLookForAWay();
       handleDragCanceled(pointerId);
       return false;
     }
