@@ -10,15 +10,28 @@ class Wire extends BaseDraggableSpriteComponent {
   bool hasBottom;
   bool hasTop;
 
-  Wire._({required Vector2 position, required SpriteLoader spriteLoader, required this.hasLeft, required this.hasRight, required this.hasBottom, required this.hasTop})
-      : super(
+  Wire._({
+    required Vector2 position,
+    required SpriteLoader spriteLoader,
+    required this.hasLeft,
+    required this.hasRight,
+    required this.hasBottom,
+    required this.hasTop,
+  }) : super(
           position: position,
           size: Vector2.all(AppConstants.wireSize),
           priority: AppConstants.wirePriority,
           spriteLoader: spriteLoader,
         );
 
-  static Wire horizontal(Vector2 position) => Wire._(position: position, spriteLoader: AssetProvider.imageWireHorizontal, hasLeft: true, hasRight: true, hasBottom: false, hasTop: false);
+  static Wire horizontal(Vector2 position) => Wire._(
+        position: position,
+        spriteLoader: AssetProvider.imageWireHorizontal,
+        hasLeft: true,
+        hasRight: true,
+        hasBottom: false,
+        hasTop: false,
+      );
 
   static Wire vertical(Vector2 position) => Wire._(position: position, spriteLoader: AssetProvider.imageWireVertical, hasLeft: false, hasRight: false, hasBottom: true, hasTop: true);
 
