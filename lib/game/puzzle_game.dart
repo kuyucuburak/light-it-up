@@ -14,11 +14,11 @@ class PuzzleGame extends FlameGame with HasDraggables {
   late final LevelBuilder _levelBuilder = LevelBuilder(_tileMap);
   late final List<Component> componentList;
   late final List<List<String>> _tileMap = [
-    [LevelBuilder.wc4, LevelBuilder.wbr, LevelBuilder.who, LevelBuilder.w3b, LevelBuilder.who, LevelBuilder.wbl, LevelBuilder.ntg, LevelBuilder.ntg],
-    [LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wbl],
-    [LevelBuilder.ntg, LevelBuilder.w3r, LevelBuilder.who, LevelBuilder.wc4, LevelBuilder.who, LevelBuilder.w3l, LevelBuilder.who, LevelBuilder.ntg],
-    [LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.wve],
-    [LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.who, LevelBuilder.w3t, LevelBuilder.who, LevelBuilder.wtl, LevelBuilder.ntg, LevelBuilder.ntg],
+    [LevelBuilder.wc4, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.wbl],
+    [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.w3r, LevelBuilder.ntg],
+    [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wve],
+    [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wve],
+    [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.ntg],
   ];
   late final double minWireX = AppConstants.mostTopLeftTileX;
   late final double minWireY = AppConstants.mostTopLeftTileY;
