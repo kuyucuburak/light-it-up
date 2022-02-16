@@ -77,8 +77,7 @@ class PuzzleGame extends FlameGame with HasDraggables {
   bool isChapterCompleted(List<List<Component?>> wireMap, List<Destination> bulbDestinations) {
     bool allCompleted = true;
     for (final destination in bulbDestinations) {
-      bool completed = _hasLeftAdjacentRightEdge(wireMap, destination.x, destination.y - 1) && _checkElectricity(wireMap, destination.x, destination.y - 1, List.empty(growable: true));
-      (wireMap[destination.x][destination.y] as AnimationBulb).turnOnTheLight();
+      bool completed = _hasRightAdjacentLeftEdge(wireMap, 0, 1) && _checkElectricity(wireMap, destination, 0, 1, List.empty(growable: true));
 
       if (completed) {
         (wireMap[destination.x][destination.y] as AnimationBulb).turnOnTheLight();
@@ -90,31 +89,32 @@ class PuzzleGame extends FlameGame with HasDraggables {
     return allCompleted;
   }
 
-  bool _checkElectricity(List<List<Component?>> wireMap, int i, int j, List<Destination> roadTaken) {
+  bool _checkElectricity(List<List<Component?>> wireMap, Destination finalDestination, int i, int j, List<Destination> roadTaken) {
     if (i < 0 || j < 0 || i >= wireMap.length || j >= wireMap[0].length) return false;
-    if (wireMap[i][j] == null || wireMap[i][j] is AnimationBulb) return false;
+    if (wireMap[i][j] == null || wireMap[i][j] is AnimationGenerator) return false;
 
     Component element = wireMap[i][j]!;
 
-    if (element is AnimationGenerator) {
+    if (element is AnimationBulb && i == finalDestination.x && j == finalDestination.y) {
       return true;
     }
 
     bool left = false, right = false, top = false, bottom = false;
     if (element is Wire) {
       roadTaken.add(Destination(i, j));
+      // TODO add electricity animation on element
 
       if (element.hasRight && _hasRightAdjacentLeftEdge(wireMap, i, j + 1) && !_doesRoadContainDestination(i, j + 1, roadTaken)) {
-        right = _checkElectricity(wireMap, i, j + 1, roadTaken);
+        right = _checkElectricity(wireMap, finalDestination, i, j + 1, roadTaken);
       }
       if (element.hasLeft && _hasLeftAdjacentRightEdge(wireMap, i, j - 1) && !_doesRoadContainDestination(i, j - 1, roadTaken)) {
-        left = _checkElectricity(wireMap, i, j - 1, roadTaken);
+        left = _checkElectricity(wireMap, finalDestination, i, j - 1, roadTaken);
       }
       if (element.hasTop && _hasTopAdjacentBottomEdge(wireMap, i - 1, j) && !_doesRoadContainDestination(i - 1, j, roadTaken)) {
-        top = _checkElectricity(wireMap, i - 1, j, roadTaken);
+        top = _checkElectricity(wireMap, finalDestination, i - 1, j, roadTaken);
       }
       if (element.hasBottom && _hasBottomAdjacentTopEdge(wireMap, i + 1, j) && !_doesRoadContainDestination(i + 1, j, roadTaken)) {
-        bottom = _checkElectricity(wireMap, i + 1, j, roadTaken);
+        bottom = _checkElectricity(wireMap, finalDestination, i + 1, j, roadTaken);
       }
     }
 
@@ -129,13 +129,13 @@ class PuzzleGame extends FlameGame with HasDraggables {
   }
 
   bool _hasRightAdjacentLeftEdge(List<List<Component?>> wireMap, int i, int j) {
+    if (wireMap[i][j] is AnimationBulb) return true; // special condition to understand we have arrived at the generator
+
     if (j >= wireMap[0].length || wireMap[i][j] is! Wire) return false;
     return (wireMap[i][j] as Wire).hasLeft;
   }
 
   bool _hasLeftAdjacentRightEdge(List<List<Component?>> wireMap, int i, int j) {
-    if (j == 0 && i == 0) return true; // special condition to understand we have arrived at the generator
-
     if (j < 0 || wireMap[i][j] is! Wire) return false;
     return (wireMap[i][j] as Wire).hasRight;
   }
