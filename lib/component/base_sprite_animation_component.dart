@@ -11,7 +11,7 @@ class BaseSpriteAnimationComponent extends SpriteAnimationComponent with HasGame
   @override
   Color debugColor = Colors.yellowAccent;
 
-  final SpriteAnimationLoader spriteAnimationLoader;
+  SpriteAnimationLoader spriteAnimationLoader;
 
   BaseSpriteAnimationComponent({
     required Vector2 position,
@@ -31,6 +31,12 @@ class BaseSpriteAnimationComponent extends SpriteAnimationComponent with HasGame
   @override
   Future<void> onLoad() async {
     super.onLoad();
+    animation = await spriteAnimationLoader(gameRef);
+  }
+
+  @override
+  Future<void> update(double dt) async {
+    super.update(dt);
     animation = await spriteAnimationLoader(gameRef);
   }
 }
