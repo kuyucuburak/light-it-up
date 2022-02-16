@@ -4,8 +4,8 @@ import 'package:water_to_trees/util/alias.dart';
 import 'package:water_to_trees/util/app_constants.dart';
 import 'package:water_to_trees/util/asset_provider.dart';
 
-class Animation extends BaseSpriteAnimationComponent {
-  Animation._({
+class AnimationGenerator extends BaseSpriteAnimationComponent {
+  AnimationGenerator._({
     required Vector2 position,
     required SpriteAnimationLoader spriteAnimationLoader,
   }) : super(
@@ -15,17 +15,7 @@ class Animation extends BaseSpriteAnimationComponent {
           spriteAnimationLoader: spriteAnimationLoader,
         );
 
-  static Animation bulbNoLight(Vector2 position) => Animation._(
-        position: position,
-        spriteAnimationLoader: AssetProvider.animationBulbNoLight,
-      );
-
-  static Animation bulbWithLight(Vector2 position) => Animation._(
-        position: position,
-        spriteAnimationLoader: AssetProvider.animationBulbWithLight,
-      );
-
-  static Animation generator(Vector2 position) => Animation._(
+  static AnimationGenerator create(Vector2 position) => AnimationGenerator._(
         position: position,
         spriteAnimationLoader: AssetProvider.animationGenerator,
       );

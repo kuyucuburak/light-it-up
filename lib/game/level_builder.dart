@@ -1,14 +1,13 @@
 import 'package:flame/components.dart';
-import 'package:water_to_trees/component/animation/animation.dart';
+import 'package:water_to_trees/component/animation/animation_bulb.dart';
+import 'package:water_to_trees/component/animation/animation_generator.dart';
 import 'package:water_to_trees/component/sprite/wall.dart';
+import 'package:water_to_trees/component/sprite/wire.dart';
 import 'package:water_to_trees/util/app_constants.dart';
-
-import '../component/sprite/wire.dart';
 
 class LevelBuilder {
   static const String ntg = "nothing";
-  static const String bnl = "bulb_no_light";
-  static const String bwl = "bulb_with_light";
+  static const String blb = "bulb";
   static const String gnr = "generator";
   static const String who = "wire_horizontal";
   static const String wve = "wire_vertical";
@@ -46,7 +45,7 @@ class LevelBuilder {
     List<Component> componentList = [];
 
     componentList.add(_keyToComponent(
-      bnl,
+      blb,
       Vector2(
         AppConstants.mostTopLeftTileX + (_tileColumnCount - 1) * AppConstants.wireSize + AppConstants.wireSize * 0.75,
         AppConstants.mostTopLeftTileY + (_tileRowCount - 1) * AppConstants.wireSize,
@@ -54,7 +53,7 @@ class LevelBuilder {
     )!);
 
     componentList.add(_keyToComponent(
-      bwl,
+      blb,
       Vector2(
         AppConstants.mostTopLeftTileX + (_tileColumnCount - 1) * AppConstants.wireSize + AppConstants.wireSize * 0.75,
         AppConstants.mostTopLeftTileY + (_tileRowCount - 4) * AppConstants.wireSize,
@@ -126,12 +125,10 @@ class LevelBuilder {
 
   Component? _keyToComponent(String key, Vector2 position) {
     switch (key) {
-      case bnl:
-        return Animation.bulbNoLight(position);
-      case bwl:
-        return Animation.bulbWithLight(position);
+      case blb:
+        return AnimationBulb.create(position);
       case gnr:
-        return Animation.generator(position);
+        return AnimationGenerator.create(position);
       case who:
         return Wire.horizontal(position);
       case wve:
