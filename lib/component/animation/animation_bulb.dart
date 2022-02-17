@@ -20,11 +20,13 @@ class AnimationBulb extends BaseSpriteAnimationComponent {
         spriteAnimationLoader: AssetProvider.animationBulbNoLight,
       );
 
-  void turnOnTheLight() {
+  void turnOnTheLight() async {
     spriteAnimationLoader = AssetProvider.animationBulbWithLight;
+    animation = await spriteAnimationLoader(gameRef);
   }
 
-  void turnOffTheLight() {
+  void turnOffTheLight() async {
     spriteAnimationLoader = AssetProvider.animationBulbNoLight;
+    animation = await spriteAnimationLoader(gameRef);
   }
 }

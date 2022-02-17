@@ -33,10 +33,4 @@ class BaseSpriteAnimationComponent extends SpriteAnimationComponent with HasGame
     super.onLoad();
     animation = await spriteAnimationLoader(gameRef);
   }
-
-  @override
-  Future<void> update(double dt) async {
-    super.update(dt);
-    animation = await spriteAnimationLoader(gameRef);
-  }
 }
