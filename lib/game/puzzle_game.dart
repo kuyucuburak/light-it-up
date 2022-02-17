@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:light_it_up/component/animation/animation_bulb.dart';
@@ -50,8 +51,8 @@ class PuzzleGame extends FlameGame with HasDraggables {
 
     componentList.forEach((element) {
       if (element is Wire) {
-        int j = ((element.position.x - AppConstants.mostTopLeftTileX) / AppConstants.wireSize) as int;
-        int i = ((element.position.y - AppConstants.mostTopLeftTileY) / AppConstants.wireSize) as int;
+        int j = (element.position.x - AppConstants.mostTopLeftTileX) ~/ AppConstants.wireSize;
+        int i = (element.position.y - AppConstants.mostTopLeftTileY) ~/ AppConstants.wireSize;
         gameMap[i][j + 1] = element;
       }
 
@@ -61,7 +62,7 @@ class PuzzleGame extends FlameGame with HasDraggables {
 
       if (element is AnimationBulb) {
         int j = _tileMap[0].length + 1;
-        int i = ((element.position.y - AppConstants.mostTopLeftTileY) / AppConstants.wireSize) as int;
+        int i = (element.position.y - AppConstants.mostTopLeftTileY) ~/ AppConstants.wireSize;
         gameMap[i][j] = element;
         bulbDestinations.add(Destination(i, j));
       }
