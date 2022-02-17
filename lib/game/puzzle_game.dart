@@ -67,14 +67,14 @@ class PuzzleGame extends FlameGame with HasDraggables {
       }
     });
 
-    if (isChapterCompleted(gameMap, bulbDestinations)) {
+    if (_isChapterCompleted(gameMap, bulbDestinations)) {
       log("COMPLETED!!!!!");
     } else {
       log("NOT COMPLETED!");
     }
   }
 
-  bool isChapterCompleted(List<List<Component?>> wireMap, List<Destination> bulbDestinations) {
+  bool _isChapterCompleted(List<List<Component?>> wireMap, List<Destination> bulbDestinations) {
     bool allCompleted = true;
     for (final destination in bulbDestinations) {
       bool completed = _hasRightAdjacentLeftEdge(wireMap, 0, 1) && _checkElectricity(wireMap, destination, 0, 1, List.empty(growable: true));
