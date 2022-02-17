@@ -1,14 +1,14 @@
 import 'dart:developer';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
-import 'package:water_to_trees/component/animation/animation_bulb.dart';
-import 'package:water_to_trees/component/animation/animation_generator.dart';
-import 'package:water_to_trees/component/sprite/background.dart';
-import 'package:water_to_trees/component/sprite/wire.dart';
-import 'package:water_to_trees/game/destination.dart';
-import 'package:water_to_trees/game/level_builder.dart';
-import 'package:water_to_trees/util/app_constants.dart';
-import 'package:water_to_trees/util/asset_provider.dart';
+import 'package:light_it_up/component/animation/animation_bulb.dart';
+import 'package:light_it_up/component/animation/animation_generator.dart';
+import 'package:light_it_up/component/sprite/background.dart';
+import 'package:light_it_up/component/sprite/wire.dart';
+import 'package:light_it_up/game/destination.dart';
+import 'package:light_it_up/game/level_builder.dart';
+import 'package:light_it_up/util/app_constants.dart';
+import 'package:light_it_up/util/asset_provider.dart';
 
 class PuzzleGame extends FlameGame with HasDraggables {
   late final LevelBuilder _levelBuilder = LevelBuilder(_tileMap);

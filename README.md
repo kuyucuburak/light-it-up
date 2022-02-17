@@ -1,4 +1,4 @@
-# water_to_trees
+# light_it_up
 
 A new Flutter project.
 

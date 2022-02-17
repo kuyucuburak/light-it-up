@@ -1,6 +1,6 @@
 {
-  "name": "SensorTower - WaterToTrees",
-  "short_name": "water_to_trees",
+  "name": "SensorTower - LightItUp",
+  "short_name": "light_it_up",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",

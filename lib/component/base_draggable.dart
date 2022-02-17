@@ -1,9 +1,9 @@
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
-import 'package:water_to_trees/component/sprite/wire.dart';
-import 'package:water_to_trees/game/puzzle_game.dart';
-import 'package:water_to_trees/util/app_constants.dart';
+import 'package:light_it_up/component/sprite/wire.dart';
+import 'package:light_it_up/game/puzzle_game.dart';
+import 'package:light_it_up/util/app_constants.dart';
 
 mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, Draggable {
   // When it is lower, dragging will be started sooner, it will be more sensitive.

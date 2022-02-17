@@ -1,4 +1,4 @@
-package com.sensortower.watertotrees.water_to_trees
+package com.sensortower.lightitup
 
 import io.flutter.embedding.android.FlutterActivity
 
