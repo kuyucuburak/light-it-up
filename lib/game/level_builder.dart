@@ -1,9 +1,9 @@
 import 'package:flame/components.dart';
-import 'package:water_to_trees/component/animation/animation_bulb.dart';
-import 'package:water_to_trees/component/animation/animation_generator.dart';
-import 'package:water_to_trees/component/sprite/wall.dart';
-import 'package:water_to_trees/component/sprite/wire.dart';
-import 'package:water_to_trees/util/app_constants.dart';
+import 'package:light_it_up/component/animation/animation_bulb.dart';
+import 'package:light_it_up/component/animation/animation_generator.dart';
+import 'package:light_it_up/component/sprite/wall.dart';
+import 'package:light_it_up/component/sprite/wire.dart';
+import 'package:light_it_up/util/app_constants.dart';
 
 class LevelBuilder {
   static const String ntg = "nothing";

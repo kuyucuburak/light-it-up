@@ -1,9 +1,9 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
-import 'package:water_to_trees/component/base_sprite_component.dart';
-import 'package:water_to_trees/util/alias.dart';
-import 'package:water_to_trees/util/app_constants.dart';
-import 'package:water_to_trees/util/asset_provider.dart';
+import 'package:light_it_up/component/base_sprite_component.dart';
+import 'package:light_it_up/util/alias.dart';
+import 'package:light_it_up/util/app_constants.dart';
+import 'package:light_it_up/util/asset_provider.dart';
 
 class Background extends BaseSpriteComponent {
   Background._({
