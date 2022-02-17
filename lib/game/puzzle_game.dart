@@ -33,7 +33,12 @@ class PuzzleGame extends FlameGame with HasDraggables {
 
     add(await background(this));
 
-    componentList = await _levelBuilder.animationList() + await _levelBuilder.bulbList() + await _levelBuilder.wallList() + await _levelBuilder.wireList();
+    componentList = await _levelBuilder.animationList() +
+        await _levelBuilder.bulbList() +
+        await _levelBuilder.electricityVerticalList() +
+        await _levelBuilder.electricityHorizontalList() +
+        await _levelBuilder.wallList() +
+        await _levelBuilder.wireList();
     componentList.forEach((e) => add(e));
   }
 

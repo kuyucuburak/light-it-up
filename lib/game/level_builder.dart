@@ -1,5 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:light_it_up/component/animation/animation_bulb.dart';
+import 'package:light_it_up/component/animation/animation_electricity_horizontal.dart';
+import 'package:light_it_up/component/animation/animation_electricity_vertical.dart';
 import 'package:light_it_up/component/animation/animation_generator.dart';
 import 'package:light_it_up/component/sprite/wall.dart';
 import 'package:light_it_up/component/sprite/wire.dart';
@@ -8,6 +10,8 @@ import 'package:light_it_up/util/app_constants.dart';
 class LevelBuilder {
   static const String ntg = "nothing";
   static const String blb = "bulb";
+  static const String eho = "horizontal_electricity";
+  static const String evo = "vertical_electricity";
   static const String gnr = "generator";
   static const String who = "wire_horizontal";
   static const String wve = "wire_vertical";
@@ -57,6 +61,34 @@ class LevelBuilder {
       Vector2(
         AppConstants.mostTopLeftTileX + (_tileColumnCount - 1) * AppConstants.wireSize + AppConstants.wireSize * 0.75,
         AppConstants.mostTopLeftTileY + (_tileRowCount - 4) * AppConstants.wireSize,
+      ),
+    )!);
+
+    return componentList;
+  }
+
+  Future<List<Component>> electricityVerticalList() async {
+    List<Component> componentList = [];
+
+    componentList.add(_keyToComponent(
+      evo,
+      Vector2(
+        AppConstants.mostTopLeftTileX + AppConstants.wireSize + 500,
+        AppConstants.mostTopLeftTileY + 100,
+      ),
+    )!);
+
+    return componentList;
+  }
+
+  Future<List<Component>> electricityHorizontalList() async {
+    List<Component> componentList = [];
+
+    componentList.add(_keyToComponent(
+      eho,
+      Vector2(
+        AppConstants.mostTopLeftTileX + AppConstants.wireSize,
+        AppConstants.mostTopLeftTileY,
       ),
     )!);
 
@@ -127,6 +159,10 @@ class LevelBuilder {
     switch (key) {
       case blb:
         return AnimationBulb.create(position);
+      case eho:
+        return AnimationElectricityHorizontal.create(position);
+      case evo:
+        return AnimationElectricityVertical.create(position);
       case gnr:
         return AnimationGenerator.create(position);
       case who:
