@@ -67,34 +67,6 @@ class LevelBuilder {
     return componentList;
   }
 
-  Future<List<Component>> electricityVerticalList() async {
-    List<Component> componentList = [];
-
-    componentList.add(_keyToComponent(
-      evo,
-      Vector2(
-        AppConstants.mostTopLeftTileX + AppConstants.wireSize + 500,
-        AppConstants.mostTopLeftTileY + 100,
-      ),
-    )!);
-
-    return componentList;
-  }
-
-  Future<List<Component>> electricityHorizontalList() async {
-    List<Component> componentList = [];
-
-    componentList.add(_keyToComponent(
-      eho,
-      Vector2(
-        AppConstants.mostTopLeftTileX + AppConstants.wireSize + 50,
-        AppConstants.mostTopLeftTileY + 300,
-      ),
-    )!);
-
-    return componentList;
-  }
-
   Future<List<Component>> wallList() async {
     List<Component> componentList = [];
 
