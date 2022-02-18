@@ -10,7 +10,7 @@ class LevelBuilder {
   static const String ntg = "nothing";
   static const String blb = "bulb";
   static const String eho = "electricity_horizontal";
-  static const String evo = "electricity_vertical";
+  static const String eve = "electricity_vertical";
   static const String gnr = "generator";
   static const String who = "wire_horizontal";
   static const String wve = "wire_vertical";
@@ -132,7 +132,7 @@ class LevelBuilder {
         return AnimationBulb.create(position);
       case eho:
         return AnimationElectricity.horizontal(position);
-      case evo:
+      case eve:
         return AnimationElectricity.vertical(position);
       case gnr:
         return AnimationGenerator.create(position);
