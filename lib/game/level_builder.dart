@@ -87,8 +87,8 @@ class LevelBuilder {
     componentList.add(_keyToComponent(
       eho,
       Vector2(
-        AppConstants.mostTopLeftTileX + AppConstants.wireSize,
-        AppConstants.mostTopLeftTileY,
+        AppConstants.mostTopLeftTileX + AppConstants.wireSize + 50,
+        AppConstants.mostTopLeftTileY + 300,
       ),
     )!);
 

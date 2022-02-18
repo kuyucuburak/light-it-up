@@ -16,5 +16,7 @@ class AppConstants {
   static const int wallPriority = 1;
   static const int backgroundPriority = 0;
 
+  static const double electricitySize = 30;
+
   static const Anchor anchor = Anchor.center;
 }

@@ -75,7 +75,7 @@ class AssetProvider {
   static Future<SpriteAnimation> animationElectricityHorizontal(FlameGame gameRef) async {
     return await gameRef.loadSpriteAnimation(
       _animationElectricityHorizontal,
-      SpriteAnimationData.sequenced(amount: 13, stepTime: 0.5, textureSize: Vector2(600, 600)),
+      SpriteAnimationData.sequenced(amount: 13, stepTime: 0.05, textureSize: Vector2(600, 600)),
     );
   }
 

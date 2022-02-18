@@ -10,7 +10,7 @@ class AnimationElectricityVertical extends BaseSpriteAnimationComponent {
     required SpriteAnimationLoader spriteAnimationLoader,
   }) : super(
           position: position,
-          size: Vector2.all(AppConstants.animationSize),
+          size: Vector2.all(AppConstants.electricitySize),
           priority: AppConstants.animationPriority,
           spriteAnimationLoader: spriteAnimationLoader,
         );

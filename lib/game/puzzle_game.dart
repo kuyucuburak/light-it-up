@@ -1,8 +1,11 @@
 import 'dart:developer';
 
+import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:light_it_up/component/animation/animation_bulb.dart';
+import 'package:light_it_up/component/animation/animation_electricity_horizontal.dart';
+import 'package:light_it_up/component/animation/animation_electricity_vertical.dart';
 import 'package:light_it_up/component/animation/animation_generator.dart';
 import 'package:light_it_up/component/sprite/background.dart';
 import 'package:light_it_up/component/sprite/wire.dart';
@@ -10,10 +13,11 @@ import 'package:light_it_up/game/destination.dart';
 import 'package:light_it_up/game/level_builder.dart';
 import 'package:light_it_up/util/app_constants.dart';
 import 'package:light_it_up/util/asset_provider.dart';
+import 'package:light_it_up/util/extensions/vector_extension.dart';
 
 class PuzzleGame extends FlameGame with HasDraggables {
-  late final LevelBuilder _levelBuilder = LevelBuilder(_tileMap);
-  late final List<Component> componentList;
+  late LevelBuilder _levelBuilder = LevelBuilder(_tileMap);
+  late List<Component> componentList;
   late final List<List<String>> _tileMap = [
     [LevelBuilder.wc4, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.wbl],
     [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.w3r, LevelBuilder.ntg],
@@ -50,7 +54,7 @@ class PuzzleGame extends FlameGame with HasDraggables {
     );
   }
 
-  void updateGameMap() {
+  void updateGameMap() async {
     List<List<Component?>> gameMap = List.generate(_tileMap.length, (i) => List.filled(_tileMap[0].length + 2, null, growable: false), growable: false);
     List<Destination> bulbDestinations = List.empty(growable: true);
 
@@ -71,11 +75,26 @@ class PuzzleGame extends FlameGame with HasDraggables {
         gameMap[i][j] = element;
         bulbDestinations.add(Destination(i, j));
       }
+      if(element is AnimationElectricityVertical){
+        remove(element);
+        componentList.remove(element);
+      }
+      if(element is AnimationElectricityHorizontal){
+        remove(element);
+        componentList.remove(element);
+      }
     });
+
+    //componentList = componentList.filterNot((component) => component is AnimationElectricityHorizontal);
+    //componentList = componentList.filterNot((component) => component is AnimationElectricityVertical);
+    print(componentList);
+    print(_tileMap);
 
     if (_isChapterCompleted(gameMap, bulbDestinations)) {
       log("COMPLETED!!!!!");
     } else {
+
+
       log("NOT COMPLETED!");
     }
   }
@@ -105,10 +124,18 @@ class PuzzleGame extends FlameGame with HasDraggables {
       return true;
     }
 
+
+    print("_checkElectricity called");
     bool left = false, right = false, top = false, bottom = false;
     if (element is Wire) {
       roadTaken.add(Destination(i, j));
       // TODO add electricity animation on element
+
+
+      if (element.hasRight) add(AnimationElectricityHorizontal.create(element.addElectricityToRight));
+      if (element.hasLeft) add(AnimationElectricityHorizontal.create(element.addElectricityToLeft));
+      if (element.hasBottom) add(AnimationElectricityVertical.create(element.addElectricityToBottom));
+      if (element.hasTop) add(AnimationElectricityVertical.create(element.addElectricityToTop));
 
       if (element.hasRight && _hasRightAdjacentLeftEdge(wireMap, i, j + 1) && !_doesRoadContainDestination(i, j + 1, roadTaken)) {
         right = _checkElectricity(wireMap, finalDestination, i, j + 1, roadTaken);
