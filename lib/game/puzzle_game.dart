@@ -3,8 +3,7 @@ import 'dart:developer';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:light_it_up/component/animation/animation_bulb.dart';
-import 'package:light_it_up/component/animation/animation_electricity_horizontal.dart';
-import 'package:light_it_up/component/animation/animation_electricity_vertical.dart';
+import 'package:light_it_up/component/animation/animation_electricity.dart';
 import 'package:light_it_up/component/animation/animation_generator.dart';
 import 'package:light_it_up/component/sprite/background.dart';
 import 'package:light_it_up/component/sprite/wire.dart';
@@ -52,7 +51,7 @@ class PuzzleGame extends FlameGame with HasDraggables {
   }
 
   void updateGameMap() async {
-    electricityAnimationList.forEach((element) => element.removeFromParent());
+    electricityAnimationList.forEach((e) => e.removeFromParent());
     electricityAnimationList = [];
 
     List<List<Component?>> gameMap = List.generate(_tileMap.length, (i) => List.filled(_tileMap[0].length + 2, null, growable: false), growable: false);
@@ -133,22 +132,25 @@ class PuzzleGame extends FlameGame with HasDraggables {
 
   void _addElectricityAnimation(Wire wire) {
     if (wire.hasRight) {
-      AnimationElectricityHorizontal animation = AnimationElectricityHorizontal.create(wire.addElectricityToRight);
+      AnimationElectricity animation = AnimationElectricity.horizontal(wire.electricityRightPos);
       electricityAnimationList.add(animation);
       add(animation);
     }
+
     if (wire.hasLeft) {
-      AnimationElectricityHorizontal animation = AnimationElectricityHorizontal.create(wire.addElectricityToLeft);
+      AnimationElectricity animation = AnimationElectricity.horizontal(wire.electricityLeftPos);
       electricityAnimationList.add(animation);
       add(animation);
     }
+
     if (wire.hasBottom) {
-      AnimationElectricityVertical animation = AnimationElectricityVertical.create(wire.addElectricityToBottom);
+      AnimationElectricity animation = AnimationElectricity.vertical(wire.electricityBottomPos);
       electricityAnimationList.add(animation);
       add(animation);
     }
+
     if (wire.hasTop) {
-      AnimationElectricityVertical animation = AnimationElectricityVertical.create(wire.addElectricityToTop);
+      AnimationElectricity animation = AnimationElectricity.vertical(wire.electricityTopPos);
       electricityAnimationList.add(animation);
       add(animation);
     }
