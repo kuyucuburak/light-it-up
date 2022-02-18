@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:light_it_up/component/animation/animation_bulb.dart';
+import 'package:light_it_up/component/animation/animation_electricity.dart';
 import 'package:light_it_up/component/animation/animation_generator.dart';
 import 'package:light_it_up/component/sprite/wall.dart';
 import 'package:light_it_up/component/sprite/wire.dart';
@@ -8,6 +9,8 @@ import 'package:light_it_up/util/app_constants.dart';
 class LevelBuilder {
   static const String ntg = "nothing";
   static const String blb = "bulb";
+  static const String eho = "electricity_horizontal";
+  static const String eve = "electricity_vertical";
   static const String gnr = "generator";
   static const String who = "wire_horizontal";
   static const String wve = "wire_vertical";
@@ -127,6 +130,10 @@ class LevelBuilder {
     switch (key) {
       case blb:
         return AnimationBulb.create(position);
+      case eho:
+        return AnimationElectricity.horizontal(position);
+      case eve:
+        return AnimationElectricity.vertical(position);
       case gnr:
         return AnimationGenerator.create(position);
       case who:

@@ -10,8 +10,8 @@ class AnimationBulb extends BaseSpriteAnimationComponent {
     required SpriteAnimationLoader spriteAnimationLoader,
   }) : super(
           position: position,
-          size: Vector2.all(AppConstants.animationSize),
-          priority: AppConstants.animationPriority,
+          size: Vector2.all(AppConstants.staticAnimationSize),
+          priority: AppConstants.staticAnimationPriority,
           spriteAnimationLoader: spriteAnimationLoader,
         );
 

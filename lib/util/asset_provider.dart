@@ -7,6 +7,8 @@ import 'package:flame/game.dart';
 class AssetProvider {
   static const String _animationBulbNoLight = 'animation/bulb/bulb_no_light.png';
   static const String _animationBulbWithLight = 'animation/bulb/bulb_with_light.png';
+  static const String _animationElectricityHorizontal = 'animation/electricity/electricity_horizontal.png';
+  static const String _animationElectricityVertical = 'animation/electricity/electricity_vertical.png';
   static const String _animationGenerator = 'animation/generator.png';
 
   static const String _imageBackground = 'background.png';
@@ -26,6 +28,8 @@ class AssetProvider {
   static const imageAssets = [
     _animationBulbNoLight,
     _animationBulbWithLight,
+    _animationElectricityHorizontal,
+    _animationElectricityVertical,
     _animationGenerator,
     _imageBackground,
     _imageWallUnit,
@@ -53,6 +57,20 @@ class AssetProvider {
     return await gameRef.loadSpriteAnimation(
       _animationBulbWithLight,
       SpriteAnimationData.sequenced(amount: 20, stepTime: 0.1, textureSize: Vector2(600, 600)),
+    );
+  }
+
+  static Future<SpriteAnimation> animationElectricityHorizontal(FlameGame gameRef) async {
+    return await gameRef.loadSpriteAnimation(
+      _animationElectricityHorizontal,
+      SpriteAnimationData.sequenced(amount: 13, stepTime: 0.05, textureSize: Vector2(600, 600)),
+    );
+  }
+
+  static Future<SpriteAnimation> animationElectricityVertical(FlameGame gameRef) async {
+    return await gameRef.loadSpriteAnimation(
+      _animationElectricityVertical,
+      SpriteAnimationData.sequenced(amount: 13, stepTime: 0.05, textureSize: Vector2(600, 600)),
     );
   }
 
