@@ -11,13 +11,14 @@ class AppConstants {
   static const double wireSize = 100; // This should be divisible by wallSize to build the map correctly.
   static const double wallSize = 50;
 
+  static const int constObjectPriority = 4;
   static const int animationPriority = 3;
   static const int wirePriority = 2;
   static const int wallPriority = 1;
   static const int backgroundPriority = 0;
 
-  static final Vector2 electricityHorizontalSize = Vector2(30, 120);
-  static final Vector2 electricityVerticalSize = Vector2(120, 30);
+  static final Vector2 electricityHorizontalSize = Vector2(30, 75);
+  static final Vector2 electricityVerticalSize = Vector2(75, 30);
 
   static const Anchor anchor = Anchor.center;
 }

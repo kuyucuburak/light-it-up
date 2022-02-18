@@ -11,7 +11,7 @@ class AnimationGenerator extends BaseSpriteAnimationComponent {
   }) : super(
           position: position,
           size: Vector2.all(AppConstants.animationSize),
-          priority: AppConstants.animationPriority,
+          priority: AppConstants.constObjectPriority,
           spriteAnimationLoader: spriteAnimationLoader,
         );
 
