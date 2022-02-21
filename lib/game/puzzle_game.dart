@@ -19,6 +19,8 @@ class PuzzleGame extends FlameGame with HasDraggables {
   late final double maxTileX = AppConstants.mostTopLeftTileX + ((_tileMap[0].length - 1) * AppConstants.tileSize);
   late final double maxTileY = AppConstants.mostTopLeftTileY + ((_tileMap.length - 1) * AppConstants.tileSize);
 
+  late List<Component> _level1ComponentList;
+
   @override
   Future<void> onLoad() async {
     super.onLoad();
@@ -32,7 +34,16 @@ class PuzzleGame extends FlameGame with HasDraggables {
     );
     add(baseSpriteComponent);
 
-    List<Component> componentList = await _levelBuilder.wallList() + await _levelBuilder.tileList() + await _levelBuilder.animationList() + await _levelBuilder.bulbList();
-    componentList.forEach((e) => add(e));
+    _level1ComponentList = await _levelBuilder.wallList() + await _levelBuilder.tileList() + await _levelBuilder.animationList() + await _levelBuilder.bulbList();
+  }
+
+  void startGamePlay() {
+    _level1ComponentList.forEach((e) => add(e));
+  }
+
+  void reset() {
+    _level1ComponentList.forEach((e) {
+      e.removeFromParent();
+    });
   }
 }
