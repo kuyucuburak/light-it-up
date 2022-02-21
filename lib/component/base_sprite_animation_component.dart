@@ -1,9 +1,9 @@
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 import 'package:flutter/material.dart';
-import 'package:water_to_trees/game/puzzle_game.dart';
-import 'package:water_to_trees/util/alias.dart';
-import 'package:water_to_trees/util/app_constants.dart';
+import 'package:light_it_up/game/puzzle_game.dart';
+import 'package:light_it_up/util/alias.dart';
+import 'package:light_it_up/util/app_constants.dart';
 
 class BaseSpriteAnimationComponent extends SpriteAnimationComponent with HasGameRef<PuzzleGame>, HasHitboxes {
   @override
@@ -11,7 +11,7 @@ class BaseSpriteAnimationComponent extends SpriteAnimationComponent with HasGame
   @override
   Color debugColor = Colors.yellowAccent;
 
-  final SpriteAnimationLoader spriteAnimationLoader;
+  SpriteAnimationLoader spriteAnimationLoader;
 
   BaseSpriteAnimationComponent({
     required Vector2 position,

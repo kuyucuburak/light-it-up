@@ -1,7 +1,7 @@
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:water_to_trees/game/puzzle_game.dart';
+import 'package:light_it_up/game/puzzle_game.dart';
 
 import 'menu/game_over_menu.dart';
 import 'menu/main_menu.dart';

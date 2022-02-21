@@ -1,10 +1,10 @@
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 import 'package:flutter/material.dart' as material;
-import 'package:water_to_trees/component/base_draggable.dart';
-import 'package:water_to_trees/game/puzzle_game.dart';
-import 'package:water_to_trees/util/alias.dart';
-import 'package:water_to_trees/util/app_constants.dart';
+import 'package:light_it_up/component/base_draggable.dart';
+import 'package:light_it_up/game/puzzle_game.dart';
+import 'package:light_it_up/util/alias.dart';
+import 'package:light_it_up/util/app_constants.dart';
 
 class BaseDraggableSpriteComponent extends SpriteComponent with HasGameRef<PuzzleGame>, HasHitboxes, Draggable, BaseDraggable {
   @override

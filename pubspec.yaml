@@ -1,4 +1,4 @@
-name: water_to_trees
+name: light_it_up
 description: A new Flutter project.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
@@ -26,7 +26,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    - assets/images/animations/
-    - assets/images/wire/
+    - assets/images/animation/
+    - assets/images/animation/bulb/
+    - assets/images/animation/electricity/
     - assets/images/wall/
-    - assets/images/bulb/
+    - assets/images/wire/
