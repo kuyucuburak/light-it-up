@@ -31,7 +31,7 @@ class MainMenu extends StatelessWidget {
                 spacing: 10,
                 children: [
                   const Text(
-                    'Dino Run',
+                    'Light It Up',
                     style: TextStyle(
                       fontSize: 50,
                       color: Colors.white,
@@ -44,17 +44,6 @@ class MainMenu extends StatelessWidget {
                     },
                     child: const Text(
                       'Play',
-                      style: TextStyle(
-                        fontSize: 30,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      gameRef.overlays.remove(MainMenu.id);
-                    },
-                    child: const Text(
-                      'Settings',
                       style: TextStyle(
                         fontSize: 30,
                       ),

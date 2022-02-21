@@ -7,8 +7,6 @@ import 'menu/game_over_menu.dart';
 import 'menu/main_menu.dart';
 import 'menu/pause_menu.dart';
 
-PuzzleGame _puzzleGame = PuzzleGame();
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -23,7 +21,7 @@ void main() {
         GameOverMenu.id: (_, PuzzleGame gameRef) => GameOverMenu(gameRef),
       },
       initialActiveOverlays: const [MainMenu.id],
-      game: _puzzleGame,
+      game: PuzzleGame(),
     ),
   );
 }
