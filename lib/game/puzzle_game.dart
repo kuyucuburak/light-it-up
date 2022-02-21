@@ -37,9 +37,6 @@ class PuzzleGame extends FlameGame with HasDraggables {
     add(await background(this));
 
     componentList = await _levelBuilder.animationList() + await _levelBuilder.bulbList() + await _levelBuilder.wallList() + await _levelBuilder.wireList();
-    componentList.forEach((e) => add(e));
-
-    updateGameMap();
   }
 
   Future<Component> background(PuzzleGame gameRef) async {
@@ -186,11 +183,13 @@ class PuzzleGame extends FlameGame with HasDraggables {
   }
 
   void startGamePlay() {
-    _level1ComponentList.forEach((e) => add(e));
+    componentList.forEach((e) => add(e));
+
+    updateGameMap();
   }
 
   void reset() {
-    _level1ComponentList.forEach((e) {
+    componentList.forEach((e) {
       e.removeFromParent();
     });
   }

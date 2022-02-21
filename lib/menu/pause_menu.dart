@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:water_to_trees/game/puzzle_game.dart';
 
+import '../game/puzzle_game.dart';
 import 'main_menu.dart';
 
 class PauseMenu extends StatelessWidget {
