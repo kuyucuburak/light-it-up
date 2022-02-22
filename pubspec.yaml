@@ -15,6 +15,7 @@ dependencies:
   flame: 1.0.0
   flame_tiled: ^1.1.0
   tiled: 0.8.0
+  flame_audio: 1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -31,3 +32,4 @@ flutter:
     - assets/images/animation/electricity/
     - assets/images/wall/
     - assets/images/wire/
+    - assets/audio/

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:light_it_up/component/animation/animation_bulb.dart';
 import 'package:light_it_up/component/animation/animation_electricity.dart';
 import 'package:light_it_up/component/animation/animation_generator.dart';
@@ -57,6 +58,8 @@ class PuzzleGame extends FlameGame with HasDraggables {
     List<List<Component?>> gameMap = List.generate(_tileMap.length, (i) => List.filled(_tileMap[0].length + 2, null, growable: false), growable: false);
     List<Destination> bulbDestinations = List.empty(growable: true);
 
+    FlameAudio.play('metallic_lock.wav');
+
     componentList.forEach((element) {
       if (element is Wire) {
         int j = (element.position.x - AppConstants.mostTopLeftTileX) ~/ AppConstants.wireSize;
@@ -81,6 +84,7 @@ class PuzzleGame extends FlameGame with HasDraggables {
     } else {
       log("NOT COMPLETED!");
     }
+    print(electricityAnimationList.length);
   }
 
   bool _isChapterCompleted(List<List<Component?>> wireMap, List<Destination> bulbDestinations) {
