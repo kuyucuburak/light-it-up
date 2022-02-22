@@ -34,7 +34,8 @@ class GameController {
       }
 
       if (element is AnimationGenerator) {
-        gameMap[0][0] = element;
+        int i = (element.position.y - AppConstants.mostTopLeftTileY) ~/ AppConstants.wireSize;
+        gameMap[i][0] = element;
       }
 
       if (element is AnimationBulb) {
@@ -53,26 +54,33 @@ class GameController {
     }
   }
 
-  bool _isChapterCompleted(List<List<Component?>> wireMap, List<Destination> bulbDestinations) {
+  bool _isChapterCompleted(List<List<Component?>> gameMap, List<Destination> bulbDestinations) {
     bool allCompleted = true;
     for (final destination in bulbDestinations) {
-      bool completed = _hasRightAdjacentLeftEdge(wireMap, 0, 1) && _checkElectricity(wireMap, destination, 0, 1, List.empty(growable: true));
+      bool completed = false;
+      for (int i = 0; i < _levelController.wireRowCount; i++) {
+        if (gameMap[i][0] is AnimationGenerator && _hasRightAdjacentLeftEdge(gameMap, i, 1) && _checkElectricity(gameMap, destination, i, 1, List.empty(growable: true))) {
+          completed = true;
+          break;
+        }
+      }
 
       if (completed) {
-        (wireMap[destination.x][destination.y] as AnimationBulb).turnOnTheLight();
+        (gameMap[destination.x][destination.y] as AnimationBulb).turnOnTheLight();
       } else {
-        (wireMap[destination.x][destination.y] as AnimationBulb).turnOffTheLight();
+        (gameMap[destination.x][destination.y] as AnimationBulb).turnOffTheLight();
         allCompleted = false;
       }
     }
     return allCompleted;
   }
 
-  bool _checkElectricity(List<List<Component?>> wireMap, Destination finalDestination, int i, int j, List<Destination> roadTaken) {
-    if (i < 0 || j < 0 || i >= wireMap.length || j >= wireMap[0].length) return false;
-    if (wireMap[i][j] == null || wireMap[i][j] is AnimationGenerator) return false;
+  bool _checkElectricity(List<List<Component?>> gameMap, Destination finalDestination, int i, int j, List<Destination> roadTaken) {
+    if (i < 0 || j < 0 || i >= gameMap.length || j >= gameMap[0].length) return false;
+    if (gameMap[i][j] == null) return false;
+    if (gameMap[i][j] is AnimationGenerator) return true;
 
-    Component element = wireMap[i][j]!;
+    Component element = gameMap[i][j]!;
 
     if (element is AnimationBulb && i == finalDestination.x && j == finalDestination.y) {
       return true;
@@ -83,17 +91,17 @@ class GameController {
       roadTaken.add(Destination(i, j));
       _addElectricityAnimation(element);
 
-      if (element.hasRight && _hasRightAdjacentLeftEdge(wireMap, i, j + 1) && !_doesRoadContainDestination(i, j + 1, roadTaken)) {
-        right = _checkElectricity(wireMap, finalDestination, i, j + 1, roadTaken);
+      if (element.hasRight && _hasRightAdjacentLeftEdge(gameMap, i, j + 1) && !_doesRoadContainDestination(i, j + 1, roadTaken)) {
+        right = _checkElectricity(gameMap, finalDestination, i, j + 1, roadTaken);
       }
-      if (element.hasLeft && _hasLeftAdjacentRightEdge(wireMap, i, j - 1) && !_doesRoadContainDestination(i, j - 1, roadTaken)) {
-        left = _checkElectricity(wireMap, finalDestination, i, j - 1, roadTaken);
+      if (element.hasLeft && _hasLeftAdjacentRightEdge(gameMap, i, j - 1) && !_doesRoadContainDestination(i, j - 1, roadTaken)) {
+        left = _checkElectricity(gameMap, finalDestination, i, j - 1, roadTaken);
       }
-      if (element.hasTop && _hasTopAdjacentBottomEdge(wireMap, i - 1, j) && !_doesRoadContainDestination(i - 1, j, roadTaken)) {
-        top = _checkElectricity(wireMap, finalDestination, i - 1, j, roadTaken);
+      if (element.hasTop && _hasTopAdjacentBottomEdge(gameMap, i - 1, j) && !_doesRoadContainDestination(i - 1, j, roadTaken)) {
+        top = _checkElectricity(gameMap, finalDestination, i - 1, j, roadTaken);
       }
-      if (element.hasBottom && _hasBottomAdjacentTopEdge(wireMap, i + 1, j) && !_doesRoadContainDestination(i + 1, j, roadTaken)) {
-        bottom = _checkElectricity(wireMap, finalDestination, i + 1, j, roadTaken);
+      if (element.hasBottom && _hasBottomAdjacentTopEdge(gameMap, i + 1, j) && !_doesRoadContainDestination(i + 1, j, roadTaken)) {
+        bottom = _checkElectricity(gameMap, finalDestination, i + 1, j, roadTaken);
       }
     }
 
@@ -133,26 +141,26 @@ class GameController {
     return false;
   }
 
-  bool _hasRightAdjacentLeftEdge(List<List<Component?>> wireMap, int i, int j) {
-    if (wireMap[i][j] is AnimationBulb) return true; // special condition to understand we have arrived at the generator
+  bool _hasRightAdjacentLeftEdge(List<List<Component?>> gameMap, int i, int j) {
+    if (gameMap[i][j] is AnimationBulb) return true; // special condition to understand we have arrived at a bulb
 
-    if (j >= wireMap[0].length || wireMap[i][j] is! Wire) return false;
-    return (wireMap[i][j] as Wire).hasLeft;
+    if (j >= gameMap[0].length || gameMap[i][j] is! Wire) return false;
+    return (gameMap[i][j] as Wire).hasLeft;
   }
 
-  bool _hasLeftAdjacentRightEdge(List<List<Component?>> wireMap, int i, int j) {
-    if (j < 0 || wireMap[i][j] is! Wire) return false;
-    return (wireMap[i][j] as Wire).hasRight;
+  bool _hasLeftAdjacentRightEdge(List<List<Component?>> gameMap, int i, int j) {
+    if (j < 0 || gameMap[i][j] is! Wire) return false;
+    return (gameMap[i][j] as Wire).hasRight;
   }
 
-  bool _hasTopAdjacentBottomEdge(List<List<Component?>> wireMap, int i, int j) {
-    if (i < 0 || wireMap[i][j] is! Wire) return false;
-    return (wireMap[i][j] as Wire).hasBottom;
+  bool _hasTopAdjacentBottomEdge(List<List<Component?>> gameMap, int i, int j) {
+    if (i < 0 || gameMap[i][j] is! Wire) return false;
+    return (gameMap[i][j] as Wire).hasBottom;
   }
 
-  bool _hasBottomAdjacentTopEdge(List<List<Component?>> wireMap, int i, int j) {
-    if (i >= wireMap.length || wireMap[i][j] is! Wire) return false;
-    return (wireMap[i][j] as Wire).hasTop;
+  bool _hasBottomAdjacentTopEdge(List<List<Component?>> gameMap, int i, int j) {
+    if (i >= gameMap.length || gameMap[i][j] is! Wire) return false;
+    return (gameMap[i][j] as Wire).hasTop;
   }
 
   Future<void> startGamePlay() async {
@@ -161,11 +169,15 @@ class GameController {
     updateGameMap();
   }
 
-  void removeAllGameComponents() {
+  void removeAllGameComponents({bool resetGameProgress = false}) {
     componentList.forEach((e) => e.removeFromParent());
     electricityAnimationList.forEach((e) => e.removeFromParent());
     componentList = [];
     electricityAnimationList = [];
+
+    if (resetGameProgress) {
+      _levelController.resetLevelProgress();
+    }
   }
 
   void nextLevel() {

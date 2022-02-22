@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:light_it_up/game/puzzle_game.dart';
 import 'package:light_it_up/menu/hud.dart';
 import 'package:light_it_up/menu/main_menu.dart';
+import 'package:light_it_up/widget/button_widgets.dart';
 
 class CongratulationMenu extends StatelessWidget {
   static const id = 'CongratulationMenu';
@@ -42,12 +43,7 @@ class CongratulationMenu extends StatelessWidget {
                             gameRef.gameController.nextLevel();
                             gameRef.gameController.startGamePlay();
                           },
-                          child: const Text(
-                            'Next Level',
-                            style: TextStyle(
-                              fontSize: 30,
-                            ),
-                          ),
+                          child: ButtonWidgets.menuButton('Next Level'),
                         )
                       : Container(),
                   ElevatedButton(
@@ -55,14 +51,9 @@ class CongratulationMenu extends StatelessWidget {
                       gameRef.overlays.remove(CongratulationMenu.id);
                       gameRef.overlays.add(MainMenu.id);
                       gameRef.resumeEngine();
-                      gameRef.gameController.removeAllGameComponents();
+                      gameRef.gameController.removeAllGameComponents(resetGameProgress: true);
                     },
-                    child: const Text(
-                      'Exit',
-                      style: TextStyle(
-                        fontSize: 30,
-                      ),
-                    ),
+                    child: ButtonWidgets.menuButton('Exit'),
                   ),
                 ],
               ),

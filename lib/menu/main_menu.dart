@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:light_it_up/game/puzzle_game.dart';
 import 'package:light_it_up/menu/hud.dart';
+import 'package:light_it_up/widget/button_widgets.dart';
 
 class MainMenu extends StatelessWidget {
   static const id = 'MainMenu';
@@ -22,17 +23,20 @@ class MainMenu extends StatelessWidget {
           child: FittedBox(
             fit: BoxFit.scaleDown,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 100),
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 100),
               child: Wrap(
                 direction: Axis.vertical,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 spacing: 10,
                 children: [
-                  const Text(
-                    'Light It Up',
-                    style: TextStyle(
-                      fontSize: 50,
-                      color: Colors.white,
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 8),
+                    child: Text(
+                      'Light It Up',
+                      style: TextStyle(
+                        fontSize: 48,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   ElevatedButton(
@@ -41,12 +45,7 @@ class MainMenu extends StatelessWidget {
                       gameRef.overlays.add(Hud.id);
                       gameRef.overlays.remove(MainMenu.id);
                     },
-                    child: const Text(
-                      'Play',
-                      style: TextStyle(
-                        fontSize: 30,
-                      ),
-                    ),
+                    child: ButtonWidgets.menuButton('Play'),
                   ),
                 ],
               ),
