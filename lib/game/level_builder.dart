@@ -42,7 +42,7 @@ class LevelBuilder {
         gnr,
         Vector2(
           AppConstants.mostTopLeftTileX - AppConstants.wireSize * 0.75,
-          AppConstants.mostTopLeftTileY + (wireRowCount - e) * AppConstants.wireSize,
+          AppConstants.mostTopLeftTileY + e * AppConstants.wireSize,
         ),
       )!;
     }).toList();
@@ -53,8 +53,8 @@ class LevelBuilder {
       return _keyToComponent(
         blb,
         Vector2(
-          AppConstants.mostTopLeftTileX - AppConstants.wireSize * 0.75,
-          AppConstants.mostTopLeftTileY + (wireRowCount - e) * AppConstants.wireSize,
+          AppConstants.mostTopLeftTileX + (wireColumnCount - 1) * AppConstants.wireSize + AppConstants.wireSize * 0.75,
+          AppConstants.mostTopLeftTileY + e * AppConstants.wireSize,
         ),
       )!;
     }).toList();

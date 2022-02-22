@@ -15,8 +15,8 @@ class LevelController {
       [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wve],
       [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.ntg],
     ],
-    generatorIndexList: [0],
-    bulbIndexList: [4],
+    generatorIndexList: [0, 1, 2, 3, 4],
+    bulbIndexList: [0, 1, 2, 3, 4],
   );
 
   final Level _level2 = Level(
