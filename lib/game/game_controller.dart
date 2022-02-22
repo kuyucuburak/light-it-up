@@ -1,11 +1,9 @@
-import 'dart:developer';
-
 import 'package:flame/components.dart';
 import 'package:light_it_up/component/animation/animation_bulb.dart';
 import 'package:light_it_up/component/animation/animation_electricity.dart';
 import 'package:light_it_up/component/animation/animation_generator.dart';
 import 'package:light_it_up/component/sprite/wire.dart';
-import 'package:light_it_up/game/destination.dart';
+import 'package:light_it_up/data/destination.dart';
 import 'package:light_it_up/game/level_controller.dart';
 import 'package:light_it_up/game/puzzle_game.dart';
 import 'package:light_it_up/menu/congratulation_menu.dart';
@@ -15,23 +13,17 @@ import 'package:light_it_up/util/extensions/vector_extension.dart';
 
 class GameController {
   final PuzzleGame gameRef;
+  late final LevelController _levelController = LevelController();
+  late List<Component> componentList = [];
+  late List<Component> electricityAnimationList = [];
 
   GameController(this.gameRef);
-
-  late final LevelController _levelController = LevelController();
-  late List<Component> componentList;
-  late List<Component> electricityAnimationList = [];
-  late final double minWireX = AppConstants.mostTopLeftTileX;
-  late final double minWireY = AppConstants.mostTopLeftTileY;
-  late final double maxWireX = AppConstants.mostTopLeftTileX + ((_levelController.currentLevel[0].length - 1) * AppConstants.wireSize);
-  late final double maxWireY = AppConstants.mostTopLeftTileY + ((_levelController.currentLevel.length - 1) * AppConstants.wireSize);
-  bool hasNextLevel = true;
 
   void updateGameMap() async {
     electricityAnimationList.forEach((e) => e.removeFromParent());
     electricityAnimationList = [];
 
-    List<List<Component?>> gameMap = List.generate(_levelController.currentLevel.length, (i) => List.filled(_levelController.currentLevel[0].length + 2, null, growable: false), growable: false);
+    List<List<Component?>> gameMap = List.generate(_levelController.wireRowCount, (i) => List.filled(_levelController.wireColumnCount + 2, null, growable: false), growable: false);
     List<Destination> bulbDestinations = List.empty(growable: true);
 
     componentList.forEach((element) {
@@ -46,7 +38,7 @@ class GameController {
       }
 
       if (element is AnimationBulb) {
-        int j = _levelController.currentLevel[0].length + 1;
+        int j = _levelController.wireColumnCount + 1;
         int i = (element.position.y - AppConstants.mostTopLeftTileY) ~/ AppConstants.wireSize;
         gameMap[i][j] = element;
         bulbDestinations.add(Destination(i, j));
@@ -58,8 +50,6 @@ class GameController {
       gameRef.overlays.remove(Hud.id);
       gameRef.overlays.add(CongratulationMenu.id);
       gameRef.pauseEngine();
-    } else {
-      log("NOT COMPLETED!");
     }
   }
 
@@ -165,14 +155,9 @@ class GameController {
     return (wireMap[i][j] as Wire).hasTop;
   }
 
-  Future<void> createLevel() async {
-    componentList = await _levelController.createLevel() as List<Component>;
-  }
-
   Future<void> startGamePlay() async {
-    await createLevel();
+    componentList = _levelController.currentLevelComponentList;
     componentList.forEach((e) => gameRef.add(e));
-
     updateGameMap();
   }
 
@@ -186,6 +171,15 @@ class GameController {
   void nextLevel() {
     removeAllGameComponents();
     _levelController.nextLevel();
-    hasNextLevel = _levelController.hasNextLevel;
   }
+
+  bool get hasNextLevel => _levelController.hasNextLevel;
+
+  double get minWireX => AppConstants.mostTopLeftTileX;
+
+  double get minWireY => AppConstants.mostTopLeftTileY;
+
+  double get maxWireX => AppConstants.mostTopLeftTileX + ((_levelController.wireColumnCount - 1) * AppConstants.wireSize);
+
+  double get maxWireY => AppConstants.mostTopLeftTileY + ((_levelController.wireRowCount - 1) * AppConstants.wireSize);
 }
