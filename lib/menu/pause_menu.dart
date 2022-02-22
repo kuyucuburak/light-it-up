@@ -47,7 +47,7 @@ class PauseMenu extends StatelessWidget {
                       gameRef.overlays.remove(PauseMenu.id);
                       gameRef.overlays.add(Hud.id);
                       gameRef.resumeEngine();
-                      gameRef.gameController.reset();
+                      gameRef.gameController.removeAllGameComponents();
                       gameRef.gameController.startGamePlay();
                     },
                     child: const Text(
@@ -62,7 +62,7 @@ class PauseMenu extends StatelessWidget {
                       gameRef.overlays.remove(PauseMenu.id);
                       gameRef.overlays.add(MainMenu.id);
                       gameRef.resumeEngine();
-                      gameRef.gameController.reset();
+                      gameRef.gameController.removeAllGameComponents();
                     },
                     child: const Text(
                       'Exit',

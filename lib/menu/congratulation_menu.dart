@@ -55,7 +55,7 @@ class CongratulationMenu extends StatelessWidget {
                       gameRef.overlays.remove(CongratulationMenu.id);
                       gameRef.overlays.add(MainMenu.id);
                       gameRef.resumeEngine();
-                      gameRef.gameController.reset();
+                      gameRef.gameController.removeAllGameComponents();
                     },
                     child: const Text(
                       'Exit',

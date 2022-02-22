@@ -176,7 +176,7 @@ class GameController {
     updateGameMap();
   }
 
-  void reset() {
+  void removeAllGameComponents() {
     componentList.forEach((e) => e.removeFromParent());
     electricityAnimationList.forEach((e) => e.removeFromParent());
     componentList = [];
@@ -184,7 +184,7 @@ class GameController {
   }
 
   void nextLevel() {
-    reset();
+    removeAllGameComponents();
     _levelController.nextLevel();
     hasNextLevel = _levelController.hasNextLevel;
   }

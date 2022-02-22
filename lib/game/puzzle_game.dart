@@ -5,7 +5,7 @@ import 'package:light_it_up/game/game_controller.dart';
 import 'package:light_it_up/util/asset_provider.dart';
 
 class PuzzleGame extends FlameGame with HasDraggables {
-  late GameController gameController;
+  late final GameController gameController;
 
   @override
   Future<void> onLoad() async {
