@@ -5,6 +5,7 @@ import 'package:light_it_up/util/app_constants.dart';
 import 'package:light_it_up/util/asset_provider.dart';
 
 class AnimationBulb extends BaseSpriteAnimationComponent {
+
   AnimationBulb._({
     required Vector2 position,
     required SpriteAnimationLoader spriteAnimationLoader,
@@ -29,4 +30,6 @@ class AnimationBulb extends BaseSpriteAnimationComponent {
     spriteAnimationLoader = AssetProvider.animationBulbNoLight;
     animation = await spriteAnimationLoader(gameRef);
   }
+
+  bool get isLightOn => spriteAnimationLoader == AssetProvider.animationBulbWithLight;
 }

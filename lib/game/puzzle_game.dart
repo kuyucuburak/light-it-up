@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
@@ -18,6 +19,8 @@ class PuzzleGame extends FlameGame with HasDraggables {
   late final LevelBuilder _levelBuilder = LevelBuilder(_tileMap);
   late List<Component> componentList;
   late List<Component> electricityAnimationList = [];
+  int _bulbLightOnLength = 0;
+  int _electricityOnLength = 0;
   late final List<List<String>> _tileMap = [
     [LevelBuilder.wc4, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.wbl],
     [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.w3r, LevelBuilder.ntg],
@@ -33,9 +36,14 @@ class PuzzleGame extends FlameGame with HasDraggables {
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    await images.loadAll(AssetProvider.imageAssets);
 
+    await images.loadAll(AssetProvider.imageAssets);
     add(await background(this));
+
+    await FlameAudio.audioCache.loadAll(AssetProvider.soundAssets);
+    await FlameAudio.bgm.loadAll(AssetProvider.backgroundSoundAssets);
+    FlameAudio.bgm.initialize();
+    AssetProvider.soundBackgroundInGame();
 
     componentList = await _levelBuilder.animationList() + await _levelBuilder.bulbList() + await _levelBuilder.wallList() + await _levelBuilder.wireList();
     componentList.forEach((e) => add(e));
@@ -52,13 +60,12 @@ class PuzzleGame extends FlameGame with HasDraggables {
   }
 
   void updateGameMap() async {
+    AssetProvider.soundCableMovement();
     electricityAnimationList.forEach((e) => e.removeFromParent());
     electricityAnimationList = [];
 
     List<List<Component?>> gameMap = List.generate(_tileMap.length, (i) => List.filled(_tileMap[0].length + 2, null, growable: false), growable: false);
     List<Destination> bulbDestinations = List.empty(growable: true);
-
-    FlameAudio.play('metallic_lock.wav');
 
     componentList.forEach((element) {
       if (element is Wire) {
@@ -84,7 +91,27 @@ class PuzzleGame extends FlameGame with HasDraggables {
     } else {
       log("NOT COMPLETED!");
     }
-    print(electricityAnimationList.length);
+    shouldPlayBulbSound();
+    shouldPlayElectricitySound();
+  }
+
+  void shouldPlayElectricitySound() {
+    if (_electricityOnLength < electricityAnimationList.length) {
+      _electricityOnLength = electricityAnimationList.length;
+      AssetProvider.soundElectricity1();
+    } else if (_electricityOnLength > electricityAnimationList.length) {
+      _electricityOnLength = electricityAnimationList.length;
+    }
+  }
+
+  void shouldPlayBulbSound() {
+    if (_bulbLightOnLength < componentList.count((element) => element is AnimationBulb && element.isLightOn)) {
+      _bulbLightOnLength = componentList.count((element) => element is AnimationBulb && element.isLightOn);
+      Future.delayed(const Duration(milliseconds: 300), () => AssetProvider.soundSwitchOnBulb());
+    } else if (_bulbLightOnLength > componentList.count((element) => element is AnimationBulb && element.isLightOn)) {
+      _bulbLightOnLength = componentList.count((element) => element is AnimationBulb && element.isLightOn);
+      AssetProvider.soundSwitchOffBulb();
+    }
   }
 
   bool _isChapterCompleted(List<List<Component?>> wireMap, List<Destination> bulbDestinations) {
