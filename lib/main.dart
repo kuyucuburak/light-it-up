@@ -2,8 +2,9 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:light_it_up/game/puzzle_game.dart';
+import 'package:light_it_up/menu/hud.dart';
 
-import 'menu/game_over_menu.dart';
+import 'menu/congratulation_menu.dart';
 import 'menu/main_menu.dart';
 import 'menu/pause_menu.dart';
 
@@ -18,7 +19,8 @@ void main() {
       overlayBuilderMap: {
         MainMenu.id: (_, PuzzleGame gameRef) => MainMenu(gameRef),
         PauseMenu.id: (_, PuzzleGame gameRef) => PauseMenu(gameRef),
-        GameOverMenu.id: (_, PuzzleGame gameRef) => GameOverMenu(gameRef),
+        CongratulationMenu.id: (_, PuzzleGame gameRef) => CongratulationMenu(gameRef),
+        Hud.id: (_, PuzzleGame gameRef) => Hud(gameRef),
       },
       initialActiveOverlays: const [MainMenu.id],
       game: PuzzleGame(),

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:light_it_up/menu/hud.dart';
 
 import '../game/puzzle_game.dart';
 
@@ -39,7 +40,8 @@ class MainMenu extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      gameRef.startGamePlay();
+                      gameRef.gameController.startGamePlay();
+                      gameRef.overlays.add(Hud.id);
                       gameRef.overlays.remove(MainMenu.id);
                     },
                     child: const Text(

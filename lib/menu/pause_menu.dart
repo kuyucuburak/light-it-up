@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:light_it_up/menu/hud.dart';
 
 import '../game/puzzle_game.dart';
 import 'main_menu.dart';
@@ -32,6 +33,7 @@ class PauseMenu extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       gameRef.overlays.remove(PauseMenu.id);
+                      gameRef.overlays.add(Hud.id);
                       gameRef.resumeEngine();
                     },
                     child: const Text(
@@ -44,9 +46,10 @@ class PauseMenu extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       gameRef.overlays.remove(PauseMenu.id);
+                      gameRef.overlays.add(Hud.id);
                       gameRef.resumeEngine();
-                      gameRef.reset();
-                      gameRef.startGamePlay();
+                      gameRef.gameController.reset();
+                      gameRef.gameController.startGamePlay();
                     },
                     child: const Text(
                       'Restart',
@@ -60,7 +63,7 @@ class PauseMenu extends StatelessWidget {
                       gameRef.overlays.remove(PauseMenu.id);
                       gameRef.overlays.add(MainMenu.id);
                       gameRef.resumeEngine();
-                      gameRef.reset();
+                      gameRef.gameController.reset();
                     },
                     child: const Text(
                       'Exit',

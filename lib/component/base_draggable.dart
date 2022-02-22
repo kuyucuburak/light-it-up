@@ -65,7 +65,7 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
         }
       }
 
-      gameRef.updateGameMap();
+      gameRef.gameController.updateGameMap();
       handleDragCanceled(pointerId);
       return false;
     }
@@ -88,7 +88,7 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
   bool _canMoveToPosition(double x, double y) {
     // Only wires can be in the safe area, so we filter only Wire objects from the children
     bool hasChildren = gameRef.children.filter((e) => e is Wire).any((e) => e.containsPoint(Vector2(x, y)));
-    bool isInSafeArea = x >= gameRef.minWireX && x <= gameRef.maxWireX && y >= gameRef.minWireY && y <= gameRef.maxWireY;
+    bool isInSafeArea = x >= gameRef.gameController.minWireX && x <= gameRef.gameController.maxWireX && y >= gameRef.gameController.minWireY && y <= gameRef.gameController.maxWireY;
     return !hasChildren && isInSafeArea;
   }
 }

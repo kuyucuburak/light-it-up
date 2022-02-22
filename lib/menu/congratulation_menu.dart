@@ -3,14 +3,15 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../game/puzzle_game.dart';
+import 'hud.dart';
 import 'main_menu.dart';
 
-class GameOverMenu extends StatelessWidget {
-  static const id = 'GameOverMenu';
+class CongratulationMenu extends StatelessWidget {
+  static const id = 'CongratulationMenu';
 
   final PuzzleGame gameRef;
 
-  const GameOverMenu(this.gameRef, {Key? key}) : super(key: key);
+  const CongratulationMenu(this.gameRef, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,35 +31,39 @@ class GameOverMenu extends StatelessWidget {
                 spacing: 10,
                 children: [
                   const Text(
-                    'Game Over',
+                    'Congratulations',
                     style: TextStyle(fontSize: 40, color: Colors.white),
                   ),
+                  gameRef.gameController.hasNextLevel
+                      ? ElevatedButton(
+                          onPressed: () {
+                            gameRef.overlays.remove(CongratulationMenu.id);
+                            gameRef.overlays.add(Hud.id);
+                            gameRef.resumeEngine();
+                            gameRef.gameController.nextLevel();
+                            gameRef.gameController.startGamePlay();
+                          },
+                          child: const Text(
+                            'Next Level',
+                            style: TextStyle(
+                              fontSize: 30,
+                            ),
+                          ),
+                        )
+                      : Container(),
                   ElevatedButton(
-                    child: const Text(
-                      'Restart',
-                      style: TextStyle(
-                        fontSize: 30,
-                      ),
-                    ),
                     onPressed: () {
-                      gameRef.overlays.remove(GameOverMenu.id);
+                      gameRef.overlays.remove(CongratulationMenu.id);
+                      gameRef.overlays.add(MainMenu.id);
                       gameRef.resumeEngine();
-                      gameRef.reset();
+                      gameRef.gameController.reset();
                     },
-                  ),
-                  ElevatedButton(
                     child: const Text(
                       'Exit',
                       style: TextStyle(
                         fontSize: 30,
                       ),
                     ),
-                    onPressed: () {
-                      gameRef.overlays.remove(GameOverMenu.id);
-                      gameRef.overlays.add(MainMenu.id);
-                      gameRef.resumeEngine();
-                      gameRef.reset();
-                    },
                   ),
                 ],
               ),
