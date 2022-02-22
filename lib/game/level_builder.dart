@@ -4,6 +4,7 @@ import 'package:light_it_up/component/animation/animation_electricity.dart';
 import 'package:light_it_up/component/animation/animation_generator.dart';
 import 'package:light_it_up/component/sprite/wall.dart';
 import 'package:light_it_up/component/sprite/wire.dart';
+import 'package:light_it_up/data/level.dart';
 import 'package:light_it_up/util/app_constants.dart';
 
 class LevelBuilder {
@@ -26,47 +27,58 @@ class LevelBuilder {
 
   late final double _mostTopLeftBrickX = AppConstants.mostTopLeftTileX - AppConstants.wireSize / 2 - AppConstants.wallSize / 2;
   late final double _mostTopLeftBrickY = AppConstants.mostTopLeftTileY - AppConstants.wireSize / 2 - AppConstants.wallSize / 2;
-  late final int _tileRowCount = _tileMap.length;
-  late final int _tileColumnCount = _tileMap[0].length;
-  late final int _brickRowCount = _tileRowCount * AppConstants.wireSize ~/ AppConstants.wallSize + 2;
-  late final int _brickColumnCount = _tileColumnCount * AppConstants.wireSize ~/ AppConstants.wallSize + 2;
+  late final int wireRowCount = _level.tileMap.length;
+  late final int wireColumnCount = _level.tileMap[0].length;
+  late final int _brickRowCount = wireRowCount * AppConstants.wireSize ~/ AppConstants.wallSize + 2;
+  late final int _brickColumnCount = wireColumnCount * AppConstants.wireSize ~/ AppConstants.wallSize + 2;
 
-  final List<List<String>> _tileMap;
+  final Level _level;
 
-  LevelBuilder(this._tileMap);
+  LevelBuilder(this._level);
 
-  Future<List<Component>> animationList() async {
+  List<Component> _generatorList() {
+    return _level.generatorIndexList.map<Component>((e) {
+      return _keyToComponent(
+        gnr,
+        Vector2(
+          AppConstants.mostTopLeftTileX - AppConstants.wireSize * 0.75,
+          AppConstants.mostTopLeftTileY + e * AppConstants.wireSize,
+        ),
+      )!;
+    }).toList();
+  }
+
+  List<Component> _bulbList() {
+    return _level.bulbIndexList.map<Component>((e) {
+      return _keyToComponent(
+        blb,
+        Vector2(
+          AppConstants.mostTopLeftTileX + (wireColumnCount - 1) * AppConstants.wireSize + AppConstants.wireSize * 0.75,
+          AppConstants.mostTopLeftTileY + e * AppConstants.wireSize,
+        ),
+      )!;
+    }).toList();
+  }
+
+  List<Component> _wireList() {
     List<Component> componentList = [];
-    componentList.add(_keyToComponent(
-      gnr,
-      Vector2(AppConstants.mostTopLeftTileX - AppConstants.wireSize * 0.75, AppConstants.mostTopLeftTileY),
-    )!);
+
+    for (int i = 0; i < wireRowCount; i++) {
+      for (int j = 0; j < wireColumnCount; j++) {
+        String key = _level.tileMap[i][j];
+        double positionX = AppConstants.mostTopLeftTileX + AppConstants.wireSize * j;
+        double positionY = AppConstants.mostTopLeftTileY + AppConstants.wireSize * i;
+        Component? component = _keyToComponent(key, Vector2(positionX, positionY));
+        if (component != null) {
+          componentList.add(component);
+        }
+      }
+    }
+
     return componentList;
   }
 
-  Future<List<Component>> bulbList() async {
-    List<Component> componentList = [];
-
-    componentList.add(_keyToComponent(
-      blb,
-      Vector2(
-        AppConstants.mostTopLeftTileX + (_tileColumnCount - 1) * AppConstants.wireSize + AppConstants.wireSize * 0.75,
-        AppConstants.mostTopLeftTileY + (_tileRowCount - 1) * AppConstants.wireSize,
-      ),
-    )!);
-
-    componentList.add(_keyToComponent(
-      blb,
-      Vector2(
-        AppConstants.mostTopLeftTileX + (_tileColumnCount - 1) * AppConstants.wireSize + AppConstants.wireSize * 0.75,
-        AppConstants.mostTopLeftTileY + (_tileRowCount - 4) * AppConstants.wireSize,
-      ),
-    )!);
-
-    return componentList;
-  }
-
-  Future<List<Component>> wallList() async {
+  List<Component> _wallList() {
     List<Component> componentList = [];
 
     double wallSize = AppConstants.wallSize;
@@ -108,24 +120,6 @@ class LevelBuilder {
     return componentList;
   }
 
-  Future<List<Component>> wireList() async {
-    List<Component> componentList = [];
-
-    for (int i = 0; i < _tileRowCount; i++) {
-      for (int j = 0; j < _tileColumnCount; j++) {
-        String key = _tileMap[i][j];
-        double positionX = AppConstants.mostTopLeftTileX + AppConstants.wireSize * j;
-        double positionY = AppConstants.mostTopLeftTileY + AppConstants.wireSize * i;
-        Component? component = _keyToComponent(key, Vector2(positionX, positionY));
-        if (component != null) {
-          componentList.add(component);
-        }
-      }
-    }
-
-    return componentList;
-  }
-
   Component? _keyToComponent(String key, Vector2 position) {
     switch (key) {
       case blb:
@@ -162,4 +156,6 @@ class LevelBuilder {
         return null;
     }
   }
+
+  List<Component> get levelComponents => _generatorList() + _bulbList() + _wireList() + _wallList();
 }
