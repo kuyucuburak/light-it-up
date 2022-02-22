@@ -177,11 +177,9 @@ class GameController {
   }
 
   void reset() {
-    componentList.forEach((e) {
-      e.removeFromParent();
-    });
-    componentList = [];
+    componentList.forEach((e) => e.removeFromParent());
     electricityAnimationList.forEach((e) => e.removeFromParent());
+    componentList = [];
     electricityAnimationList = [];
   }
 
