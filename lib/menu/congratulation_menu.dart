@@ -1,10 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
-import '../game/puzzle_game.dart';
-import 'hud.dart';
-import 'main_menu.dart';
+import 'package:light_it_up/game/puzzle_game.dart';
+import 'package:light_it_up/menu/hud.dart';
+import 'package:light_it_up/menu/main_menu.dart';
 
 class CongratulationMenu extends StatelessWidget {
   static const id = 'CongratulationMenu';

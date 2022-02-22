@@ -2,11 +2,10 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:light_it_up/game/puzzle_game.dart';
+import 'package:light_it_up/menu/congratulation_menu.dart';
 import 'package:light_it_up/menu/hud.dart';
-
-import 'menu/congratulation_menu.dart';
-import 'menu/main_menu.dart';
-import 'menu/pause_menu.dart';
+import 'package:light_it_up/menu/main_menu.dart';
+import 'package:light_it_up/menu/pause_menu.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

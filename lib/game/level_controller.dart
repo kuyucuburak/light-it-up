@@ -1,7 +1,7 @@
-import 'level_builder.dart';
+import 'package:light_it_up/game/level_builder.dart';
 
 class LevelController {
-  late final List<List<List<String>>> levelList = [_tileMapLevel1, _tileMapLevel2, _tileMapLevel3,_tileMapLevel4,_tileMapLevel5];
+  late final List<List<List<String>>> levelList = [_tileMapLevel1, _tileMapLevel2, _tileMapLevel3, _tileMapLevel4, _tileMapLevel5];
   late List<List<String>> currentLevel = _tileMapLevel1;
   late LevelBuilder _levelBuilder = LevelBuilder(currentLevel);
 
