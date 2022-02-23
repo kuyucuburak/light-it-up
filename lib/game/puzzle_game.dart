@@ -5,15 +5,20 @@ import 'package:light_it_up/game/game_controller.dart';
 import 'package:light_it_up/util/asset_provider.dart';
 
 class PuzzleGame extends FlameGame with HasDraggables {
-  late final GameController gameController;
+  late final GameController gameController = GameController(this);
 
   @override
   Future<void> onLoad() async {
     super.onLoad();
     await images.loadAll(AssetProvider.imageAssets);
 
-    gameController = GameController(this);
-    add(await background(this));
+    //add(await background(this));
+  }
+
+  @override
+  void onGameResize(Vector2 canvasSize) {
+    super.onGameResize(canvasSize);
+    gameController.resize(canvasSize);
   }
 
   Future<Component> background(PuzzleGame gameRef) async {

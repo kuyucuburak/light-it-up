@@ -25,12 +25,12 @@ class LevelBuilder {
   static const String w3t = "wire_connected3_top";
   static const String wc4 = "wire_connected4";
 
-  late final double _mostTopLeftBrickX = AppConstants.mostTopLeftTileX - AppConstants.wireSize / 2 - AppConstants.wallSize / 2;
-  late final double _mostTopLeftBrickY = AppConstants.mostTopLeftTileY - AppConstants.wireSize / 2 - AppConstants.wallSize / 2;
-  late final int wireRowCount = _level.tileMap.length;
-  late final int wireColumnCount = _level.tileMap[0].length;
-  late final int _brickRowCount = wireRowCount * AppConstants.wireSize ~/ AppConstants.wallSize + 2;
-  late final int _brickColumnCount = wireColumnCount * AppConstants.wireSize ~/ AppConstants.wallSize + 2;
+  double get _mostTopLeftBrickX => AppConstants.mostTopLeftTileX - AppConstants.wireSize / 2 - AppConstants.wallSize / 2;
+  double get _mostTopLeftBrickY => AppConstants.mostTopLeftTileY - AppConstants.wireSize / 2 - AppConstants.wallSize / 2;
+  int get wireRowCount => _level.tileMap.length;
+  int get wireColumnCount => _level.tileMap[0].length;
+  int get _brickRowCount => wireRowCount * AppConstants.wireSize ~/ AppConstants.wallSize + 2;
+  int get _brickColumnCount => wireColumnCount * AppConstants.wireSize ~/ AppConstants.wallSize + 2;
 
   final Level _level;
 

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flame/components.dart';
 import 'package:light_it_up/component/animation/animation_bulb.dart';
 import 'package:light_it_up/component/animation/animation_electricity.dart';
@@ -183,6 +185,19 @@ class GameController {
   void nextLevel() {
     removeAllGameComponents();
     _levelController.nextLevel();
+  }
+
+  void resize(Vector2 size) {
+    removeAllGameComponents();
+    AppConstants.wireSize = min(size.x / (_levelController.wireColumnCount + 1), size.y / (_levelController.wireRowCount + 2));
+
+    var mostTopLeft = Vector2(size.x / 2, size.y / 2) -
+        Vector2((_levelController.wireColumnCount / 2) * AppConstants.wireSize - AppConstants.wireSize / 2, (_levelController.wireRowCount / 2) * AppConstants.wireSize - AppConstants.wireSize / 2);
+    AppConstants.mostTopLeftTileX = mostTopLeft.x;
+    AppConstants.mostTopLeftTileY = mostTopLeft.y;
+    if (gameRef.overlays.isActive(Hud.id)) {
+      startGamePlay();
+    }
   }
 
   bool get hasNextLevel => _levelController.hasNextLevel;
