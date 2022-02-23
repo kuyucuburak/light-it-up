@@ -71,7 +71,7 @@ class AssetProvider {
   static Future<SpriteAnimation> animationBulbNoLight(FlameGame gameRef) async {
     return await gameRef.loadSpriteAnimation(
       _animationBulbNoLight,
-      SpriteAnimationData.sequenced(amount: 20, stepTime: 0.1, textureSize: Vector2(600, 600)),
+      SpriteAnimationData.sequenced(amount: 4, stepTime: 0.1, textureSize: Vector2(600, 600)),
     );
   }
 
