@@ -160,7 +160,7 @@ class LevelBuilder {
 
   int get wireColumnCount => _level.tileMap[0].length;
 
-  int get _brickRowCount => wireRowCount * 3 + 2;
+  int get _brickRowCount => wireRowCount * AppConstants.wallWireRatio + 2;
 
-  int get _brickColumnCount => wireColumnCount * 3 + 2;
+  int get _brickColumnCount => wireColumnCount * AppConstants.wallWireRatio + 2;
 }

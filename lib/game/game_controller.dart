@@ -229,10 +229,14 @@ class GameController {
 
   void resize(Vector2 size) {
     removeAllGameComponents();
-    AppConstants.wireSize = min(size.x / (_levelController.wireColumnCount + 1), size.y / (_levelController.wireRowCount + 2)).round().toDouble();
+    AppConstants.wireSize = min(size.x / (_levelController.wireColumnCount + 2), size.y / (_levelController.wireRowCount + 2)).round().toDouble();
 
-    var mostTopLeft = Vector2(size.x / 2, size.y / 2) -
-        Vector2((_levelController.wireColumnCount / 2) * AppConstants.wireSize - AppConstants.wireSize / 2, (_levelController.wireRowCount / 2) * AppConstants.wireSize - AppConstants.wireSize / 2);
+    Vector2 mostTopLeft = Vector2(size.x / 2, size.y / 2) -
+        Vector2(
+          (_levelController.wireColumnCount / 2) * AppConstants.wireSize - AppConstants.wireSize / 2,
+          (_levelController.wireRowCount / 2) * AppConstants.wireSize - AppConstants.wireSize / 2,
+        );
+
     AppConstants.mostTopLeftTileX = mostTopLeft.x;
     AppConstants.mostTopLeftTileY = mostTopLeft.y;
     if (gameRef.overlays.isActive(Hud.id)) {
