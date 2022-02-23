@@ -65,12 +65,12 @@ class GameController {
   }
 
   void playElectricitySoundIfNecessary() {
-    int electricCount = electricityAnimationList.length;
-    if (_electricityOnLength < electricCount) {
-      _electricityOnLength = electricCount;
+    int electricityCount = electricityAnimationList.length;
+    if (_electricityOnLength < electricityCount) {
+      _electricityOnLength = electricityCount;
       AssetProvider.soundElectricity();
-    } else if (_electricityOnLength > electricCount) {
-      _electricityOnLength = electricCount;
+    } else if (_electricityOnLength > electricityCount) {
+      _electricityOnLength = electricityCount;
     }
   }
 
