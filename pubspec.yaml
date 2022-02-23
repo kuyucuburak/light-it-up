@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dart_extensions: ^2.2.0
   flame: 1.0.0
+  flame_audio: 1.0.0
   flame_tiled: ^1.1.0
   tiled: 0.8.0
 
@@ -25,6 +26,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/audio/
     - assets/images/
     - assets/images/animation/
     - assets/images/animation/bulb/

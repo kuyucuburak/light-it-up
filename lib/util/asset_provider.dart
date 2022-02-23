@@ -1,8 +1,13 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flame_audio/flame_audio.dart';
 
 // generator: https://icon-library.com/png/249125.html
 // wire: https://www.vecteezy.com/vector-art/1268055-set-of-colorful-copper-wire
+
+// bgmGame: https://freesound.org/people/ShadyDave/sounds/506055/
+// bgmMenu: https://freesound.org/people/ShadyDave/sounds/325611/
+// soundCableMovement: https://freesound.org/people/AbdrTar/sounds/558117/
 
 class AssetProvider {
   static const String _animationBulbNoLight = 'animation/bulb/bulb_no_light.png';
@@ -25,6 +30,13 @@ class AssetProvider {
   static const String _imageWireConnected3Top = 'wire/wire_connected_3_top.png';
   static const String _imageWireConnected4 = 'wire/wire_connected_4.png';
 
+  static const String _soundBgmGame = 'bgm_game.mp3';
+  static const String _soundBgmMenu = 'bgm_menu.mp3';
+  static const String _soundCableMovement = 'cable_movement.mp3';
+  static const String _soundElectricity = 'electricity.mp3';
+  static const String _soundSwitchOffBulb = 'switch_off_bulb.mp3';
+  static const String _soundSwitchOnBulb = 'switch_on_bulb.mp3';
+
   static const imageAssets = [
     _animationBulbNoLight,
     _animationBulbWithLight,
@@ -44,6 +56,18 @@ class AssetProvider {
     _imageWireConnected3Bottom,
     _imageWireConnected3Top,
     _imageWireConnected4,
+  ];
+
+  static const backgroundSoundAssets = [
+    _soundBgmGame,
+    _soundBgmMenu,
+  ];
+
+  static const soundAssets = [
+    _soundCableMovement,
+    _soundElectricity,
+    _soundSwitchOffBulb,
+    _soundSwitchOnBulb,
   ];
 
   static Future<SpriteAnimation> animationBulbNoLight(FlameGame gameRef) async {
@@ -106,4 +130,22 @@ class AssetProvider {
   static Future<Sprite> imageWireConnected3Top(FlameGame gameRef) async => gameRef.loadSprite(_imageWireConnected3Top);
 
   static Future<Sprite> imageWireConnected4(FlameGame gameRef) async => gameRef.loadSprite(_imageWireConnected4);
+
+  static Future<void> soundBgmGame() {
+    FlameAudio.bgm.stop();
+    return FlameAudio.bgm.play(_soundBgmGame, volume: .50);
+  }
+
+  static Future<void> soundBgmMenu() {
+    FlameAudio.bgm.stop();
+    return FlameAudio.bgm.play(_soundBgmMenu, volume: .40);
+  }
+
+  static Future<void> soundCableMovement() => FlameAudio.play(_soundCableMovement, volume: 0.25);
+
+  static Future<void> soundElectricity() => FlameAudio.play(_soundElectricity, volume: 0.75);
+
+  static Future<void> soundSwitchOffBulb() => FlameAudio.play(_soundSwitchOffBulb, volume: 0.75);
+
+  static Future<void> soundSwitchOnBulb() => FlameAudio.play(_soundSwitchOnBulb, volume: 0.75);
 }
