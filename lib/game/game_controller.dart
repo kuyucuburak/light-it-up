@@ -68,7 +68,7 @@ class GameController {
     int electricCount = electricityAnimationList.length;
     if (_electricityOnLength < electricCount) {
       _electricityOnLength = electricCount;
-      AssetProvider.soundElectricity1();
+      AssetProvider.soundElectricity();
     } else if (_electricityOnLength > electricCount) {
       _electricityOnLength = electricCount;
     }
