@@ -23,8 +23,10 @@ class GameController {
 
   GameController(this.gameRef);
 
-  void updateGameMap() async {
-    AssetProvider.soundCableMovement();
+  void updateGameMap({bool playSound = true}) async {
+    if(playSound) {
+      AssetProvider.soundCableMovement();
+    }
 
     electricityAnimationList.forEach((e) => e.removeFromParent());
     electricityAnimationList = [];
@@ -57,29 +59,37 @@ class GameController {
       gameRef.overlays.remove(Hud.id);
       gameRef.overlays.add(CongratulationMenu.id);
       gameRef.pauseEngine();
-      AssetProvider.soundBgmMenu();
+      if (playSound) {
+        AssetProvider.soundBgmMenu();
+      }
     }
 
-    playBulbSoundIfNecessary();
-    playElectricitySoundIfNecessary();
+      playBulbSoundIfNecessary(playSound);
+      playElectricitySoundIfNecessary(playSound);
   }
 
-  void playElectricitySoundIfNecessary() {
+  void playElectricitySoundIfNecessary(bool playSound) {
     int electricityCount = electricityAnimationList.length;
     if (_electricityOnLength < electricityCount) {
       _electricityOnLength = electricityCount;
-      AssetProvider.soundElectricity();
+      if (playSound) {
+        AssetProvider.soundElectricity();
+      }
     } else if (_electricityOnLength > electricityCount) {
       _electricityOnLength = electricityCount;
     }
   }
 
-  void playBulbSoundIfNecessary() {
+  void playBulbSoundIfNecessary(bool playSound) {
     int lightOnBulbCount = componentList.count((element) => element is AnimationBulb && element.isLightOn);
     if (_bulbLightOnLength < lightOnBulbCount) {
-      Future.delayed(const Duration(milliseconds: 300), () => AssetProvider.soundSwitchOnBulb());
+      if (playSound) {
+        Future.delayed(const Duration(milliseconds: 300), () => AssetProvider.soundSwitchOnBulb());
+      }
     } else if (_bulbLightOnLength > lightOnBulbCount) {
-      AssetProvider.soundSwitchOffBulb();
+      if (playSound) {
+        AssetProvider.soundSwitchOffBulb();
+      }
     }
     _bulbLightOnLength = lightOnBulbCount;
   }
@@ -196,7 +206,7 @@ class GameController {
   Future<void> startGamePlay() async {
     componentList = _levelController.currentLevelComponentList;
     componentList.forEach((e) => gameRef.add(e));
-    updateGameMap();
+    updateGameMap(playSound: false);
   }
 
   void removeAllGameComponents({bool resetGameProgress = false}) {
