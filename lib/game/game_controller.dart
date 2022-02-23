@@ -193,8 +193,6 @@ class GameController {
   }
 
   Future<void> startGamePlay() async {
-    //FlameAudio.bgm.stop();
-    //AssetProvider.soundBackgroundInGame();
     componentList = _levelController.currentLevelComponentList;
     componentList.forEach((e) => gameRef.add(e));
     updateGameMap();
