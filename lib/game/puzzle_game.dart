@@ -11,13 +11,15 @@ class PuzzleGame extends FlameGame with HasDraggables {
   Future<void> onLoad() async {
     super.onLoad();
     await images.loadAll(AssetProvider.imageAssets);
-
-    //add(await background(this));
+    add(await background(this));
   }
 
   @override
   void onGameResize(Vector2 canvasSize) {
     super.onGameResize(canvasSize);
+    if(children.isNotEmpty){
+      children.firstWhere((value) => value is Background).onGameResize(canvasSize);
+    }
     gameController.resize(canvasSize);
   }
 

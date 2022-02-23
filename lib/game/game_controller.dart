@@ -189,7 +189,7 @@ class GameController {
 
   void resize(Vector2 size) {
     removeAllGameComponents();
-    AppConstants.wireSize = min(size.x / (_levelController.wireColumnCount + 1), size.y / (_levelController.wireRowCount + 2));
+    AppConstants.wireSize = min(size.x / (_levelController.wireColumnCount + 1), size.y / (_levelController.wireRowCount + 2)).round() as double;
 
     var mostTopLeft = Vector2(size.x / 2, size.y / 2) -
         Vector2((_levelController.wireColumnCount / 2) * AppConstants.wireSize - AppConstants.wireSize / 2, (_levelController.wireRowCount / 2) * AppConstants.wireSize - AppConstants.wireSize / 2);
