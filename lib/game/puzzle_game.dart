@@ -17,7 +17,7 @@ class PuzzleGame extends FlameGame with HasDraggables {
     await FlameAudio.bgm.loadAll(AssetProvider.backgroundSoundAssets);
 
     FlameAudio.bgm.initialize();
-    AssetProvider.soundBackgroundMenu();
+    AssetProvider.soundBgmMenu();
 
     gameController = GameController(this);
     add(await background(this));

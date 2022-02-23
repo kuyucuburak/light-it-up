@@ -26,9 +26,8 @@ class AssetProvider {
   static const String _imageWireConnected3Top = 'wire/wire_connected_3_top.png';
   static const String _imageWireConnected4 = 'wire/wire_connected_4.png';
 
-  static const String _soundBackgroundInGame = 'background_in_game.mp3';
-  static const String _soundBackgroundInGame2 = 'background_in_game2.mp3';
-  static const String _soundBackgroundMenu = 'background_menu.mp3';
+  static const String _soundBgmGame = 'bgm_game.mp3';
+  static const String _soundBgmMenu = 'bgm_menu.mp3';
   static const String _soundCableMovement = 'cable_movement.wav';
   static const String _soundElectricity1 = 'electricity_1.mp3';
   static const String _soundSwitchOffBulb = 'switch_off_bulb.mp3';
@@ -56,9 +55,8 @@ class AssetProvider {
   ];
 
   static const backgroundSoundAssets = [
-    _soundBackgroundInGame,
-    _soundBackgroundInGame2,
-    _soundBackgroundMenu,
+    _soundBgmGame,
+    _soundBgmMenu,
   ];
 
   static const soundAssets = [
@@ -129,19 +127,14 @@ class AssetProvider {
 
   static Future<Sprite> imageWireConnected4(FlameGame gameRef) async => gameRef.loadSprite(_imageWireConnected4);
 
-  static Future<void> soundBackgroundInGame() {
+  static Future<void> soundBgmGame() {
     FlameAudio.bgm.stop();
-    return FlameAudio.bgm.play(_soundBackgroundInGame, volume: .20);
+    return FlameAudio.bgm.play(_soundBgmGame, volume: .20);
   }
 
-  static Future<void> soundBackgroundInGame2() {
+  static Future<void> soundBgmMenu() {
     FlameAudio.bgm.stop();
-    return FlameAudio.bgm.play(_soundBackgroundInGame2, volume: .20);
-  }
-
-  static Future<void> soundBackgroundMenu() {
-    FlameAudio.bgm.stop();
-    return FlameAudio.bgm.play(_soundBackgroundMenu, volume: .20);
+    return FlameAudio.bgm.play(_soundBgmMenu, volume: .20);
   }
 
   static Future<void> soundCableMovement() => FlameAudio.play(_soundCableMovement);

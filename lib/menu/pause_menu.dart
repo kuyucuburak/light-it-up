@@ -37,7 +37,7 @@ class PauseMenu extends StatelessWidget {
                       gameRef.overlays.remove(PauseMenu.id);
                       gameRef.overlays.add(Hud.id);
                       gameRef.resumeEngine();
-                      AssetProvider.soundBackgroundInGame();
+                      AssetProvider.soundBgmGame();
                     },
                   ),
                   ElevatedButton(
@@ -48,7 +48,7 @@ class PauseMenu extends StatelessWidget {
                       gameRef.resumeEngine();
                       gameRef.gameController.removeAllGameComponents();
                       gameRef.gameController.startGamePlay();
-                      AssetProvider.soundBackgroundInGame();
+                      AssetProvider.soundBgmGame();
                     },
                   ),
                   ElevatedButton(
@@ -58,7 +58,7 @@ class PauseMenu extends StatelessWidget {
                       gameRef.overlays.add(MainMenu.id);
                       gameRef.resumeEngine();
                       gameRef.gameController.removeAllGameComponents(resetGameProgress: true);
-                      AssetProvider.soundBackgroundMenu();
+                      AssetProvider.soundBgmMenu();
                     },
                   ),
                 ],

@@ -23,7 +23,7 @@ class Hud extends StatelessWidget {
               gameRef.overlays.remove(Hud.id);
               gameRef.overlays.add(PauseMenu.id);
               gameRef.pauseEngine();
-              AssetProvider.soundBackgroundMenu();
+              AssetProvider.soundBgmMenu();
             },
             child: const Icon(
               Icons.pause,

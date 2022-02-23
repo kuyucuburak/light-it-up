@@ -45,7 +45,7 @@ class MainMenu extends StatelessWidget {
                       gameRef.gameController.startGamePlay();
                       gameRef.overlays.add(Hud.id);
                       gameRef.overlays.remove(MainMenu.id);
-                      AssetProvider.soundBackgroundInGame();
+                      AssetProvider.soundBgmGame();
                     },
                     child: ButtonWidgets.menuButton('Play'),
                   ),

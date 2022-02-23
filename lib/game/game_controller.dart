@@ -57,7 +57,7 @@ class GameController {
       gameRef.overlays.remove(Hud.id);
       gameRef.overlays.add(CongratulationMenu.id);
       gameRef.pauseEngine();
-      AssetProvider.soundBackgroundMenu();
+      AssetProvider.soundBgmMenu();
     }
 
     playBulbSoundIfNecessary();
