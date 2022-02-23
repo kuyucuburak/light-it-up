@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:light_it_up/game/puzzle_game.dart';
 import 'package:light_it_up/menu/pause_menu.dart';
+import 'package:light_it_up/util/asset_provider.dart';
 
 class Hud extends StatelessWidget {
   static const id = 'Hud';
@@ -22,6 +23,7 @@ class Hud extends StatelessWidget {
               gameRef.overlays.remove(Hud.id);
               gameRef.overlays.add(PauseMenu.id);
               gameRef.pauseEngine();
+              AssetProvider.soundBgmMenu();
             },
             child: const Icon(
               Icons.pause,

@@ -9,9 +9,11 @@ class AppConstants {
 
   static double wireSize = 120; // This should be divisible by wallSize to build the map correctly.
   static double get staticAnimationSize => wireSize;
+
   static double get wallSize => wireSize / 3;
 
   static Vector2 get electricityHorizontalSize => Vector2(wireSize * 0.2, wireSize * 0.75);
+
   static Vector2 get electricityVerticalSize => Vector2(wireSize * 0.75, wireSize * 0.2);
 
   static const int staticAnimationPriority = 4;

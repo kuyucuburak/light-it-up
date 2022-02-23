@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:light_it_up/game/puzzle_game.dart';
 import 'package:light_it_up/menu/hud.dart';
+import 'package:light_it_up/util/asset_provider.dart';
 import 'package:light_it_up/widget/button_widgets.dart';
 
 class MainMenu extends StatelessWidget {
@@ -44,6 +45,7 @@ class MainMenu extends StatelessWidget {
                       gameRef.gameController.startGamePlay();
                       gameRef.overlays.add(Hud.id);
                       gameRef.overlays.remove(MainMenu.id);
+                      AssetProvider.soundBgmGame();
                     },
                     child: ButtonWidgets.menuButton('Play'),
                   ),

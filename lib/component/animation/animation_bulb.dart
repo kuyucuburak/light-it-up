@@ -29,4 +29,6 @@ class AnimationBulb extends BaseSpriteAnimationComponent {
     spriteAnimationLoader = AssetProvider.animationBulbNoLight;
     animation = await spriteAnimationLoader(gameRef);
   }
+
+  bool get isLightOn => spriteAnimationLoader == AssetProvider.animationBulbWithLight;
 }
