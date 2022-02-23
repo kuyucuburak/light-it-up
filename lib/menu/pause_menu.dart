@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:light_it_up/game/puzzle_game.dart';
 import 'package:light_it_up/menu/hud.dart';
@@ -38,7 +37,6 @@ class PauseMenu extends StatelessWidget {
                       gameRef.overlays.remove(PauseMenu.id);
                       gameRef.overlays.add(Hud.id);
                       gameRef.resumeEngine();
-                      FlameAudio.bgm.stop();
                       AssetProvider.soundBackgroundInGame();
                     },
                   ),
@@ -50,7 +48,6 @@ class PauseMenu extends StatelessWidget {
                       gameRef.resumeEngine();
                       gameRef.gameController.removeAllGameComponents();
                       gameRef.gameController.startGamePlay();
-                      FlameAudio.bgm.stop();
                       AssetProvider.soundBackgroundInGame();
                     },
                   ),
@@ -61,7 +58,6 @@ class PauseMenu extends StatelessWidget {
                       gameRef.overlays.add(MainMenu.id);
                       gameRef.resumeEngine();
                       gameRef.gameController.removeAllGameComponents(resetGameProgress: true);
-                      FlameAudio.bgm.stop();
                       AssetProvider.soundBackgroundMenu();
                     },
                   ),

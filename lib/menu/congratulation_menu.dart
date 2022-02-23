@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:light_it_up/game/puzzle_game.dart';
 import 'package:light_it_up/menu/hud.dart';
@@ -44,7 +43,6 @@ class CongratulationMenu extends StatelessWidget {
                             gameRef.resumeEngine();
                             gameRef.gameController.nextLevel();
                             gameRef.gameController.startGamePlay();
-                            FlameAudio.bgm.stop();
                             AssetProvider.soundBackgroundInGame();
                           },
                           child: ButtonWidgets.menuButton('Next Level'),
@@ -56,6 +54,7 @@ class CongratulationMenu extends StatelessWidget {
                       gameRef.overlays.add(MainMenu.id);
                       gameRef.resumeEngine();
                       gameRef.gameController.removeAllGameComponents(resetGameProgress: true);
+                      AssetProvider.soundBackgroundMenu();
                     },
                     child: ButtonWidgets.menuButton('Exit'),
                   ),

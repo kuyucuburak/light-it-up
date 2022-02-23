@@ -8,13 +8,14 @@ import 'package:light_it_up/util/asset_provider.dart';
 class PuzzleGame extends FlameGame with HasDraggables {
   late final GameController gameController;
 
-
   @override
   Future<void> onLoad() async {
     super.onLoad();
+
     await images.loadAll(AssetProvider.imageAssets);
     await FlameAudio.audioCache.loadAll(AssetProvider.soundAssets);
     await FlameAudio.bgm.loadAll(AssetProvider.backgroundSoundAssets);
+
     FlameAudio.bgm.initialize();
     AssetProvider.soundBackgroundMenu();
 
@@ -29,5 +30,4 @@ class PuzzleGame extends FlameGame with HasDraggables {
       size: size,
     );
   }
-
 }

@@ -34,19 +34,6 @@ class AssetProvider {
   static const String _soundSwitchOffBulb = 'switch_off_bulb.mp3';
   static const String _soundSwitchOnBulb = 'switch_on_bulb.mp3';
 
-  static const backgroundSoundAssets = [
-    _soundBackgroundInGame,
-    _soundBackgroundInGame2,
-    _soundBackgroundMenu,
-  ];
-
-  static const soundAssets = [
-    _soundCableMovement,
-    _soundElectricity1,
-    _soundSwitchOffBulb,
-    _soundSwitchOnBulb,
-  ];
-
   static const imageAssets = [
     _animationBulbNoLight,
     _animationBulbWithLight,
@@ -66,6 +53,19 @@ class AssetProvider {
     _imageWireConnected3Bottom,
     _imageWireConnected3Top,
     _imageWireConnected4,
+  ];
+
+  static const backgroundSoundAssets = [
+    _soundBackgroundInGame,
+    _soundBackgroundInGame2,
+    _soundBackgroundMenu,
+  ];
+
+  static const soundAssets = [
+    _soundCableMovement,
+    _soundElectricity1,
+    _soundSwitchOffBulb,
+    _soundSwitchOnBulb,
   ];
 
   static Future<SpriteAnimation> animationBulbNoLight(FlameGame gameRef) async {
@@ -129,11 +129,20 @@ class AssetProvider {
 
   static Future<Sprite> imageWireConnected4(FlameGame gameRef) async => gameRef.loadSprite(_imageWireConnected4);
 
-  static Future<void> soundBackgroundInGame() => FlameAudio.bgm.play(_soundBackgroundInGame, volume: .20);
+  static Future<void> soundBackgroundInGame() {
+    FlameAudio.bgm.stop();
+    return FlameAudio.bgm.play(_soundBackgroundInGame, volume: .20);
+  }
 
-  static Future<void> soundBackgroundInGame2() => FlameAudio.bgm.play(_soundBackgroundInGame2, volume: .20);
+  static Future<void> soundBackgroundInGame2() {
+    FlameAudio.bgm.stop();
+    return FlameAudio.bgm.play(_soundBackgroundInGame2, volume: .20);
+  }
 
-  static Future<void> soundBackgroundMenu() => FlameAudio.bgm.play(_soundBackgroundMenu, volume: .20);
+  static Future<void> soundBackgroundMenu() {
+    FlameAudio.bgm.stop();
+    return FlameAudio.bgm.play(_soundBackgroundMenu, volume: .20);
+  }
 
   static Future<void> soundCableMovement() => FlameAudio.play(_soundCableMovement);
 

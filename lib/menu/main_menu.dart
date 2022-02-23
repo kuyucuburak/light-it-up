@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:light_it_up/game/puzzle_game.dart';
 import 'package:light_it_up/menu/hud.dart';
@@ -46,7 +45,6 @@ class MainMenu extends StatelessWidget {
                       gameRef.gameController.startGamePlay();
                       gameRef.overlays.add(Hud.id);
                       gameRef.overlays.remove(MainMenu.id);
-                      FlameAudio.bgm.stop();
                       AssetProvider.soundBackgroundInGame();
                     },
                     child: ButtonWidgets.menuButton('Play'),

@@ -1,6 +1,5 @@
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flame/components.dart';
-import 'package:flame_audio/flame_audio.dart';
 import 'package:light_it_up/component/animation/animation_bulb.dart';
 import 'package:light_it_up/component/animation/animation_electricity.dart';
 import 'package:light_it_up/component/animation/animation_generator.dart';
@@ -26,6 +25,7 @@ class GameController {
 
   void updateGameMap() async {
     AssetProvider.soundCableMovement();
+
     electricityAnimationList.forEach((e) => e.removeFromParent());
     electricityAnimationList = [];
 
@@ -57,30 +57,31 @@ class GameController {
       gameRef.overlays.remove(Hud.id);
       gameRef.overlays.add(CongratulationMenu.id);
       gameRef.pauseEngine();
-      FlameAudio.bgm.stop();
       AssetProvider.soundBackgroundMenu();
     }
-    shouldPlayBulbSound();
-    shouldPlayElectricitySound();
+
+    playBulbSoundIfNecessary();
+    playElectricitySoundIfNecessary();
   }
 
-  void shouldPlayElectricitySound() {
-    if (_electricityOnLength < electricityAnimationList.length) {
-      _electricityOnLength = electricityAnimationList.length;
+  void playElectricitySoundIfNecessary() {
+    int electricCount = electricityAnimationList.length;
+    if (_electricityOnLength < electricCount) {
+      _electricityOnLength = electricCount;
       AssetProvider.soundElectricity1();
-    } else if (_electricityOnLength > electricityAnimationList.length) {
-      _electricityOnLength = electricityAnimationList.length;
+    } else if (_electricityOnLength > electricCount) {
+      _electricityOnLength = electricCount;
     }
   }
 
-  void shouldPlayBulbSound() {
-    if (_bulbLightOnLength < componentList.count((element) => element is AnimationBulb && element.isLightOn)) {
-      _bulbLightOnLength = componentList.count((element) => element is AnimationBulb && element.isLightOn);
+  void playBulbSoundIfNecessary() {
+    int lightOnBulbCount = componentList.count((element) => element is AnimationBulb && element.isLightOn);
+    if (_bulbLightOnLength < lightOnBulbCount) {
       Future.delayed(const Duration(milliseconds: 300), () => AssetProvider.soundSwitchOnBulb());
-    } else if (_bulbLightOnLength > componentList.count((element) => element is AnimationBulb && element.isLightOn)) {
-      _bulbLightOnLength = componentList.count((element) => element is AnimationBulb && element.isLightOn);
+    } else if (_bulbLightOnLength > lightOnBulbCount) {
       AssetProvider.soundSwitchOffBulb();
     }
+    _bulbLightOnLength = lightOnBulbCount;
   }
 
   bool _isChapterCompleted(List<List<Component?>> gameMap, List<Destination> bulbDestinations) {
