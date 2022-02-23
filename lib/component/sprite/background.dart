@@ -22,4 +22,11 @@ class Background extends BaseSpriteComponent {
         size: size,
         spriteLoader: AssetProvider.imageBackground,
       );
+
+  @override
+  void onGameResize(Vector2 gameSize) {
+    super.onGameResize(gameSize);
+    position = Vector2(gameSize.x / 2, gameSize.y / 2);
+    size = gameSize;
+  }
 }

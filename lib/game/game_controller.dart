@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flame/components.dart';
 import 'package:light_it_up/component/animation/animation_bulb.dart';
@@ -24,7 +26,7 @@ class GameController {
   GameController(this.gameRef);
 
   void updateGameMap({bool playSound = true}) async {
-    if(playSound) {
+    if (playSound) {
       AssetProvider.soundCableMovement();
     }
 
@@ -64,8 +66,8 @@ class GameController {
       }
     }
 
-      playBulbSoundIfNecessary(playSound);
-      playElectricitySoundIfNecessary(playSound);
+    playBulbSoundIfNecessary(playSound);
+    playElectricitySoundIfNecessary(playSound);
   }
 
   void playElectricitySoundIfNecessary(bool playSound) {
@@ -223,6 +225,23 @@ class GameController {
   void nextLevel() {
     removeAllGameComponents();
     _levelController.nextLevel();
+  }
+
+  void resize(Vector2 size) {
+    removeAllGameComponents();
+    AppConstants.wireSize = min(size.x / (_levelController.wireColumnCount + 2), size.y / (_levelController.wireRowCount + 2)).round().toDouble();
+
+    Vector2 mostTopLeft = Vector2(size.x / 2, size.y / 2) -
+        Vector2(
+          (_levelController.wireColumnCount / 2) * AppConstants.wireSize - AppConstants.wireSize / 2,
+          (_levelController.wireRowCount / 2) * AppConstants.wireSize - AppConstants.wireSize / 2,
+        );
+
+    AppConstants.mostTopLeftTileX = mostTopLeft.x;
+    AppConstants.mostTopLeftTileY = mostTopLeft.y;
+    if (gameRef.overlays.isActive(Hud.id)) {
+      startGamePlay();
+    }
   }
 
   bool get hasNextLevel => _levelController.hasNextLevel;
