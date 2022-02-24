@@ -18,8 +18,8 @@ class PauseMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: 250,
-        width: 300,
+        height: 300,
+        width: 350,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
           child: Card(
@@ -27,36 +27,33 @@ class PauseMenu extends StatelessWidget {
             color: Colors.black.withAlpha(100),
             child: FittedBox(
               fit: BoxFit.scaleDown,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 100),
-                child: Wrap(
-                  direction: Axis.vertical,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 10,
-                  children: [
-                    ButtonWidgets.animatedButtonText('Resume', fontSize: 32, isAnimating : false, onTap: () {
-                      gameRef.overlays.remove(PauseMenu.id);
-                      gameRef.overlays.add(Hud.id);
-                      gameRef.resumeEngine();
-                      AssetProvider.soundBgmGame();
-                    }),
-                    ButtonWidgets.animatedButtonText('Restart', fontSize: 32, isAnimating : false, onTap: () {
-                      gameRef.overlays.remove(PauseMenu.id);
-                      gameRef.overlays.add(Hud.id);
-                      gameRef.resumeEngine();
-                      gameRef.gameController.removeAllGameComponents();
-                      gameRef.gameController.startGamePlay();
-                      AssetProvider.soundBgmGame();
-                    }),
-                    ButtonWidgets.animatedButtonText('Exit', fontSize: 32, isAnimating : false, onTap: () {
-                      gameRef.overlays.remove(PauseMenu.id);
-                      gameRef.overlays.add(MainMenu.id);
-                      gameRef.resumeEngine();
-                      gameRef.gameController.removeAllGameComponents(resetGameProgress: true);
-                      AssetProvider.soundBgmMenu();
-                    }),
-                  ],
-                ),
+              child: Wrap(
+                direction: Axis.vertical,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 10,
+                children: [
+                  ButtonWidgets.animatedButtonText('Resume', fontSize: 24, isAnimating: false, onTap: () {
+                    gameRef.overlays.remove(PauseMenu.id);
+                    gameRef.overlays.add(Hud.id);
+                    gameRef.resumeEngine();
+                    AssetProvider.soundBgmGame();
+                  }),
+                  ButtonWidgets.animatedButtonText('Restart', fontSize: 24, isAnimating: false, onTap: () {
+                    gameRef.overlays.remove(PauseMenu.id);
+                    gameRef.overlays.add(Hud.id);
+                    gameRef.resumeEngine();
+                    gameRef.gameController.removeAllGameComponents();
+                    gameRef.gameController.startGamePlay();
+                    AssetProvider.soundBgmGame();
+                  }),
+                  ButtonWidgets.animatedButtonText('Exit', fontSize: 24, isAnimating: false, onTap: () {
+                    gameRef.overlays.remove(PauseMenu.id);
+                    gameRef.overlays.add(MainMenu.id);
+                    gameRef.resumeEngine();
+                    gameRef.gameController.removeAllGameComponents(resetGameProgress: true);
+                    AssetProvider.soundBgmMenu();
+                  }),
+                ],
               ),
             ),
           ),

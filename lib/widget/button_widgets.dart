@@ -17,9 +17,9 @@ class ButtonWidgets {
     );
   }
 
-  static Widget animatedButtonText(String text, {double fontSize = 48, required Function onTap, bool isAnimating = true}) {
+  static Widget animatedButtonText(String text, {double fontSize = 32, required Function onTap, bool isAnimating = true}) {
     return SizedBox(
-      height: fontSize * 1.5,
+      height: fontSize * 2.0,
       child: Center(
         child: DefaultTextStyle(
           textAlign: TextAlign.center,

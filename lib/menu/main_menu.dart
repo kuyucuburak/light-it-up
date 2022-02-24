@@ -16,31 +16,26 @@ class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-        child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          color: Colors.black.withAlpha(100),
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 100),
+      child: SizedBox(
+        height: 300,
+        width: 500,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            color: Colors.black.withAlpha(100),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
               child: Wrap(
                 direction: Axis.vertical,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 spacing: 10,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 8),
-                    child: Text(
-                      'Light It Up',
-                      style: TextStyle(
-                        fontSize: 48,
-                        color: Colors.white,
-                      ),
-                    ),
+                  ButtonWidgets.animatedButtonText('Light It Up', onTap: () {}),
+                  const SizedBox(
+                    height: 32,
                   ),
-                  ButtonWidgets.animatedButtonText('Play', onTap: () {
+                  ButtonWidgets.animatedButtonText('Play', fontSize: 48, isAnimating: false, onTap: () {
                     gameRef.gameController.startGamePlay();
                     gameRef.overlays.add(Hud.id);
                     gameRef.overlays.remove(MainMenu.id);
