@@ -95,18 +95,18 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
     _moveEffect = MoveEffect.to(_positionAfterEffect!, LinearEffectController(AppConstants.wireMoveEffectDurationSec));
     add(_moveEffect!);
     gameRef.gameController.removeAllElectricityAnimations();
-    afterMoveIsDone();
-  }
 
-  void afterMoveIsDone() async {
-    await Future.delayed(Duration(milliseconds: (AppConstants.wireMoveEffectDurationSec * 1000 + 50).toInt()), () {
-      // Although MoveEffects.to() takes us very close to the point we want, it does not equalize exactly.
-      // This causes some mapping problems. So we should finalize it manually.
-      position = _positionAfterEffect!;
-      _moveEffect = null;
-      _positionAfterEffect = null;
-      gameRef.gameController.updateGameMap();
-    });
+    Future.delayed(
+      Duration(milliseconds: (AppConstants.wireMoveEffectDurationSec * 1000 + 50).toInt()),
+      () {
+        // Although MoveEffects.to() takes us very close to the point we want, it does not equalize exactly.
+        // This causes some mapping problems. So we should finalize it manually.
+        position = _positionAfterEffect!;
+        _moveEffect = null;
+        _positionAfterEffect = null;
+        gameRef.gameController.updateGameMap();
+      },
+    );
   }
 
   bool _canMoveToPosition(double x, double y) {
