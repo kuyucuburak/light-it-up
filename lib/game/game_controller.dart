@@ -57,13 +57,14 @@ class GameController {
     });
 
     if (_isChapterCompleted(gameMap, bulbDestinations)) {
-      await Future.delayed(const Duration(milliseconds: 500), () {});
-      gameRef.overlays.remove(Hud.id);
-      gameRef.overlays.add(CongratulationMenu.id);
-      gameRef.pauseEngine();
-      if (playSound) {
-        AssetProvider.soundBgmMenu();
-      }
+      Future.delayed(const Duration(milliseconds: 1000), () {
+        gameRef.overlays.remove(Hud.id);
+        gameRef.overlays.add(CongratulationMenu.id);
+        gameRef.pauseEngine();
+        if (playSound) {
+          AssetProvider.soundBgmMenu();
+        }
+      });
     }
 
     playBulbSoundIfNecessary(playSound);

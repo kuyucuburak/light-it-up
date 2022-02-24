@@ -40,15 +40,12 @@ class MainMenu extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      gameRef.gameController.startGamePlay();
-                      gameRef.overlays.add(Hud.id);
-                      gameRef.overlays.remove(MainMenu.id);
-                      AssetProvider.soundBgmGame();
-                    },
-                    child: ButtonWidgets.menuButton('Play'),
-                  ),
+                  ButtonWidgets.animatedButtonText('Play', onTap: () {
+                    gameRef.gameController.startGamePlay();
+                    gameRef.overlays.add(Hud.id);
+                    gameRef.overlays.remove(MainMenu.id);
+                    AssetProvider.soundBgmGame();
+                  }),
                 ],
               ),
             ),

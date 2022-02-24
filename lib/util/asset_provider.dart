@@ -8,6 +8,9 @@ import 'package:flame_audio/flame_audio.dart';
 // bgmGame: https://freesound.org/people/ShadyDave/sounds/506055/
 // bgmMenu: https://freesound.org/people/ShadyDave/sounds/325611/
 // soundCableMovement: https://freesound.org/people/AbdrTar/sounds/558117/
+// soundElectricity: https://www.zapsplat.com/music/electricity-spark-sound-design-1/
+// soundSwitchOffBulb: https://www.zapsplat.com/music/baby-monitor-unit-switch-off/
+// soundSwitchOnBulb: https://www.zapsplat.com/music/bathroom-heater-switch-off/
 
 class AssetProvider {
   static const String _animationBulbNoLight = 'animation/bulb/bulb_no_light.png';
