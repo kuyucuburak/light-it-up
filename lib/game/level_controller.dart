@@ -3,56 +3,65 @@ import 'package:light_it_up/data/level.dart';
 import 'package:light_it_up/game/level_builder.dart';
 
 class LevelController {
-  late final List<Level> _levelList = [_level1, _level2, _level3, _level4];
+  late final List<Level> _levelList = [_level1, _level2, _level3, _level4, _level5];
   late Level _currentLevel = _level1;
   late LevelBuilder _levelBuilder = LevelBuilder(_currentLevel);
 
   final Level _level1 = Level(
-    tileMap: [
-      [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg],
-      [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.w3r, LevelBuilder.ntg],
-      [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.w3r, LevelBuilder.ntg],
-      [LevelBuilder.wc4, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.w3t],
-      [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.ntg],
+    tileMapUnShuffledList: [
+      [LevelBuilder.who, LevelBuilder.wbl, LevelBuilder.ntg, LevelBuilder.ntg],
+      [LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.who],
+      [LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.who, LevelBuilder.ntg],
     ],
-    generatorIndexList: [0, 3, 4],
-    bulbIndexList: [1, 2, 3],
+    generatorIndexList: [0],
+    bulbIndexList: [2],
   );
 
   final Level _level2 = Level(
-    tileMap: [
-      [LevelBuilder.wc4, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.wbl],
-      [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.w3r, LevelBuilder.ntg],
-      [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wve],
-      [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wve],
-      [LevelBuilder.ntg, LevelBuilder.who, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.ntg],
+    tileMapUnShuffledList: [
+      [LevelBuilder.who, LevelBuilder.wbl, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg],
+      [LevelBuilder.ntg, LevelBuilder.wc4, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.who],
+      [LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.who, LevelBuilder.who, LevelBuilder.ntg],
+      [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg],
     ],
     generatorIndexList: [0],
     bulbIndexList: [2],
   );
 
   final Level _level3 = Level(
-    tileMap: [
-      [LevelBuilder.wc4, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.wbl],
-      [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.w3r, LevelBuilder.ntg],
-      [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wve],
-      [LevelBuilder.ntg, LevelBuilder.who, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wve],
-      [LevelBuilder.who, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.ntg],
+    tileMapUnShuffledList: [
+      [LevelBuilder.wbl, LevelBuilder.wbr, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.wbl],
+      [LevelBuilder.wtr, LevelBuilder.w3l, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wtr],
+      [LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.who],
+      [LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.ntg],
     ],
     generatorIndexList: [0],
-    bulbIndexList: [1, 4],
+    bulbIndexList: [1, 3],
   );
 
   final Level _level4 = Level(
-    tileMap: [
-      [LevelBuilder.wc4, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.wbl],
-      [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.w3r, LevelBuilder.ntg],
-      [LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wve],
-      [LevelBuilder.ntg, LevelBuilder.who, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wve],
-      [LevelBuilder.who, LevelBuilder.who, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.ntg],
+    tileMapUnShuffledList: [
+      [LevelBuilder.wbl, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg],
+      [LevelBuilder.wve, LevelBuilder.wbr, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who],
+      [LevelBuilder.wtr, LevelBuilder.w3l, LevelBuilder.ntg, LevelBuilder.wbr, LevelBuilder.who, LevelBuilder.who, LevelBuilder.wbl, LevelBuilder.who],
+      [LevelBuilder.ntg, LevelBuilder.w3r, LevelBuilder.who, LevelBuilder.wtl, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.ntg],
+      [LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who],
     ],
     generatorIndexList: [0],
-    bulbIndexList: [2],
+    bulbIndexList: [1, 3, 4],
+  );
+
+  final Level _level5 = Level(
+    tileMapUnShuffledList: [
+      [LevelBuilder.who, LevelBuilder.w3b, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.wbl, LevelBuilder.ntg],
+      [LevelBuilder.ntg, LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wtr, LevelBuilder.who],
+      [LevelBuilder.wbl, LevelBuilder.wtr, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.ntg],
+      [LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.who],
+      [LevelBuilder.wve, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.ntg, LevelBuilder.wbr, LevelBuilder.who, LevelBuilder.who],
+      [LevelBuilder.wtr, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.who, LevelBuilder.w3t, LevelBuilder.who, LevelBuilder.who],
+    ],
+    generatorIndexList: [0, 2],
+    bulbIndexList: [1, 2, 4, 5],
   );
 
   void nextLevel() {
