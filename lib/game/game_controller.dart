@@ -25,7 +25,7 @@ class GameController {
 
   GameController(this.gameRef);
 
-  void cutOffTheElectricity() {
+  void removeAllElectricityAnimations() {
     electricityAnimationList.forEach((e) => e.removeFromParent());
     electricityAnimationList = [];
   }
@@ -34,6 +34,8 @@ class GameController {
     if (playSound) {
       AssetProvider.soundCableMovement();
     }
+
+    removeAllElectricityAnimations();
 
     List<List<Component?>> gameMap = List.generate(_levelController.wireRowCount, (i) => List.filled(_levelController.wireColumnCount + 2, null, growable: false), growable: false);
     List<Destination> bulbDestinations = List.empty(growable: true);
@@ -210,7 +212,6 @@ class GameController {
   Future<void> startGamePlay() async {
     componentList = _levelController.currentLevelComponentList;
     componentList.forEach((e) => gameRef.add(e));
-    cutOffTheElectricity();
     updateGameMap(playSound: false);
   }
 

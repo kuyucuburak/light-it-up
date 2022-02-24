@@ -15,9 +15,9 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
 
   Vector2? _dragDeltaPosition;
   bool? _isDragHorizontal;
-  MoveEffect? moveEffect;
-  double finalX = 0;
-  double finalY = 0;
+
+  MoveEffect? _moveEffect;
+  Vector2? _positionAfterEffect;
 
   @override
   bool onDragStart(int pointerId, DragStartInfo info) {
@@ -43,7 +43,7 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
 
       return true;
     } else {
-      if (moveEffect == null) {
+      if (_moveEffect == null) {
         if (_isDragHorizontal == true) {
           if (evenPointX > position.x) {
             double newX = position.x + AppConstants.wireSize;
@@ -91,24 +91,22 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
   }
 
   void moveTo(double x, double y) {
-    gameRef.gameController.cutOffTheElectricity();
-    finalX = x;
-    finalY = y;
-    moveEffect = MoveEffect.to(Vector2(x, y), LinearEffectController(AppConstants.wireMoveEffectDuration));
-    add(moveEffect!);
+    _positionAfterEffect = Vector2(x, y);
+    _moveEffect = MoveEffect.to(_positionAfterEffect!, LinearEffectController(AppConstants.wireMoveEffectDurationSec));
+    add(_moveEffect!);
+    gameRef.gameController.removeAllElectricityAnimations();
     afterMoveIsDone();
   }
 
   void afterMoveIsDone() async {
-    await Future.delayed(const Duration(milliseconds: 505), () {});
-    position.x = finalX;
-    position.y = finalY;
-    // Although MoveEffects.to() takes us very close to the point we want, it does not equalize exactly. This causes some mapping problems.
-    // So we should finalize it manually.
-    if (moveEffect?.controller.progress == 1) {
-      moveEffect = null;
+    await Future.delayed(Duration(milliseconds: (AppConstants.wireMoveEffectDurationSec * 1000 + 50).toInt()), () {
+      // Although MoveEffects.to() takes us very close to the point we want, it does not equalize exactly.
+      // This causes some mapping problems. So we should finalize it manually.
+      position = _positionAfterEffect!;
+      _moveEffect = null;
+      _positionAfterEffect = null;
       gameRef.gameController.updateGameMap();
-    }
+    });
   }
 
   bool _canMoveToPosition(double x, double y) {
