@@ -76,6 +76,20 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
     }
   }
 
+  @override
+  bool onDragEnd(int pointerId, DragEndInfo info) {
+    _dragDeltaPosition = null;
+    _isDragHorizontal = null;
+    return false;
+  }
+
+  @override
+  bool onDragCancel(int pointerId) {
+    _dragDeltaPosition = null;
+    _isDragHorizontal = null;
+    return false;
+  }
+
   void moveTo(double x, double y) {
     gameRef.gameController.cutOffTheElectricity();
     finalX = x;
@@ -95,20 +109,6 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
       moveEffect = null;
       gameRef.gameController.updateGameMap();
     }
-  }
-
-  @override
-  bool onDragEnd(int pointerId, DragEndInfo info) {
-    _dragDeltaPosition = null;
-    _isDragHorizontal = null;
-    return false;
-  }
-
-  @override
-  bool onDragCancel(int pointerId) {
-    _dragDeltaPosition = null;
-    _isDragHorizontal = null;
-    return false;
   }
 
   bool _canMoveToPosition(double x, double y) {
