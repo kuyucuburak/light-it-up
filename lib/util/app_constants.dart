@@ -15,6 +15,7 @@ class AppConstants {
 
   static double mostTopLeftTileX = 200;
   static double mostTopLeftTileY = 200;
+  static double wireMoveEffectDuration = 0.5;
   static double wireSize = 120;
 
   static double get staticAnimationSize => wireSize;

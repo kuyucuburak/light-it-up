@@ -80,7 +80,7 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
     gameRef.gameController.cutOffTheElectricity();
     finalX = x;
     finalY = y;
-    moveEffect = MoveEffect.to(Vector2(x, y), LinearEffectController(0.5));
+    moveEffect = MoveEffect.to(Vector2(x, y), LinearEffectController(AppConstants.wireMoveEffectDuration));
     add(moveEffect!);
     afterMoveIsDone();
   }
