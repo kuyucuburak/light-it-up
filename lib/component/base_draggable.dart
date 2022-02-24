@@ -1,5 +1,6 @@
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:flame/input.dart';
 import 'package:light_it_up/component/sprite/wire.dart';
 import 'package:light_it_up/game/puzzle_game.dart';
@@ -14,6 +15,9 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
 
   Vector2? _dragDeltaPosition;
   bool? _isDragHorizontal;
+  MoveEffect? moveEffect;
+  double finalX = 0;
+  double finalY = 0;
 
   @override
   bool onDragStart(int pointerId, DragStartInfo info) {
@@ -39,35 +43,57 @@ mixin BaseDraggable on HasGameRef<PuzzleGame>, HasHitboxes, PositionComponent, D
 
       return true;
     } else {
-      if (_isDragHorizontal == true) {
-        if (evenPointX > position.x) {
-          double newX = position.x + AppConstants.wireSize;
-          if (_canMoveToPosition(newX, position.y)) {
-            position.x = newX;
+      if (moveEffect == null) {
+        if (_isDragHorizontal == true) {
+          if (evenPointX > position.x) {
+            double newX = position.x + AppConstants.wireSize;
+            if (_canMoveToPosition(newX, position.y)) {
+              moveTo(newX, position.y);
+            }
+          } else {
+            double newX = position.x - AppConstants.wireSize;
+            if (_canMoveToPosition(newX, position.y)) {
+              moveTo(newX, position.y);
+            }
           }
-        } else {
-          double newX = position.x - AppConstants.wireSize;
-          if (_canMoveToPosition(newX, position.y)) {
-            position.x = newX;
-          }
-        }
-      } else if (_isDragHorizontal == false) {
-        if (evenPointY > position.y) {
-          double newY = position.y + AppConstants.wireSize;
-          if (_canMoveToPosition(position.x, newY)) {
-            position.y = newY;
-          }
-        } else {
-          double newY = position.y - AppConstants.wireSize;
-          if (_canMoveToPosition(position.x, newY)) {
-            position.y = newY;
+        } else if (_isDragHorizontal == false) {
+          if (evenPointY > position.y) {
+            double newY = position.y + AppConstants.wireSize;
+            if (_canMoveToPosition(position.x, newY)) {
+              moveTo(position.x, newY);
+            }
+          } else {
+            double newY = position.y - AppConstants.wireSize;
+            if (_canMoveToPosition(position.x, newY)) {
+              moveTo(position.x, newY);
+            }
           }
         }
       }
 
-      gameRef.gameController.updateGameMap();
       handleDragCanceled(pointerId);
       return false;
+    }
+  }
+
+  void moveTo(double x, double y) {
+    gameRef.gameController.cutOffTheElectricity();
+    finalX = x;
+    finalY = y;
+    moveEffect = MoveEffect.to(Vector2(x, y), LinearEffectController(0.5));
+    add(moveEffect!);
+    afterMoveIsDone();
+  }
+
+  void afterMoveIsDone() async {
+    await Future.delayed(const Duration(milliseconds: 505), () {});
+    position.x = finalX;
+    position.y = finalY;
+    // Although MoveEffects.to() takes us very close to the point we want, it does not equalize exactly. This causes some mapping problems.
+    // So we should finalize it manually.
+    if (moveEffect?.controller.progress == 1) {
+      moveEffect = null;
+      gameRef.gameController.updateGameMap();
     }
   }
 
