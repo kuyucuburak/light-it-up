@@ -10,9 +10,6 @@ class Level {
     required this.generatorIndexList,
     required this.bulbIndexList,
   }) {
-    tileMapUnShuffledList.forEach((element) {
-      element.shuffle();
-    });
     List<String> shuffledList = tileMapUnShuffledList.expand((e) => e).toList();
     shuffledList.shuffle();
     tileMap = shuffledList.chunks(tileMapUnShuffledList[0].length).toList();
