@@ -17,47 +17,40 @@ class CongratulationMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-        child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          color: Colors.black.withAlpha(100),
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 100),
+      child: SizedBox(
+        height: 300,
+        width: 350,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            color: Colors.black.withAlpha(100),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
               child: Wrap(
                 direction: Axis.vertical,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 spacing: 10,
                 children: [
-                  const Text(
-                    'Congratulations',
-                    style: TextStyle(fontSize: 40, color: Colors.white),
-                  ),
+                  ButtonWidgets.animatedButtonText('Congratulations!', fontSize: 16),
+                  const SizedBox(height: 16),
                   gameRef.gameController.hasNextLevel
-                      ? ElevatedButton(
-                          onPressed: () {
-                            gameRef.overlays.remove(CongratulationMenu.id);
-                            gameRef.overlays.add(Hud.id);
-                            gameRef.resumeEngine();
-                            gameRef.gameController.nextLevel();
-                            gameRef.gameController.startGamePlay();
-                            AssetProvider.soundBgmGame();
-                          },
-                          child: ButtonWidgets.menuButton('Next Level'),
-                        )
+                      ? ButtonWidgets.animatedButtonText('Next Level', fontSize: 24, isAnimating: false, onTap: () {
+                          gameRef.overlays.remove(CongratulationMenu.id);
+                          gameRef.overlays.add(Hud.id);
+                          gameRef.resumeEngine();
+                          gameRef.gameController.nextLevel();
+                          gameRef.gameController.startGamePlay();
+                          AssetProvider.soundBgmGame();
+                        })
                       : Container(),
-                  ElevatedButton(
-                    onPressed: () {
-                      gameRef.overlays.remove(CongratulationMenu.id);
-                      gameRef.overlays.add(MainMenu.id);
-                      gameRef.resumeEngine();
-                      gameRef.gameController.removeAllGameComponents(resetGameProgress: true);
-                      AssetProvider.soundBgmMenu();
-                    },
-                    child: ButtonWidgets.menuButton('Exit'),
-                  ),
+                  ButtonWidgets.animatedButtonText('Exit', isAnimating: false, fontSize: 24, onTap: () {
+                    gameRef.overlays.remove(CongratulationMenu.id);
+                    gameRef.overlays.add(MainMenu.id);
+                    gameRef.resumeEngine();
+                    gameRef.gameController.removeAllGameComponents(resetGameProgress: true);
+                    AssetProvider.soundBgmMenu();
+                  }),
                 ],
               ),
             ),

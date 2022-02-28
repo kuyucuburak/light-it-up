@@ -17,50 +17,42 @@ class PauseMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-        child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          color: Colors.black.withAlpha(100),
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 100),
+      child: SizedBox(
+        height: 300,
+        width: 350,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            color: Colors.black.withAlpha(100),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
               child: Wrap(
                 direction: Axis.vertical,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 spacing: 10,
                 children: [
-                  ElevatedButton(
-                    child: ButtonWidgets.menuButton('Resume'),
-                    onPressed: () {
-                      gameRef.overlays.remove(PauseMenu.id);
-                      gameRef.overlays.add(Hud.id);
-                      gameRef.resumeEngine();
-                      AssetProvider.soundBgmGame();
-                    },
-                  ),
-                  ElevatedButton(
-                    child: ButtonWidgets.menuButton('Restart'),
-                    onPressed: () {
-                      gameRef.overlays.remove(PauseMenu.id);
-                      gameRef.overlays.add(Hud.id);
-                      gameRef.resumeEngine();
-                      gameRef.gameController.removeAllGameComponents();
-                      gameRef.gameController.startGamePlay();
-                      AssetProvider.soundBgmGame();
-                    },
-                  ),
-                  ElevatedButton(
-                    child: ButtonWidgets.menuButton('Exit'),
-                    onPressed: () {
-                      gameRef.overlays.remove(PauseMenu.id);
-                      gameRef.overlays.add(MainMenu.id);
-                      gameRef.resumeEngine();
-                      gameRef.gameController.removeAllGameComponents(resetGameProgress: true);
-                      AssetProvider.soundBgmMenu();
-                    },
-                  ),
+                  ButtonWidgets.animatedButtonText('Resume', fontSize: 24, isAnimating: false, onTap: () {
+                    gameRef.overlays.remove(PauseMenu.id);
+                    gameRef.overlays.add(Hud.id);
+                    gameRef.resumeEngine();
+                    AssetProvider.soundBgmGame();
+                  }),
+                  ButtonWidgets.animatedButtonText('Restart', fontSize: 24, isAnimating: false, onTap: () {
+                    gameRef.overlays.remove(PauseMenu.id);
+                    gameRef.overlays.add(Hud.id);
+                    gameRef.resumeEngine();
+                    gameRef.gameController.removeAllGameComponents();
+                    gameRef.gameController.startGamePlay();
+                    AssetProvider.soundBgmGame();
+                  }),
+                  ButtonWidgets.animatedButtonText('Exit', fontSize: 24, isAnimating: false, onTap: () {
+                    gameRef.overlays.remove(PauseMenu.id);
+                    gameRef.overlays.add(MainMenu.id);
+                    gameRef.resumeEngine();
+                    gameRef.gameController.removeAllGameComponents(resetGameProgress: true);
+                    AssetProvider.soundBgmMenu();
+                  }),
                 ],
               ),
             ),
