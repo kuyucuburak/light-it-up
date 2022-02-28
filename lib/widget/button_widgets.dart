@@ -17,7 +17,12 @@ class ButtonWidgets {
     );
   }
 
-  static Widget animatedButtonText(String text, {double fontSize = 32, required Function onTap, bool isAnimating = true}) {
+  static Widget animatedButtonText(
+    String text, {
+    double fontSize = 32,
+    Function? onTap,
+    bool isAnimating = true,
+  }) {
     return SizedBox(
       height: fontSize * 2.0,
       child: Center(
@@ -41,11 +46,11 @@ class ButtonWidgets {
                   animatedTexts: [
                     FlickerAnimatedText(text),
                   ],
-                  onTap: () => onTap(),
+                  onTap: () => onTap?.call(),
                 )
               : GestureDetector(
                   child: Text(text),
-                  onTap: () => onTap(),
+                  onTap: () => onTap?.call(),
                 ),
         ),
       ),

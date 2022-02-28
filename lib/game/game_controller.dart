@@ -30,7 +30,7 @@ class GameController {
     electricityAnimationList = [];
   }
 
-  void updateGameMap({bool playSound = true}) async {
+  void updateGameMap({bool playSound = true}) {
     if (playSound) {
       AssetProvider.soundCableMovement();
     }

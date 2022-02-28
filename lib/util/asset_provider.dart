@@ -136,12 +136,12 @@ class AssetProvider {
 
   static Future<void> soundBgmGame() {
     FlameAudio.bgm.stop();
-    return FlameAudio.bgm.play(_soundBgmGame, volume: .0);
+    return FlameAudio.bgm.play(_soundBgmGame, volume: .50);
   }
 
   static Future<void> soundBgmMenu() {
     FlameAudio.bgm.stop();
-    return FlameAudio.bgm.play(_soundBgmMenu, volume: .0);
+    return FlameAudio.bgm.play(_soundBgmMenu, volume: .40);
   }
 
   static Future<void> soundCableMovement() => FlameAudio.play(_soundCableMovement, volume: 0.25);

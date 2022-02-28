@@ -32,10 +32,8 @@ class CongratulationMenu extends StatelessWidget {
                 crossAxisAlignment: WrapCrossAlignment.center,
                 spacing: 10,
                 children: [
-                  ButtonWidgets.animatedButtonText('Congratulations!', fontSize: 16, onTap: () {}),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  ButtonWidgets.animatedButtonText('Congratulations!', fontSize: 16),
+                  const SizedBox(height: 16),
                   gameRef.gameController.hasNextLevel
                       ? ButtonWidgets.animatedButtonText('Next Level', fontSize: 24, isAnimating: false, onTap: () {
                           gameRef.overlays.remove(CongratulationMenu.id);

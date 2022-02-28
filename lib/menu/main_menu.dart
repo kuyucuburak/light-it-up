@@ -31,10 +31,7 @@ class MainMenu extends StatelessWidget {
                 crossAxisAlignment: WrapCrossAlignment.center,
                 spacing: 10,
                 children: [
-                  ButtonWidgets.animatedButtonText('Light It Up', onTap: () {}),
-                  const SizedBox(
-                    height: 32,
-                  ),
+                  ButtonWidgets.animatedButtonText('Light It Up'),
                   ButtonWidgets.animatedButtonText('Play', fontSize: 48, isAnimating: false, onTap: () {
                     gameRef.gameController.startGamePlay();
                     gameRef.overlays.add(Hud.id);
