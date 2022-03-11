@@ -5,8 +5,8 @@ import 'package:flame_audio/flame_audio.dart';
 // generator: https://icon-library.com/png/249125.html
 // wire: https://www.vecteezy.com/vector-art/1268055-set-of-colorful-copper-wire
 
-// bgmGame: https://freesound.org/people/ShadyDave/sounds/506055/
-// bgmMenu: https://freesound.org/people/ShadyDave/sounds/325611/
+// bgmGame: https://www.bensound.com/royalty-free-music/track/buddy
+// bgmMenu: https://www.bensound.com/royalty-free-music/track/cute
 // soundCableMovement: https://freesound.org/people/AbdrTar/sounds/558117/
 // soundElectricity: https://www.zapsplat.com/music/electricity-spark-sound-design-1/
 // soundSwitchOffBulb: https://www.zapsplat.com/music/baby-monitor-unit-switch-off/
