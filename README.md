@@ -6,11 +6,7 @@ We used [Flame](https://docs.flame-engine.org/1.0.0/#about-flame) in this projec
 
 Light It Up is deployed with [Firebase Hosting](https://firebase.google.com/docs/hosting). You can play Light It Up from: https://lightitup-75515.firebaseapp.com/
 
-## Supported Operating Systems
-This game is mainly developed for Web. But, we designed algorithms in the way that we can support any scale. Thus, Light It Up can be run in an Android or IOS device as well! So supported operating systems are as below:
-- Web
-- Android
-- iOS
+This game is mainly developed for Web. But, we designed algorithms in the way that we can support any scale. Thus, Light It Up can be run in an Android device or iOS device as well! So supported operating systems are: Web, Android and iOS.
 
 ## Screenshots
 - Screenshots for 2 different levels that is taken in Chrome:
