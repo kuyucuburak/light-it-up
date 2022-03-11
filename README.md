@@ -2,6 +2,6 @@
 
 *Light It Up* is a puzzle game that is developed with Flutter by using [Flame](https://docs.flame-engine.org/1.0.0/) game engine for [Flutter Puzzle Hack](https://flutterhack.devpost.com/).
 
-![Android1](assets/readme/web_1.png)
+We hope that this will be a helpful resource for whom want to develop a game with flame game engine, especially for new starters!
 
-We think that this will be a helpful resource for whom want to develop a game with flame game engine.
+![Android1](assets/readme/web_1.png)
