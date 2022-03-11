@@ -1,16 +1,26 @@
-# light_it_up
+# Light It Up
+Light It Up is a puzzle game that is developed with Flutter for [Flutter Puzzle Hack](https://flutterhack.devpost.com/).
 
-A new Flutter project.
+## Description
+The goal of the game is carrying electricity from generator to bulbs for lighting them up by sliding different kind of wires.
 
-## Getting Started
+We used [Flame](https://docs.flame-engine.org/1.0.0/#about-flame) in this project. Flame is a game engine of Flutter. We hope that this project can be a helpful resource for whom want to develop a game with flame game engine. So, we decided to make this repository public.
 
-This project is a starting point for a Flutter application.
+Light It Up is deployed with [Firebase Hosting](https://firebase.google.com/docs/hosting). You can play it from: https://lightitup-75515.firebaseapp.com/.
 
-A few resources to get you started if this is your first Flutter project:
+## Supported Operating Systems
+This game is mainly developed for Web. But, we designed algorithms in the way that we can support any scale. Thus, Light It Up can be run in an Android device or iOS device as well! So supported operating systems are: Web, Android and iOS.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Screenshots
+- Screenshots for 2 different levels that is taken in Chrome:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+|Web Example 1|Web Example 2|
+|-|-|
+|![1](assets/readme/web_1.png)|![2](assets/readme/web_2.png)|
+
+- Screenshots for 2 different levels that is taken in an Android Emulator.
+
+|Android Example 1|Android Example 2|
+|-|-|
+|![1](assets/readme/android_1.png)|![2](assets/readme/android_2.png)|
+
