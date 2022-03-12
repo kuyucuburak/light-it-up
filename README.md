@@ -16,11 +16,18 @@ This game is mainly developed for Web. But, we designed algorithms in the way th
 
 |Web Example 1|Web Example 2|
 |-|-|
-|![1](assets/readme/web_1.png)|![2](assets/readme/web_2.png)|
+|![web_1](assets/readme/web_1.png)|![web_2](assets/readme/web_2.png)|
 
 - Screenshots for 2 different levels that is taken in an Android Emulator.
 
 |Android Example 1|Android Example 2|
 |-|-|
-|![1](assets/readme/android_1.png)|![2](assets/readme/android_2.png)|
+|![android_1](assets/readme/android_1.png)|![android_2](assets/readme/android_2.png)|
 
+## Debug Mode
+Flame has a debug mode that enables you to see the position of game objects. You can just use the variables in the `AppConstants` class to enable or disable debug mode. The variables are as below:
+https://github.com/kuyucuburak/LightItUp/blob/e9a3cf9259836bf4538baf2e13a7bfc24782b89d/lib/util/app_constants.dart#L4-L5
+
+When debug mode is enabled, game looks like as below:
+
+![debug_mode](assets/readme/debug_mode.png)
