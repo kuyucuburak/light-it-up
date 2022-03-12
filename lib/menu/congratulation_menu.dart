@@ -41,7 +41,7 @@ class CongratulationMenu extends StatelessWidget {
                           gameRef.resumeEngine();
                           gameRef.gameController.nextLevel();
                           gameRef.gameController.startGamePlay();
-                          AssetProvider.soundBgmGame();
+                          AssetProvider.bgmGame();
                         })
                       : Container(),
                   ButtonWidgets.animatedButtonText('Exit', isAnimating: false, fontSize: 24, onTap: () {
@@ -49,7 +49,7 @@ class CongratulationMenu extends StatelessWidget {
                     gameRef.overlays.add(MainMenu.id);
                     gameRef.resumeEngine();
                     gameRef.gameController.removeAllGameComponents(resetGameProgress: true);
-                    AssetProvider.soundBgmMenu();
+                    AssetProvider.bgmMenu();
                   }),
                 ],
               ),

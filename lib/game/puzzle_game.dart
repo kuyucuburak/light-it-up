@@ -17,8 +17,8 @@ class PuzzleGame extends FlameGame with HasDraggables {
     await FlameAudio.bgm.loadAll(AssetProvider.backgroundSoundAssets);
 
     FlameAudio.bgm.initialize();
-    AssetProvider.soundBgmMenu();
-    add(await background(this));
+    AssetProvider.bgmMenu();
+    add(await _background(this));
   }
 
   @override
@@ -30,7 +30,7 @@ class PuzzleGame extends FlameGame with HasDraggables {
     gameController.resize(canvasSize);
   }
 
-  Future<Component> background(PuzzleGame gameRef) async {
+  Future<Component> _background(PuzzleGame gameRef) async {
     Vector2 size = gameRef.size;
     return Background.black(
       position: Vector2(size.x / 2, size.y / 2),

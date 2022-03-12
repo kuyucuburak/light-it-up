@@ -36,7 +36,7 @@ class MainMenu extends StatelessWidget {
                     gameRef.gameController.startGamePlay();
                     gameRef.overlays.add(Hud.id);
                     gameRef.overlays.remove(MainMenu.id);
-                    AssetProvider.soundBgmGame();
+                    AssetProvider.bgmGame();
                   }),
                 ],
               ),

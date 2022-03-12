@@ -36,7 +36,7 @@ class PauseMenu extends StatelessWidget {
                     gameRef.overlays.remove(PauseMenu.id);
                     gameRef.overlays.add(Hud.id);
                     gameRef.resumeEngine();
-                    AssetProvider.soundBgmGame();
+                    AssetProvider.bgmGame();
                   }),
                   ButtonWidgets.animatedButtonText('Restart', fontSize: 24, isAnimating: false, onTap: () {
                     gameRef.overlays.remove(PauseMenu.id);
@@ -44,14 +44,14 @@ class PauseMenu extends StatelessWidget {
                     gameRef.resumeEngine();
                     gameRef.gameController.removeAllGameComponents();
                     gameRef.gameController.startGamePlay();
-                    AssetProvider.soundBgmGame();
+                    AssetProvider.bgmGame();
                   }),
                   ButtonWidgets.animatedButtonText('Exit', fontSize: 24, isAnimating: false, onTap: () {
                     gameRef.overlays.remove(PauseMenu.id);
                     gameRef.overlays.add(MainMenu.id);
                     gameRef.resumeEngine();
                     gameRef.gameController.removeAllGameComponents(resetGameProgress: true);
-                    AssetProvider.soundBgmMenu();
+                    AssetProvider.bgmMenu();
                   }),
                 ],
               ),

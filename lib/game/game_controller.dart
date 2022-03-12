@@ -66,7 +66,7 @@ class GameController {
         gameRef.overlays.add(CongratulationMenu.id);
         gameRef.pauseEngine();
         if (playSound) {
-          AssetProvider.soundBgmMenu();
+          AssetProvider.bgmMenu();
         }
       });
     }
