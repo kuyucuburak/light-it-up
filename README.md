@@ -32,7 +32,7 @@ When debug mode is enabled, game looks like as below:
 
 ![debug_mode](assets/readme/debug_mode.png)
 
-### License
+## License
 Copyright 2022 Burak Kuyucu
 
 Licensed under the Apache License, Version 2.0 (the "License");
